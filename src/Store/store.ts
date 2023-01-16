@@ -1,9 +1,11 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import HUDSlice from "./reducers/HUDSlice";
 import userSlice from "./reducers/UserSlice";
 
 
 const rootReducers = combineReducers({
     userSlice,
+    HUDSlice,
 })
 
 export const setupStore = () => {

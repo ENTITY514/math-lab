@@ -1,19 +1,19 @@
 .container_two {
     padding: 10px;
-    height: 200px;
+    height: 300px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-gap: 10px;
     background-color: rgba(0, 0, 0, 0.842);
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: calc(50% - 100px);
     border-radius: 10px;
 }
 
 .container_one {
     padding: 10px;
-    height: 200px;
+    height: 300px;
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     grid-template-columns: 40px 1fr;
@@ -22,7 +22,7 @@
     grid-row-gap: 10px;
     background-color: rgba(0, 0, 0, 0.842);
     position: absolute;
-    left: 30px;
+    left: 10px;
     top: calc(50% - 100px);
     border-radius: 10px;
 }
