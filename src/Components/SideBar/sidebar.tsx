@@ -10,11 +10,13 @@ export const SideBar: React.FC = () => {
     const state = useAppSelector(state => state.HUDSlice)
     const dispatch = useAppDispatch()
     const { changePageTo, open_hud } = HUDSlice.actions
-    const [is_open, set_is_open] = React.useState<Boolean>(state.is_open)
     const [active_page, set_active_page] = React.useState<Pages>(state.active_page)
     const changePage = (title: Pages) => {
+        set_active_page(title)
         dispatch(changePageTo(title))
     }
+    console.log(active_page);
+    
     if (state.is_open) {
         return (
             <div className={style.container_one}>
@@ -32,8 +34,8 @@ export const SideBar: React.FC = () => {
                 <div className={style.title}>Создать проект</div>
                 <Button url={"icons/info.png"} is_active={active_page === Pages.ABOUT} title={Pages.ABOUT} action={changePage} />
                 <div className={style.title}>О проекте</div>
-                <Icon url={"icons/gears.png"} />
                 <Button url={"icons/gears.png"} is_active={active_page === Pages.SETTINGS} title={Pages.SETTINGS} action={changePage} />
+                <div className={style.title}>Настройки</div>
             </div>
         )
     }

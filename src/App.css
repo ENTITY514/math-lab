@@ -3,3 +3,9 @@
   height: 100vh;
   overflow: hidden;
 }
+
+.main{
+  margin-left: 65px;
+  width: 100%;
+  height: 100%;
+}
