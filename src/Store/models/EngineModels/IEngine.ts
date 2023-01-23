@@ -6,5 +6,6 @@ export interface IEngine {
 
 export enum Sections {
     MAIN,
-    CODE_EDITOR
+    CODE_EDITOR,
+    TEST,
 }
