@@ -1,4 +1,4 @@
-import style from "./proerties.module.css"
+import style from "./properties.module.css"
 
 export const Properties: React.FC = () => {
     return (
