@@ -22,7 +22,7 @@ export class PIXI_ENGINE {
     }
 
     initRenderer() {
-        this.app = new PIXI.Application({ width: 640, height: 360, backgroundColor: 0x000000 });
+        this.app = new PIXI.Application({ width: 640, height: 360, backgroundColor: 0xff0000 });
     }
 
     update() {
