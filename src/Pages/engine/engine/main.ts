@@ -1,18 +1,21 @@
 import * as PIXI from "pixi.js"
+import { Test } from "./Classes/Modules/TestM/test"
 
-export class PIXI_ENGINE {
+export class Engine {
     private static _instance: any
     app!: PIXI.Application
     canvasContainer: HTMLDivElement | undefined
+    test_module!: Test
     constructor() {
-        if (typeof PIXI_ENGINE._instance === 'object') {
-            return PIXI_ENGINE._instance
+        if (typeof Engine._instance === 'object') {
+            return Engine._instance
         }
+        this.test_module = new Test(this)
         this.initRenderer();
         this.render();
         this.animate()
-        PIXI_ENGINE._instance = this
-        return PIXI_ENGINE._instance
+        Engine._instance = this
+        return Engine._instance
     }
 
     addView(canvasContainer: HTMLDivElement) {
@@ -22,7 +25,7 @@ export class PIXI_ENGINE {
     }
 
     initRenderer() {
-        this.app = new PIXI.Application({ width: 640, height: 360, backgroundColor: 0xff0000 });
+        this.app = new PIXI.Application({ width: 640, height: 360, backgroundColor: 0x000000 });
     }
 
     update() {

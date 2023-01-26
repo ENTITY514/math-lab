@@ -4,8 +4,11 @@ import { IEngine, Sections } from "../models/EngineModels/IEngine";
 
 let initialState: IEngine = {
     active_section: Sections.MAIN,
-    project_name: "project_name",
-    project_id: nanoid()
+    project_data: {
+        name: "project_name",
+        id: nanoid()
+    },
+    view_ready: false
 }
 
 export const EngineSlice = createSlice({
@@ -15,6 +18,9 @@ export const EngineSlice = createSlice({
         changeSection: (state, action: PayloadAction<Sections>) => {
             state.active_section = action.payload
         },
+        ViewCreate: (state) => {
+            state.view_ready = true
+        }
     }
 })
 

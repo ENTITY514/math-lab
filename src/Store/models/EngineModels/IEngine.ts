@@ -1,7 +1,10 @@
 export interface IEngine {
     active_section: Sections
-    project_name: string,
-    project_id: string
+    project_data: {
+        name: string,
+        id: string
+    }
+    view_ready: boolean
 }
 
 export enum Sections {
