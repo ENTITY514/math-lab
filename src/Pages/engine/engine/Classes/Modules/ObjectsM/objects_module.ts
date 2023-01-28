@@ -1,20 +1,20 @@
 import { Engine } from "../../../main";
 import { Module } from "../module";
 import * as PIXI from "pixi.js"
+import { Sprite } from "../../Objects/ViewObjects/spite";
 
 export class ObjectsModule extends Module {
+    objects!: Array<any>;
     constructor(engine: Engine) {
         super(engine)
+        this.objects = []
     }
     createObject() {
-        const bunny = PIXI.Sprite.from(PIXI.Texture.WHITE);
-        bunny.anchor.set(0.5);
-        bunny.x = this.engine.app.screen.width / 2;
-        bunny.y = this.engine.app.screen.height / 2;
-        this.engine.app.stage.addChild(bunny);
+        const object = new Sprite()
+        this.objects.push(object)
+        this.engine.app.stage.addChild(object.sprite);
     }
 
     deleteObject() {
-
     }
 }

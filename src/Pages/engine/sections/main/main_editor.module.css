@@ -10,6 +10,12 @@
     grid-gap: 8px;
 }
 
+.box2{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 8px;
+}
+
 .window{
     display: grid;
     grid-template-columns: 1fr 50px;

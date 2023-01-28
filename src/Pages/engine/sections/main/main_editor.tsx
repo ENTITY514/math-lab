@@ -1,6 +1,7 @@
 import React from "react"
 import { Engine } from "../../engine/main"
 import { Console } from "./Components/console/console"
+import { Files } from "./Components/files/files"
 import { PixiWindow } from "./Components/pixi_window/pixi_window"
 import { Properties } from "./Components/properties/properties"
 import { Tools } from "./Components/tools/tools"
@@ -15,7 +16,10 @@ export const MainEditor: React.FC = () => {
                     <PixiWindow />
                     <Tools />
                 </div>
-                <Console />
+                <div className={style.box2}>
+                    <Console />
+                    <Files />
+                </div>
             </div>
             <Properties />
         </div>
