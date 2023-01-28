@@ -4,7 +4,7 @@ import * as PIXI from "pixi.js"
 import { Sprite } from "../../Objects/ViewObjects/spite";
 
 export class ObjectsModule extends Module {
-    objects!: Array<any>;
+    objects!: Array<Sprite>;
     constructor(engine: Engine) {
         super(engine)
         this.objects = []

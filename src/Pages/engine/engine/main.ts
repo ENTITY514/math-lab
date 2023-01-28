@@ -1,6 +1,7 @@
 import * as PIXI from "pixi.js"
 import { ObjectsModule } from "./Classes/Modules/ObjectsM/objects_module"
 import { Test } from "./Classes/Modules/TestM/test"
+import { Sprite } from "./Classes/Objects/ViewObjects/spite"
 
 export class Engine {
     private static _instance: any
@@ -43,6 +44,9 @@ export class Engine {
     animate() {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
+            this.object_module.objects.forEach(object => {
+                object.transform.setPosition(object.transform.getPosition().x + delta, 100)
+            });
         });
     }
 }
