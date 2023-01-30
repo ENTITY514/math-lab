@@ -2,6 +2,7 @@ import React from "react"
 import { Engine } from "../../engine/main"
 import { Console } from "./Components/console/console"
 import { Files } from "./Components/files/files"
+import { Objects } from "./Components/object_hierachy/objects"
 import { PixiWindow } from "./Components/pixi_window/pixi_window"
 import { Properties } from "./Components/properties/properties"
 import { Tools } from "./Components/tools/tools"
@@ -11,6 +12,7 @@ export const MainEditor: React.FC = () => {
     const engine = React.useRef(new Engine())
     return (
         <div className={style.container}>
+            <Objects />
             <div className={style.box}>
                 <div className={style.window}>
                     <PixiWindow />

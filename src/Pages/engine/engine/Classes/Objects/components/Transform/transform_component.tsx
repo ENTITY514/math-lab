@@ -1,6 +1,7 @@
-import { Size2, Vector2 } from "../../../Types/math_types";
-import { Component } from "./component";
-import { Sprite } from "./spite";
+import { Size2, Vector2 } from "../../../../Types/math_types";
+import { Component } from "../component";
+import { Sprite } from "../../ViewObjects/spite";
+import { TransformView } from "./trasform_view";
 
 export class Transform extends Component {
     object!: Sprite
@@ -13,11 +14,19 @@ export class Transform extends Component {
         return { x: this.object.sprite.position.x, y: this.object.sprite.position.x }
     }
 
+    get position(): Vector2 {
+        return { x: this.object.sprite.position.x, y: this.object.sprite.position.x }
+    }
+
     setPosition(x: number, y: number) {
         this.object.sprite.position = { x, y }
     }
 
     getRotation(): number {
+        return this.object.sprite.rotation
+    }
+
+    get rotation(): number {
         return this.object.sprite.rotation
     }
 
@@ -29,6 +38,10 @@ export class Transform extends Component {
         return this.object.sprite.angle
     }
 
+    get angle(): number {
+        return this.object.sprite.angle
+    }
+
     setAngle(angle: number) {
         return this.object.sprite.angle = angle
     }
@@ -37,8 +50,16 @@ export class Transform extends Component {
         return { width: this.object.sprite.width, height: this.object.sprite.height }
     }
 
-    setSize(size: Size2) {
-        this.object.sprite.width = size.width
-        this.object.sprite.height = size.height
+    get size(): Size2 {
+        return { width: this.object.sprite.width, height: this.object.sprite.height }
+    }
+
+    setSize(width: number, height: number) {
+        this.object.sprite.width = width
+        this.object.sprite.height = height
+    }
+
+    __react_view__() {
+        return <TransformView object={this.object}/>
     }
 }

@@ -1,5 +1,5 @@
+import { Sprite } from "../ViewObjects/spite";
 import { Component } from "./component";
-import { Sprite } from "./spite";
 
 export class ComponentSystem {
     object!: Sprite

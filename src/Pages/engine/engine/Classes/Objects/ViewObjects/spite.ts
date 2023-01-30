@@ -1,14 +1,14 @@
-import { Entity } from "./entity";
 import * as PIXI from "pixi.js"
-import { Component } from "./component";
-import { Transform } from "./transform_component";
+import { Transform } from "../components/Transform/transform_component";
+import { Component } from "../components/component";
+import { Primitive } from "./primitive";
 
-export class Sprite extends Entity {
+export class Sprite extends Primitive {
     sprite!: PIXI.Sprite;
     components: Array<Component> = [];
     transform: Transform
-    constructor(name: string = "Sprite") {
-        super(name, "sprite")
+    constructor(name: string = "Sprite", type:string = "sprite") {
+        super(name, type)
         this.sprite = new PIXI.Sprite(PIXI.Texture.WHITE)
         this.transform = new Transform(this)
     }
