@@ -5,9 +5,9 @@ export const Properties: React.FC = () => {
     const engine = new Engine()
     return (
         <div className={style.container}>
-            {engine.object_module.objects.map((object) => {
+            {engine.object_module.active_object?.components.map((component) => {
                 return (
-                    object.transform.__react_view__()
+                    component.__react_view__()
                 )
             })}
         </div>

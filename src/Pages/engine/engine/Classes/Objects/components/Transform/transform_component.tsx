@@ -8,6 +8,7 @@ export class Transform extends Component {
     constructor(object: Sprite) {
         super(object, "transform")
         this.object = object
+        this.object.components.push(this)
     }
 
     getPosition(): Vector2 {

@@ -12,8 +12,8 @@ export class ObjectsModule extends Module {
         this.active_object = null
     }
 
-    setActiveObject() {
-
+    setActiveObject(object: Primitive) {
+        this.active_object = object
     }
 
     createObject() {
