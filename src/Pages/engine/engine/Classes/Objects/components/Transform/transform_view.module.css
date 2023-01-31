@@ -1,1 +1,15 @@
-.container {}
+.container {
+    width: 92%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    margin: auto;
+    padding: 5px;
+}
+
+.name{
+    margin: 5px 0;
+}
+
+.data{
+    margin: 5px
+}

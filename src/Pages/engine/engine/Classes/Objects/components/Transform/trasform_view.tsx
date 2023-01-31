@@ -8,10 +8,11 @@ interface TransformViewProps {
 export const TransformView: React.FC<TransformViewProps> = ({ object }) => {
     return (
         <div className={style.container}>
-            <div className={style.data}>{object.transform.position.x}</div>
-            <div className={style.data}>{object.transform.position.y}</div>
-            <div className={style.data}>{object.transform.rotation}</div>
-            <div className={style.data}>{object.transform.size.width}</div>
+            <div className={style.name}>Transform</div>
+            <div className={style.data}>x: {Math.round(object.transform.position.x)}</div>
+            <div className={style.data}>y: {Math.round(object.transform.position.y)}</div>
+            <div className={style.data}>Rotation: {Math.round(object.transform.rotation * 100) / 100}</div>
+            <div className={style.data}>Angle: {object.transform.size.width}</div>
         </div>
     )
 }
