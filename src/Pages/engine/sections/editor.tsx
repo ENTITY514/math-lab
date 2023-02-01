@@ -9,7 +9,7 @@ export const Editor: React.FC = () => {
     switch (state.active_section) {
         case Sections.MAIN:
             return <MainEditor />
-            
+
         case Sections.CODE_EDITOR:
             return <CodeEditor />
 

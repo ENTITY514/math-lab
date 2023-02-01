@@ -6,9 +6,12 @@ import style from "./objects.module.css"
 export const Objects: React.FC = () => {
     const engine = new Engine()
     const objects = engine.object_module.objects
-    const [update_count, set_update_count] = React.useState<number>(0)
+    const [, set_update_count] = React.useState<boolean>(false)
     React.useEffect(() => {
-        setInterval(() => set_update_count(update_count+1), 100);
+        const interval = setInterval(() => set_update_count(prev => !prev), 100);
+        return () => {
+            clearInterval(interval)
+        }
     })
     return (
         <div className={style.container}>

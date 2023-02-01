@@ -4,9 +4,12 @@ import style from "./properties.module.css"
 
 export const Properties: React.FC = () => {
     const engine = new Engine()
-    const [update_count, set_update_count] = React.useState<number>(0)
+    const [, set_update_count] = React.useState<boolean>(false)
     React.useEffect(() => {
-        setInterval(() => set_update_count(update_count+1), 50);
+        const interval = setInterval(() => set_update_count(prev => !prev), 50);
+        return () => {
+            clearInterval(interval)
+        }
     })
     return (
         <div className={style.container}>
