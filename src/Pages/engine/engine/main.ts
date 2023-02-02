@@ -45,7 +45,7 @@ export class Engine {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
             this.object_module.objects.forEach(object => {
-                object.transform.setPosition(object.transform.position.x, 100)
+                object.transform.setPosition(object.transform.position.x+delta, 100)
                 object.transform.setSize(300,400)
             });
         });
