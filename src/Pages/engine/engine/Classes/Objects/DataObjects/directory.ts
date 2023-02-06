@@ -1,25 +1,25 @@
-import { GP_Directory } from "../../../../Interfaces/Production_Interfaces/GP_Files"
-import { Type } from "../../Interfaces/file_extensions"
-import { DefaultFileCreator } from "../DefaultFileCreator/default_file_creator"
-import { ScriptFileJS } from "../Script_File/script_file"
-import { TextureFile } from "../Texture_File/texture_file"
+import { nanoid } from "nanoid"
+import { FileType } from "../../../Types/file_types"
 import { File } from "./file"
+import { TextureFile } from "./texture_file"
+
+type FileTypes = TextureFile | File
 
 export class Directory {
-    id: number
+    id: string
     name: string
-    url: string
+    url!: string
     childs: Array<File | Directory>
     parent: Directory | null
-    constructor(name: string, parent: Directory) {
+    constructor(name: string, parent: Directory | null) {
         this.name = name
         this.parent = parent
-        this.id = Math.trunc(Math.random() * 100000000)
+        this.id = nanoid()
         this.childs = []
         this._createURL()
     }
 
-    _set_id(id) {
+    _set_id(id: string) {
         this.id = id
     }
 
@@ -49,14 +49,8 @@ export class Directory {
         return directory
     }
 
-    createFile(name: string, type: Type, data: any, parent: Directory, metadata: any = null): File {
+    createFile(name: string, type: FileType, data: any, parent: Directory, metadata: any = null): File {
         const file = new File(name, type, data, parent, metadata)
-        this.childs.push(file)
-        return file
-    }
-
-    createDefaultTextureFile() {
-        const file = DefaultFileCreator.getTextureFile(this)
         this.childs.push(file)
         return file
     }
@@ -83,19 +77,19 @@ export class Directory {
         return array
     }
 
-    getAllFilesByType<T>(type): Array<T> {
-        let files = []
-        let typed_files = []
+    getAllFilesByType<T extends FileTypes>(type: any): Array<T> {
+        let files: File[] = []
+        let typed_files: T[] = []
         files = this.getAllFiles(files)
         files.forEach((file) => {
             if (file instanceof type) {
-                typed_files.push(file)
+                typed_files.push(file as T)
             }
         });
         return typed_files
     }
 
-    getChildsOnURL(url: string): Array<File | Directory> {
+    getChildsOnURL(url: string): Array<File | Directory> | undefined {
         if (url === '') {
             return this.childs
         }
@@ -103,16 +97,16 @@ export class Directory {
             let index = url.indexOf('/')
             let dir_name = url.slice(0, index)
             let dir = this.findFirstDirectoryByName(dir_name)
-            return dir.getChildsOnURL(url.slice(index + 1, url.length))
+            return dir?.getChildsOnURL(url.slice(index + 1, url.length))
         }
         else {
-            return this.findFirstDirectoryByName(url).childs
+            return this.findFirstDirectoryByName(url)?.childs
         }
     }
 
     findFilesByName(name: string): Array<File> {
-        let files = []
-        let named_files = []
+        let files: File[] = []
+        let named_files: File[] = []
         files = this.getAllFiles(files)
         files.forEach((file: File) => {
             if (file.name === name) {
@@ -123,7 +117,7 @@ export class Directory {
     }
 
     findFirstFileByName(name: string): File | null {
-        let files = []
+        let files: File[] = []
         let named_file = null
         files = this.getAllFiles(files)
         files.forEach((file: File) => {
@@ -134,10 +128,9 @@ export class Directory {
         return named_file
     }
 
-    findFileByID(id: number) {
-        let files = []
+    findFileByID(id: string) {
+        let files: File[] = []
         let file_ = null
-        id = Number(id)
         files = this.getAllFiles(files)
         files.forEach((file: File) => {
             if (file.id === id) {
@@ -149,7 +142,7 @@ export class Directory {
 
     findDirectoryByName(name: string) {
         let dirs = []
-        let named_dirs = []
+        let named_dirs: Directory[] = []
         this.childs.forEach(element => {
             if (element instanceof Directory) {
                 if (element.name === name) {
@@ -164,8 +157,8 @@ export class Directory {
         return named_dirs
     }
 
-    findFirstDirectoryByName(name: string): Directory {
-        let dir
+    findFirstDirectoryByName(name: string): Directory | undefined {
+        let dir: Directory | undefined = undefined
         this.childs.forEach(element => {
             if (element instanceof Directory) {
                 if (element.name === name) {
@@ -230,6 +223,9 @@ export class Directory {
                     return -1
                 }
             }
+            else {
+                return 0
+            }
         })
     }
 
@@ -260,42 +256,9 @@ export class Directory {
                     return -1
                 }
             }
-        }).reverse()
-    }
-
-    create_dir_with_files(dir: GP_Directory, parent: Directory = null) {
-        const directory = new Directory(dir.name, parent)
-        dir.childs.forEach(child => {
-            if (child.is_file) {
-                if (child.type === Type.texture) {
-                    const file = new TextureFile(directory, child.data, child.name)
-                    file._set_id(child.id)
-                    directory.addFile(file)
-                }
-                else if (child.type === Type.script) {
-                    const file = new ScriptFileJS(directory, child.data, child.name)
-                    file._set_id(child.id)
-                    directory.addFile(file)
-                }
-            }
             else {
-                directory.addDirectory(this.create_dir_with_files(child as GP_Directory, directory))
+                return 0
             }
-        });
-        return directory
-    }
-
-    _getDataForGamePacker() {
-        let childs = []
-        this.childs.forEach(child => {
-            childs.push(child._getDataForGamePacker())
-        });
-        let dir: GP_Directory = {
-            name: this.name,
-            id: this.id,
-            childs: childs,
-            is_file: false
-        }
-        return dir;
+        }).reverse()
     }
 }

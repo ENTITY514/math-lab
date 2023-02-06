@@ -1,7 +1,8 @@
 import * as PIXI from "pixi.js"
+import { DataModule } from "./Classes/Modules/DataM/data_module"
 import { ObjectsModule } from "./Classes/Modules/ObjectsM/objects_module"
 import { Test } from "./Classes/Modules/TestM/test"
-import { Sprite } from "./Classes/Objects/ViewObjects/spite"
+import { ENGINE_FILE_SYSTEM_MODULE } from "./Classes/Objects/DataObjects/file_system"
 
 export class Engine {
     private static _instance: any
@@ -9,12 +10,15 @@ export class Engine {
     canvasContainer: HTMLDivElement | undefined
     test_module!: Test
     object_module!: ObjectsModule
+    data_module!: DataModule
+    file_system = new ENGINE_FILE_SYSTEM_MODULE()
     constructor() {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
         }
         this.test_module = new Test(this)
         this.object_module = new ObjectsModule(this)
+        this.data_module = new DataModule(this)
         this.initRenderer();
         this.render();
         this.animate()
@@ -45,8 +49,7 @@ export class Engine {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
             this.object_module.objects.forEach(object => {
-                object.transform.setPosition(object.transform.position.x+delta, 100)
-                object.transform.setSize(300,400)
+                object.transform.setSize(300, 400)
             });
         });
     }
