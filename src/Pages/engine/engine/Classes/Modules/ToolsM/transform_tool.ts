@@ -18,20 +18,27 @@ export class TransformTool {
     _drag_top: boolean = false;
     _drag_bottom: boolean = false;
     dist: number
-    app: any
     name: string
-    engine: Engine = new Engine()
-    base_arrow_texture: TextureFile = new TextureFile("__dev__arrow_texture__", DevAssets.arrow_right, this.engine.file_system.root)
-    base_point_texture: TextureFile = new TextureFile("__dev__point_texture__", DevAssets.point, this.engine.file_system.root)
+    engine: Engine
+    base_arrow_texture: TextureFile
+    base_point_texture: TextureFile
     constructor(engine: Engine) {
         this.name = 'transform position'
         this.isVisible = false
         this.position = { x: 0, y: 0 }
-        this.scale = { x: 1, y: 1 }
+        this.scale = { x: 0.3, y: 0.3 }
         this.engine = engine
         this.dist = 0
 
         this.objects = []
+
+        this.base_arrow_texture = new TextureFile("__dev__arrow_texture__", DevAssets.arrow_right, this.engine.file_system.root)
+        this.base_point_texture = new TextureFile("__dev__point_texture__", DevAssets.point, this.engine.file_system.root)
+
+        this.engine.file_system.active_dir.addFile(this.base_arrow_texture)
+        this.engine.file_system.active_dir.addFile(this.base_point_texture)
+        console.log(this.engine.file_system.active_dir);
+
 
         const arrow_right = new Sprite('move arrow right', 'Arrow', this.base_arrow_texture)
         const arrow_top = new Sprite('move arrow top', 'Arrow', this.base_arrow_texture)
@@ -44,6 +51,13 @@ export class TransformTool {
         this.objects.push(arrow_left)
         this.objects.push(arrow_down)
         this.objects.push(point)
+
+        window.addEventListener('mouseup', () => {
+            this._drag_right = false
+            this._drag_bottom = false
+            this._drag_left = false
+            this._drag_top = false
+        });
 
         this.objects.forEach(object => {
             object.sprite.anchor.set(-0.1, 0.5)
@@ -114,6 +128,8 @@ export class TransformTool {
 
                 case 'point':
                     object.sprite.anchor.set(0.5, 0.5)
+                    object.sprite.scale.x = this.scale.x
+                    object.sprite.scale.y = this.scale.y
 
                     object.sprite.on('mouseup', () => {
                         this._drag_left = false
@@ -169,7 +185,7 @@ export class TransformTool {
 
     setActive() {
         this.objects.forEach(object => {
-            this.app.stage.addChild(object.sprite)
+            this.engine.app.stage.addChild(object.sprite)
         });
         if (this.engine.object_module.active_object !== null) {
             this._setPosition(this.engine.object_module.active_object.transform.position.x, this.engine.object_module.active_object.transform.position.y)
@@ -178,7 +194,7 @@ export class TransformTool {
 
     setNonActive() {
         this.objects.forEach(object => {
-            this.app.stage.removeChild(object.sprite)
+            this.engine.app.stage.removeChild(object.sprite)
         });
     }
 

@@ -3,9 +3,7 @@ import { DataModule } from "./Classes/Modules/DataM/data_module"
 import { ObjectsModule } from "./Classes/Modules/ObjectsM/objects_module"
 import { Test } from "./Classes/Modules/TestM/test"
 import { ToolModule } from "./Classes/Modules/ToolsM/tools_module"
-import { File } from "./Classes/Objects/DataObjects/file"
 import { ENGINE_FILE_SYSTEM_MODULE } from "./Classes/Objects/DataObjects/file_system"
-import { FileType } from "./Types/file_types"
 
 export class Engine {
     private static _instance: any
@@ -20,17 +18,13 @@ export class Engine {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
         }
-        this.test_module = new Test(this)
-        this.file_system = new ENGINE_FILE_SYSTEM_MODULE()
-        console.log(this.file_system);
-        this.file_system.addFileToActiveDir(new File("file",FileType.TXT,"file_txt",this.file_system.active_dir))
-        console.log(this.file_system);
-        
-        
-        this.object_module = new ObjectsModule(this)
-        this.data_module = new DataModule(this)
         this.initRenderer();
         this.render();
+        this.test_module = new Test(this)
+        this.file_system = new ENGINE_FILE_SYSTEM_MODULE()
+        this.object_module = new ObjectsModule(this)
+        this.data_module = new DataModule(this)
+        this.tool_module = new ToolModule(this)
         this.animate()
         Engine._instance = this
         return Engine._instance
@@ -59,7 +53,7 @@ export class Engine {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
             this.object_module.objects.forEach(object => {
-                object.transform.setSize(300, 400)
+                this.tool_module.update()
             });
         });
     }

@@ -14,6 +14,9 @@ export class Sprite extends Primitive {
         texture_file?: TextureFile | undefined) {
         super(name, type)
         this.sprite = texture_file ? new PIXI.Sprite(texture_file.texture) : this.sprite = new PIXI.Sprite(PIXI.Texture.WHITE)
+        this.sprite.anchor.x = 0.5
+        this.sprite.anchor.y = 0.5
         this.transform = new Transform(this)
+        this.transform.setSize(100, 100)
     }
 }

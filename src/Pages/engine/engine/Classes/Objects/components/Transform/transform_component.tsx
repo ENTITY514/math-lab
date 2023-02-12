@@ -61,6 +61,6 @@ export class Transform extends Component {
     }
 
     __react_view__() {
-        return <TransformView object={this.object}/>
+        return <TransformView object={this.object} key={this.id}/>
     }
 }

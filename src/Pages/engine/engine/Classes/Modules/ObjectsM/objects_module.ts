@@ -24,6 +24,7 @@ export class ObjectsModule extends Module {
             object.sprite.interactive = true
             object.sprite.on("mousedown", (e) => {
                 this.active_object = object
+                this.engine.tool_module.update_tool_state()
             })
         }
         this.engine.app.stage.addChild(object.sprite);
