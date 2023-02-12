@@ -3,7 +3,6 @@ import { Vector2 } from "../../../Types/math_types";
 import { TextureFile } from "../../Objects/DataObjects/texture_file";
 import { Sprite } from "../../Objects/ViewObjects/spite";
 import { DevAssets } from "../assets/get";
-import { Module } from "../module";
 import * as PIXI from "pixi.js"
 
 export class TransformTool {

@@ -20,12 +20,9 @@ export class ObjectsModule extends Module {
         const object = new Sprite()
         this.objects.push(object)
         if (this.engine.data_module.is_dev_mode) {
-            console.log("true");
             object.sprite.buttonMode = true
             object.sprite.interactive = true
             object.sprite.on("mousedown", (e) => {
-                console.log("active");
-                
                 this.active_object = object
             })
         }

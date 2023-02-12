@@ -19,6 +19,7 @@ import cross from './close.png'
 import circle from './new-moon.png'
 import play from './play.png'
 import ui from './ui.png'
+import file_icon from "./file_icon.png"
 
 export const Assets = {
     add,
@@ -42,4 +43,5 @@ export const Assets = {
     circle,
     play,
     ui,
+    file_icon
 }

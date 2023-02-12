@@ -1,7 +1,9 @@
 import { nanoid } from "nanoid"
+import { Assets } from "../../../../assets/get"
 import { FileType } from "../../../Types/file_types"
 import { File } from "./file"
 import { TextureFile } from "./texture_file"
+import { FileView } from "./views/view"
 
 type FileTypes = TextureFile | File
 
@@ -11,6 +13,7 @@ export class Directory {
     url!: string
     childs: Array<File | Directory>
     parent: Directory | null
+    icon_url: string = Assets.empty_folder
     constructor(name: string, parent: Directory | null) {
         this.name = name
         this.parent = parent
@@ -21,6 +24,10 @@ export class Directory {
 
     _set_id(id: string) {
         this.id = id
+    }
+
+    __file_view__(size: string) {
+        return <FileView title={this.name} url={this.icon_url} size={size} key={this.id} />
     }
 
     addFile(file: File) {
