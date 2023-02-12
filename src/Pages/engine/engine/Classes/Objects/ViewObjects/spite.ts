@@ -17,6 +17,9 @@ export class Sprite extends Primitive {
         this.sprite.anchor.x = 0.5
         this.sprite.anchor.y = 0.5
         this.transform = new Transform(this)
-        this.transform.setSize(100, 100)
+        this.transform.setSize(200, 200)
+
+        console.log(this);
+        
     }
 }

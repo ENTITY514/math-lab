@@ -13,8 +13,8 @@ export class ToolModule {
         this.active_tool = this.transform_tool
     }
 
-    update_tool_state() {
-        this.tool_state = !this.tool_state
+    update_tool_state(state: boolean) {
+        this.tool_state = state
         if (this.tool_state) {
             this.active_tool.setActive()
         }
@@ -23,7 +23,7 @@ export class ToolModule {
         }
     }
 
-    update(){
+    update() {
         this.active_tool.update()
     }
 }

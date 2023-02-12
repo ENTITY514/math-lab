@@ -16,7 +16,7 @@ export class Transform extends Component {
     }
 
     get position(): Vector2 {
-        return { x: this.object.sprite.position.x, y: this.object.sprite.position.x }
+        return { x: this.object.sprite.position.x, y: this.object.sprite.position.y }
     }
 
     setPosition(x: number, y: number) {

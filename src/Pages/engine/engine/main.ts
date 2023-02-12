@@ -40,7 +40,7 @@ export class Engine {
     }
 
     initRenderer() {
-        this.app = new PIXI.Application({ width: 640, height: 320, backgroundColor: 0x000000 });
+        this.app = new PIXI.Application({ width: 100, height: 100, backgroundColor: 0x000000 });
     }
 
     update() {

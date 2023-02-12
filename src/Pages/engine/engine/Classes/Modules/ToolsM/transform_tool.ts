@@ -32,6 +32,8 @@ export class TransformTool {
 
         this.objects = []
 
+        //Создание файлов текстуры
+
         this.base_arrow_texture = new TextureFile("__dev__arrow_texture__", DevAssets.arrow_right, this.engine.file_system.root)
         this.base_point_texture = new TextureFile("__dev__point_texture__", DevAssets.point, this.engine.file_system.root)
 
@@ -39,6 +41,7 @@ export class TransformTool {
         this.engine.file_system.active_dir.addFile(this.base_point_texture)
         console.log(this.engine.file_system.active_dir);
 
+        //Создание спрайтов для инструмента
 
         const arrow_right = new Sprite('move arrow right', 'Arrow', this.base_arrow_texture)
         const arrow_top = new Sprite('move arrow top', 'Arrow', this.base_arrow_texture)
@@ -52,6 +55,8 @@ export class TransformTool {
         this.objects.push(arrow_down)
         this.objects.push(point)
 
+        //Добавление слушителя события при отпускание мыши
+
         window.addEventListener('mouseup', () => {
             this._drag_right = false
             this._drag_bottom = false
@@ -62,8 +67,7 @@ export class TransformTool {
         this.objects.forEach(object => {
             object.sprite.anchor.set(-0.1, 0.5)
             object.sprite.interactive = true
-            object.sprite.scale.x = this.scale.x
-            object.sprite.scale.y = this.scale.y
+            object.transform.setSize(object.transform.size.width * this.scale.x, object.transform.size.height * this.scale.y)
             switch (object.name) {
                 case 'move arrow right':
                     object.sprite.angle = 0
@@ -128,8 +132,6 @@ export class TransformTool {
 
                 case 'point':
                     object.sprite.anchor.set(0.5, 0.5)
-                    object.sprite.scale.x = this.scale.x
-                    object.sprite.scale.y = this.scale.y
 
                     object.sprite.on('mouseup', () => {
                         this._drag_left = false
@@ -150,24 +152,21 @@ export class TransformTool {
                 default:
                     break;
             }
-            object.sprite.position.x = this.position.x
-            object.sprite.position.y = this.position.y
+            object.transform.setPosition(this.position.x, this.position.y)
         });
     }
 
     setScale(x: number, y: number) {
         this.scale = { x, y }
-        this.objects.forEach(boject => {
-            boject.sprite.scale.x = this.scale.x
-            boject.sprite.scale.y = this.scale.y
+        this.objects.forEach(object => {
+            object.transform.setSize(object.transform.size.width * this.scale.x, object.transform.size.height * this.scale.y)
         });
     }
 
     _setPosition(x: number, y: number) {
         this.position = { x, y }
         this.objects.forEach(object => {
-            object.sprite.position.x = this.position.x
-            object.sprite.position.y = this.position.y
+            object.transform.setPosition(this.position.x, this.position.y)
         });
     }
 
@@ -200,8 +199,7 @@ export class TransformTool {
 
     update() {
         this.objects.forEach(object => {
-            object.sprite.position.x = this.position.x
-            object.sprite.position.y = this.position.y
+            object.transform.setPosition(this.position.x, this.position.y)
         });
         if (this.engine.object_module.active_object !== null) {
             this.engine.object_module.active_object.transform.setPosition(this.position.x, this.position.y)
