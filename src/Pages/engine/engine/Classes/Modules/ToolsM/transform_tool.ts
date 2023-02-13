@@ -4,6 +4,7 @@ import { TextureFile } from "../../Objects/DataObjects/texture_file";
 import { Sprite } from "../../Objects/ViewObjects/spite";
 import { DevAssets } from "../assets/get";
 import * as PIXI from "pixi.js"
+import { tools_name } from "./tools_module";
 
 export class TransformTool {
     position: Vector2
@@ -18,12 +19,12 @@ export class TransformTool {
     _drag_top: boolean = false;
     _drag_bottom: boolean = false;
     dist: number
-    name: string
+    name: tools_name
     engine: Engine
     base_arrow_texture: TextureFile
     base_point_texture: TextureFile
     constructor(engine: Engine) {
-        this.name = 'transform position'
+        this.name = tools_name.TRANSFORM_TOOL
         this.isVisible = false
         this.position = { x: 0, y: 0 }
         this.scale = { x: 0.3, y: 0.3 }
