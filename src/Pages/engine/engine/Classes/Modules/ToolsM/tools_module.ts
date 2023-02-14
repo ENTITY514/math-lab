@@ -49,7 +49,6 @@ export class ToolModule {
         if (this.active_tool !== null && this.tool_state) {
             this.active_tool.setActive()
         }
-        console.log(this.active_tool);
     }
 
     update() {
