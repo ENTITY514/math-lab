@@ -1,4 +1,5 @@
 import { Engine } from "../../../main";
+import { RotateTool } from "./rotate_tool";
 import { SizeTool } from "./size_tool";
 import { TransformTool } from "./transform_tool";
 
@@ -24,6 +25,7 @@ export class ToolModule {
     private _create_tool() {
         this.tools.push(new TransformTool(this.engine))
         this.tools.push(new SizeTool(this.engine))
+        this.tools.push(new RotateTool(this.engine))
     }
 
     update_tool_state(state: boolean) {

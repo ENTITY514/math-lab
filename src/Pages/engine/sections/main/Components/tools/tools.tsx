@@ -36,6 +36,14 @@ export const Tools: React.FC = () => {
                 is_active={enigne.tool_module.active_tool.name==tools_name.SIZE_TOOL}
                 action={() => { enigne.tool_module.change_tool(tools_name.SIZE_TOOL) }} />
             </div>
+            
+            <div className={style.tool}>
+                <Button 
+                url={Assets.transofrm_rotation} 
+                is_active={enigne.tool_module.active_tool.name==tools_name.ROTATE_TOOL}
+                action={() => { enigne.tool_module.change_tool(tools_name.ROTATE_TOOL) }} />
+            </div>
+
         </div >
     )
 }
