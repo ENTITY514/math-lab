@@ -17,7 +17,6 @@ export class RotateTool {
     }
     isVisible: boolean
     base_arrow_texture: TextureFile
-    base_point_texture: TextureFile
     objects: Sprite[]
     _drag: boolean
     angle_click: number
@@ -31,9 +30,7 @@ export class RotateTool {
         this.position = { x: 0, y: 0 }
         this.scale = { x: 1, y: 1 }
         this.base_arrow_texture = new TextureFile("rotate", Assets.transofrm_rotation, this.engine.file_system.root)
-        this.base_point_texture = new TextureFile("rotate point", DevAssets.point, this.engine.file_system.root)
         this.engine.file_system.root.addFile(this.base_arrow_texture)
-        this.engine.file_system.root.addFile(this.base_point_texture)
         this.objects = []
         this.angle_click = 0
 
@@ -41,12 +38,6 @@ export class RotateTool {
             'rotate arrow',
             'Arrow',
             this.base_arrow_texture
-        )
-
-        const point = new Sprite(
-            'point',
-            'Point',
-            this.base_point_texture
         )
 
         this.objects.push(arrow)
@@ -83,13 +74,8 @@ export class RotateTool {
                             const norm = { x: vector.x / dist, y: vector.y / dist }
                             const angle = Math.atan2(norm.y, norm.x)
                             this.objects[0].transform.setRotation(angle - this.angle_click)
-                            
                         }
                     });
-                    break;
-
-                case 'point':
-                    object.sprite.anchor.set(0.5, 0.5)
                     break;
 
                 default:
@@ -111,7 +97,6 @@ export class RotateTool {
     setPosition(x: number, y: number) {
         this.position = { x, y }
         this.objects[0].transform.setPosition(this.position.x, this.position.y)
-        this.objects[1].transform.setPosition(this.position.x, this.position.y)
     }
 
     setActive() {
