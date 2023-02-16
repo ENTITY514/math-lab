@@ -1,6 +1,7 @@
 .container {
     display: grid;
     grid-template-rows: 30px 1fr;
+    grid-gap: 5px;
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
     padding: 10px;

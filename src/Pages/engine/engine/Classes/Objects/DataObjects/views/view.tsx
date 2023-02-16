@@ -18,10 +18,12 @@ export const FileView: React.FC<IFileViewProps> = ({ size, url, title }) => {
     else if (size === "big") {
         return (
             <div className={style.container_big}>
-                <div className={style.big_image_wrapper}>
-                    <div className={style.image} style={{ backgroundImage: "url(" + url + ")" }}></div>
+                <div className={style.wrapper}>
+                    <div className={style.big_image_wrapper}>
+                        <div className={style.image} style={{ backgroundImage: "url(" + url + ")" }}></div>
+                    </div>
+                    <div className={style.name}>{title}</div>
                 </div>
-                <div className={style.name}>{title}</div>
             </div>
         )
     }
