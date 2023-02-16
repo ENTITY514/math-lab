@@ -33,11 +33,11 @@ export class SizeTool {
         this.scale = { x: 0.3, y: 0.3 }
         this.engine = engine
 
-        this.base_arrow_texture = new TextureFile("arrow size", DevAssets.arrow_right, this.engine.file_system.root)
-        this.base_point_texture = new TextureFile("point size", DevAssets.point, this.engine.file_system.root)
+        this.base_arrow_texture = new TextureFile("arrow size", DevAssets.arrow_right, this.engine.dev_file_system.root)
+        this.base_point_texture = new TextureFile("point size", DevAssets.point, this.engine.dev_file_system.root)
 
-        this.engine.file_system.active_dir.addFile(this.base_arrow_texture)
-        this.engine.file_system.active_dir.addFile(this.base_point_texture)
+        this.engine.dev_file_system.active_dir.addFile(this.base_arrow_texture)
+        this.engine.dev_file_system.active_dir.addFile(this.base_point_texture)
 
         this.objects = []
 

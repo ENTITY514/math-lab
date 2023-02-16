@@ -29,8 +29,8 @@ export class RotateTool {
         this.isVisible = false
         this.position = { x: 0, y: 0 }
         this.scale = { x: 1, y: 1 }
-        this.base_arrow_texture = new TextureFile("rotate", Assets.transofrm_rotation, this.engine.file_system.root)
-        this.engine.file_system.root.addFile(this.base_arrow_texture)
+        this.base_arrow_texture = new TextureFile("rotate", Assets.transofrm_rotation, this.engine.dev_file_system.root)
+        this.engine.dev_file_system.root.addFile(this.base_arrow_texture)
         this.objects = []
         this.angle_click = 0
 

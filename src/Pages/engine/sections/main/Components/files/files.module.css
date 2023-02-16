@@ -1,4 +1,11 @@
-.container{
+.container {
+    display: grid;
+    grid-template-rows: 30px 1fr;
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
+    padding: 10px;
+}
+
+.files {
+    overflow-y: auto;
 }

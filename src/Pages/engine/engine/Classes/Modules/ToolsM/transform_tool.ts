@@ -35,12 +35,12 @@ export class TransformTool {
 
         //Создание файлов текстуры
 
-        this.base_arrow_texture = new TextureFile("__dev__arrow_texture__", DevAssets.arrow_right, this.engine.file_system.root)
-        this.base_point_texture = new TextureFile("__dev__point_texture__", DevAssets.point, this.engine.file_system.root)
+        this.base_arrow_texture = new TextureFile("__dev__arrow_texture__", DevAssets.arrow_right, this.engine.dev_file_system.root)
+        this.base_point_texture = new TextureFile("__dev__point_texture__", DevAssets.point, this.engine.dev_file_system.root)
 
-        this.engine.file_system.active_dir.addFile(this.base_arrow_texture)
-        this.engine.file_system.active_dir.addFile(this.base_point_texture)
-        console.log(this.engine.file_system.active_dir);
+        this.engine.dev_file_system.active_dir.addFile(this.base_arrow_texture)
+        this.engine.dev_file_system.active_dir.addFile(this.base_point_texture)
+        console.log(this.engine.dev_file_system.active_dir);
 
         //Создание спрайтов для инструмента
 

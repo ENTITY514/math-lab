@@ -13,6 +13,7 @@ export class Engine {
     object_module!: ObjectsModule
     data_module!: DataModule
     tool_module!: ToolModule
+    dev_file_system!: ENGINE_FILE_SYSTEM_MODULE
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     constructor() {
         if (typeof Engine._instance === 'object') {
@@ -21,6 +22,7 @@ export class Engine {
         this.initRenderer();
         this.render();
         this.test_module = new Test(this)
+        this.dev_file_system = new ENGINE_FILE_SYSTEM_MODULE()
         this.file_system = new ENGINE_FILE_SYSTEM_MODULE()
         this.object_module = new ObjectsModule(this)
         this.data_module = new DataModule(this)
