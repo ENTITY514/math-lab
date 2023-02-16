@@ -3,6 +3,7 @@ import { Transform } from "../components/Transform/transform_component";
 import { Component } from "../components/component";
 import { Primitive } from "./primitive";
 import { TextureFile } from "../DataObjects/texture_file";
+import { GraphicComponent } from "../components/Graphic/graphic_component";
 
 export class Sprite extends Primitive {
     sprite!: PIXI.Sprite;
@@ -18,5 +19,6 @@ export class Sprite extends Primitive {
         this.sprite.anchor.y = 0.5
         this.transform = new Transform(this)
         this.transform.setSize(200, 200)
+        new GraphicComponent(this)
     }
 }
