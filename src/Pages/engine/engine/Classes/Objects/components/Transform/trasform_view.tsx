@@ -1,8 +1,8 @@
-import { Sprite } from "../../ViewObjects/spite"
+import { Primitive } from "../../ViewObjects/primitive"
 import style from "./transform_view.module.css"
 
 interface TransformViewProps {
-    object: Sprite
+    object: Primitive
 }
 
 export const TransformView: React.FC<TransformViewProps> = ({ object }) => {

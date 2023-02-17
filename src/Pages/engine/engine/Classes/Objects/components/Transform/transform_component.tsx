@@ -1,11 +1,11 @@
 import { Size2, Vector2 } from "../../../../Types/math_types";
 import { Component } from "../component";
-import { Sprite } from "../../ViewObjects/spite";
 import { TransformView } from "./trasform_view";
+import { Primitive } from "../../ViewObjects/primitive";
 
 export class Transform extends Component {
-    object!: Sprite
-    constructor(object: Sprite) {
+    object!: Primitive
+    constructor(object: Primitive) {
         super(object, "transform")
         this.object = object
         this.object.components.push(this)
