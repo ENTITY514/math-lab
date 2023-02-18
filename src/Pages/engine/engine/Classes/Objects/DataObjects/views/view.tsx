@@ -5,12 +5,17 @@ interface IFileViewProps {
     size: string
     url: string
     title: string
+    id: string
 }
 
-export const FileView: React.FC<IFileViewProps> = ({ size, url, title }) => {
+export const FileView: React.FC<IFileViewProps> = ({ size, url, title, id }) => {
+    const onDragStart = (e: React.DragEvent) => {
+        e.dataTransfer.setData("id",id)
+    }
+
     if (size === "little") {
         return (
-            <div className={style.container_little}>
+            <div className={style.container_little} onDragStart={onDragStart} draggable={true}>
                 <div className={style.image} style={{ backgroundImage: "url(" + url + ")" }}></div>
             </div>
         )

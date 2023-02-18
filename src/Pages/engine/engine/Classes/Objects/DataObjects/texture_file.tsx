@@ -23,6 +23,6 @@ export class TextureFile extends File {
     }
 
     __file_view__(size: string) {
-        return <FileView title={ this.name } url = { this.data } size = { size } key = { this.id } />
+        return <FileView title={ this.name } url = { this.data } size = { size } key = { this.id } id={this.id} />
     }
 }

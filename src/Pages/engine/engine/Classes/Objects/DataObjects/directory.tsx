@@ -27,7 +27,7 @@ export class Directory {
     }
 
     __file_view__(size: string) {
-        return <FileView title={this.name} url={this.icon_url} size={size} key={this.id} />
+        return <FileView title={this.name} url={this.icon_url} size={size} key={this.id} id={this.id} />
     }
 
     addFile(file: File) {
@@ -135,7 +135,7 @@ export class Directory {
         return named_file
     }
 
-    findFileByID(id: string) {
+    findFileByID(id: string): File | null {
         let files: File[] = []
         let file_ = null
         files = this.getAllFiles(files)
