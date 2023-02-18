@@ -40,7 +40,6 @@ export class TransformTool {
 
         this.engine.dev_file_system.active_dir.addFile(this.base_arrow_texture)
         this.engine.dev_file_system.active_dir.addFile(this.base_point_texture)
-        console.log(this.engine.dev_file_system.active_dir);
 
         //Создание спрайтов для инструмента
 

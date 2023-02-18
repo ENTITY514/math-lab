@@ -53,6 +53,15 @@ export class SizeTool {
         this.objects.push(arrow_down)
         this.objects.push(point)
 
+        window.addEventListener('mouseup', () => {
+            this._drag_right = false
+            this._drag_bottom = false
+            this._drag_left = false
+            this._drag_top = false
+            this._drag_x = false
+            this._drag_y = false
+        });
+
         this.objects.forEach(object => {
             object.sprite.anchor.set(0.5, 0.5)
             object.sprite.interactive = true
