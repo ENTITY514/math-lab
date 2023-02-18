@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../../../Store/hooks/redux"
 import { Sections } from "../../../../Store/models/EngineModels/IEngine"
 import { EngineSlice } from "../../../../Store/reducers/engineSlice"
@@ -12,21 +13,9 @@ export const SectionsChoice: React.FC = () => {
     }
     return (
         <div className={style.container}>
-            <div
-                className={state.active_section === Sections.MAIN ? style.active__section : style.section}
-                onClick={() => { handleClick(Sections.MAIN) }}>
-                Основной редактор
-            </div>
-            <div
-                className={state.active_section === Sections.CODE_EDITOR ? style.active__section : style.section}
-                onClick={() => { handleClick(Sections.CODE_EDITOR) }}>
-                Редактор кода
-            </div>
-            <div
-                className={state.active_section === Sections.TEST ? style.active__section : style.section}
-                onClick={() => { handleClick(Sections.TEST) }}>
-                Тест
-            </div>
+            <Link className={style.section} to="main" >Основной редактор</Link>
+            <Link className={style.section} to="code" >Текстовый редактор</Link>
+            <Link className={style.section} to="test" >Тест</Link>
         </div>
     )
 }

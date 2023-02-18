@@ -1,10 +1,6 @@
 .container {
-    width: 100%;
+    width: 600px;
     height: 60vh;
     overflow-y: auto;
-    background-color: var(--bg-boxs-color);
-    border-radius: var(--standart-border-radius-min);
-    padding-left: var(--standart-padding-min);
-    padding-right: var(--standart-padding-min);
-    line-height: 40px;;
+    line-height: 40px;
 }

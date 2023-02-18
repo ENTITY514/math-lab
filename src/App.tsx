@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
 import { SideBar } from './Components/SideBar/sidebar';
 import { Articles } from './Pages/articles/articles';
@@ -16,10 +16,10 @@ function App() {
         <div className='main'>
           <Routes>
             <Route path='' element={<Main />} />
-            <Route path='/workview' element={<WorkView />} />
-            <Route path='/docs' element={<Docs />} />
-            <Route path='/articles' element={<Articles />} />
-            <Route path='/engine' element={<EnginePage />} />
+            <Route path='/workview/*' element={<WorkView />} />
+            <Route path='/docs/*' element={<Docs />} />
+            <Route path='/articles/*' element={<Articles />} />
+            <Route path='/engine/*' element={<EnginePage />} />
           </Routes>
         </div>
       </div>

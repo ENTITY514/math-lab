@@ -1,14 +1,14 @@
 .container{
-    width: 100%;
     border-radius: 10px;
     height: 30px;
     background-color: rgba(0, 0, 0, 0.5);
     padding: 0 10px;
-    color: #fff;
     display: flex;
 }
 
 .section{
+    text-decoration: none;
+    color: #fff;
     padding: 5px;
 }
 
