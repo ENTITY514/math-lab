@@ -6,6 +6,7 @@ import { DefaultSS } from "./default_script_text";
 export class ScriptModule extends Module {
     active_file: ScriptFile | null = null
     files: Array<ScriptFile> = []
+    onActiveFileChangeEvents: Array<any> = []
     constructor(engine: Engine) {
         super(engine)
         this.create_file()
@@ -15,12 +16,29 @@ export class ScriptModule extends Module {
         this.create_file()
     }
 
+    onActiveFileChange(event: () => void) {
+        let a = false
+        this.onActiveFileChangeEvents.forEach(event_ => {
+            if (event_ === event) {
+                console.log("none");
+                a = true
+            }
+        });
+        if (!a) {
+            this.onActiveFileChangeEvents.push(event)
+        }
+        console.log(this.onActiveFileChangeEvents);
+    }
+
     update_active_file(data: string) {
         this.active_file?.updateScript(data)
     }
 
     set_active_file(file: ScriptFile) {
         this.active_file = file
+        this.onActiveFileChangeEvents.forEach(event => {
+            event()
+        });
     }
 
     create_file() {

@@ -1,4 +1,5 @@
 .container {
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
+    line-height: 30px;
 }
