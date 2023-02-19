@@ -1,6 +1,4 @@
 .container {
-    overflow-y: auto;
-    line-height: 40px;
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
 }

@@ -14,7 +14,7 @@ export const Editor: React.FC = () => {
                 value={""}
                 height="500px"
                 theme={atomone}
-                extensions={[javascript({ jsx: true })]}
+                extensions={[javascript()]}
             />
         </div>
     );
