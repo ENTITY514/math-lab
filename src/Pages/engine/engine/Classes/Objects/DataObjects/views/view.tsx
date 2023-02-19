@@ -32,6 +32,18 @@ export const FileView: React.FC<IFileViewProps> = ({ size, url, title, id }) => 
             </div>
         )
     }
+    else if (size === "linear") {
+        return (
+            <div className={style.container_linear}>
+                <div className={style.wrapper_linear}>
+                    <div className={style.linear_image_wrapper}>
+                        <div className={style.image} style={{ backgroundImage: "url(" + url + ")" }}></div>
+                    </div>
+                    <div className={style.name_linear}>{title}</div>
+                </div>
+            </div>
+        )
+    }
     else {
         return (
             <div className={style.container_medium}>

@@ -8,11 +8,19 @@ export class ScriptModule extends Module {
     files: Array<ScriptFile> = []
     constructor(engine: Engine) {
         super(engine)
-
+        this.create_file()
+        this.create_file()
+        this.create_file()
+        this.create_file()
+        this.create_file()
     }
 
     update_active_file(data: string) {
         this.active_file?.updateScript(data)
+    }
+
+    set_active_file(file: ScriptFile) {
+        this.active_file = file
     }
 
     create_file() {
