@@ -17,7 +17,8 @@ export const Files: React.FC = () => {
             return (
                 <div
                     className={engine.script_module.active_file === file ? style.active_file : style.file}
-                    onClick={() => { engine.script_module.set_active_file(file) }}>
+                    onClick={() => { engine.script_module.set_active_file(file) }}
+                    key={file.id}>
                     {file.__file_view__("linear")}
                 </div>
             )

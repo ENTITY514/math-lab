@@ -1,44 +1,31 @@
 import * as React from 'react'
 import style from './editor.module.css'
-import CodeMirror from '@uiw/react-codemirror';
-import { javascript } from '@codemirror/lang-javascript';
-// @ts-ignore
-import { atomone } from '@uiw/codemirror-theme-atomone';
 import { Engine } from '../../../engine/main';
+import { Icon } from '../../../../../Components/Icon/icon';
 
 
 export const Editor: React.FC = () => {
     const engine = new Engine()
-    const [count, set_update_count] = React.useState<boolean>(false)
-    const [is_updatablet, set_is_updatablet] = React.useState<boolean>(false)
-    const update = React.useCallback(() => { set_update_count(prev => !prev) }, [is_updatablet])
+    const [, set_update_count] = React.useState<boolean>(false)
     React.useEffect(() => {
-        if (!is_updatablet) {
-            console.log(is_updatablet);
-            set_is_updatablet(true)
-            engine.script_module.onActiveFileChange(update)
+        const interval = setInterval(() => set_update_count(prev => !prev), 100);
+        return () => {
+            clearInterval(interval)
         }
-    }, [])
-    const getData = React.useMemo(() => {
-        if (engine.script_module.active_file !== null) {
-            return engine.script_module.active_file.data
-        }
-        else {
-            return ""
-        }
+    })
+    const view = React.useMemo(() => {
+        return engine.script_module.active_file !== null ?
+            engine.script_module.get_editor() :
+            <div className={style.nonFileView}>
+                <div>
+                    <div className={style.icon} style={{ backgroundImage: "url(/document.png)" }}></div>
+                    <div className={style.text}>Выберете файл для редактирования</div>
+                </div>
+            </div>
     }, [engine.script_module.active_file])
-    const onChange = React.useCallback((value: string, viewUpdate: any) => {
-        engine.script_module.update_active_file(value)
-    }, []);
     return (
         <div className={style.container}>
-            <CodeMirror
-                value={getData}
-                height="500px"
-                theme={atomone}
-                extensions={[javascript()]}
-                onChange={onChange}
-            />
+            {view}
         </div>
     );
 }

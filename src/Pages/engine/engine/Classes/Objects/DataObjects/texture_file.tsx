@@ -14,8 +14,6 @@ export class TextureFile extends File {
         parent: Directory,
     ) {
         super(name, FileType.TEXTURE, data, parent)
-        console.log(data);
-        
         this.data = data
         if (this.data !== "") {
             this.texture = PIXI.Texture.from(this.data)
