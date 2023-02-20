@@ -13,10 +13,16 @@ export class ScriptFile extends File {
     ) {
         super(name, FileType.TEXTURE, data, parent)
         this.icon_url = Assets.script_file
+        this.data = data
     }
 
     execute() {
         return (new Function(this.data))()
+    }
+
+    __get_script_class__() {
+        const script_class = this.execute()
+        return new script_class()
     }
 
     updateScript(data: string) {

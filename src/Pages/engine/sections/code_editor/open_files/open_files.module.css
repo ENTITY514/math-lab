@@ -1,4 +1,10 @@
 .container {
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
+    display: flex;
+}
+
+.file {
+    margin: auto 5px;
+    display: inline;
 }

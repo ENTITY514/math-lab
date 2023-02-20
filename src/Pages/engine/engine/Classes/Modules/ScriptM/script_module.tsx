@@ -10,6 +10,7 @@ import { DefaultSS } from "./default_script_text";
 export class ScriptModule extends Module {
     active_file: ScriptFile | null = null
     files: Array<ScriptFile> = []
+    last_editable_files: Array<ScriptFile> = []
     script_editor!: JSX.Element;
     constructor(engine: Engine) {
         super(engine)
@@ -21,6 +22,7 @@ export class ScriptModule extends Module {
 
     set_active_file(file: ScriptFile) {
         this.active_file = file
+        this.add_editable_file(file)
         this.script_editor = <CodeMirror
             value={this.active_file.data}
             height="500px"
@@ -28,6 +30,17 @@ export class ScriptModule extends Module {
             extensions={[javascript()]}
             onChange={(value, viewUpdate) => { this.update_active_file(value, viewUpdate) }}
         />
+    }
+
+    add_editable_file(file: ScriptFile) {
+        if (!this.last_editable_files.find(file_ => file_ === file)) {
+            this.last_editable_files.push(file)
+        }
+
+    }
+
+    remove_editable_file(file: ScriptFile) {
+        this.last_editable_files.filter(file_ => file_ !== file)
     }
 
     get_editor() {
