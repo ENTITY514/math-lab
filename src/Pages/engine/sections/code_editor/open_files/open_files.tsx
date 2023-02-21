@@ -18,8 +18,17 @@ export const OpenFiles: React.FC = () => {
             {
                 script_module.last_editable_files.map((file: ScriptFile) => {
                     return (
-                        <div className={style.file} onClick={() => { engine.script_module.set_active_file(file) }}>
-                            {file.__file_view__("linear")}
+                        <div
+                            className={style.file}
+                            key={file.id}
+                        >
+                            <div className={style.wrapper}>
+                                <div
+                                    onClick={() => { engine.script_module.set_active_file(file) }}>
+                                    {file.__file_view__("linear")}
+                                </div>
+                                <div className={style.remove} onClick={() => { engine.script_module.remove_editable_file(file) }}>x</div>
+                            </div>
                         </div>
                     )
                 })

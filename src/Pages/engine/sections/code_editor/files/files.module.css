@@ -2,6 +2,7 @@
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
     padding: 15px;
+    user-select: none;
 }
 
 .active_file {

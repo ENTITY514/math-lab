@@ -2,9 +2,17 @@
     background-color: rgb(53, 53, 53);
     border-radius: 15px;
     display: flex;
+    user-select: none;
 }
 
 .file {
     margin: auto 5px;
     display: inline;
+    user-select: none;
+}
+
+.wrapper{
+    display: grid;
+    grid-template-columns: 100px 20px;
+    user-select: none;
 }
