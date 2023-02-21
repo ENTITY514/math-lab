@@ -6,4 +6,14 @@ export class DataModule extends Module {
     constructor(engine: Engine) {
         super(engine)
     }
+
+    create_data_set() {
+        console.log(JSON.stringify(this.engine.object_module.objects.map(object => {
+            return object.__get_data__()
+        })))
+    }
+
+    create_game_from_data_set(){
+
+    }
 }

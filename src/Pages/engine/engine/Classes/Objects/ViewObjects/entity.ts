@@ -9,7 +9,7 @@ export class Entity {
         this._name = name
         this._type = type
         this.id = nanoid()
-        this.components = {}
+        this.components = []
     }
 
     setName(name: string): void {
@@ -38,5 +38,13 @@ export class Entity {
 
     getType(): string {
         return this._type
+    }
+
+    __get_data__() {
+        return {
+            name: this.name,
+            type: this.type,
+            id: this.id,
+        }
     }
 }

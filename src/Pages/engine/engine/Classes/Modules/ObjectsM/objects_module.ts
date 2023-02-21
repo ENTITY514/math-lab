@@ -28,6 +28,7 @@ export class ObjectsModule extends Module {
             })
         }
         this.engine.app.stage.addChild(object.sprite);
+        this.engine.data_module.create_data_set()
     }
 
     deleteObject() {

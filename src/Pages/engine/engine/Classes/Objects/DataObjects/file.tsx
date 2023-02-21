@@ -43,6 +43,18 @@ export class File {
     }
 
     __file_view__(size: string) {
-        return <FileView title={this.name} url={this.icon_url} size={size} key={this.id} id={this.id}/>
+        return <FileView title={this.name} url={this.icon_url} size={size} key={this.id} id={this.id} />
+    }
+
+    __get_data__() {
+        return {
+            id: this.id,
+            name: this.name,
+            type: this.type,
+            url: this.url,
+            metadata: this.metadata,
+            data: this.data,
+            parent: this.parent
+        }
     }
 }

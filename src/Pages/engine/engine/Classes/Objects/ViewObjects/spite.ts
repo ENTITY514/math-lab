@@ -23,4 +23,16 @@ export class Sprite extends Primitive {
         this.transform.setSize(200, 200)
         new GraphicsComponent(this)
     }
+
+    __get_data__() {
+        const components = this.components.map((component) => {
+            return component.__get_data__()
+        })
+        return {
+            name: this.name,
+            type: this.type,
+            id: this.id,
+            components: components
+        }
+    }
 }

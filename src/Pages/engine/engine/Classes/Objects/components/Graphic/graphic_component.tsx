@@ -20,18 +20,17 @@ export class GraphicsComponent extends Component {
         return this.object.sprite.alpha
     }
 
-    getTint():number {
+    getTint(): number {
         return this.object.sprite.tint
     }
 
-    getBlendMode():PIXI.BLEND_MODES {
+    getBlendMode(): PIXI.BLEND_MODES {
         return this.object.sprite.blendMode
     }
 
     setTexture(texture_file: TextureFile) {
         this.object.sprite.texture = texture_file.texture
         this.object.texture_file = texture_file
-        console.log("texture_changed");
     }
 
     changeOpacity(value: number) {
@@ -43,7 +42,6 @@ export class GraphicsComponent extends Component {
                 this.object.sprite.alpha = 1
             }
         }
-        console.log("alpha changed");
 
     }
 
@@ -57,5 +55,15 @@ export class GraphicsComponent extends Component {
 
     __react_view__() {
         return <GraphicView component={this} key={this.id} />
+    }
+
+    __get_data__() {
+        return {
+            type: this.type,
+            id: this.id,
+            texture_file: this.getTextureFile()?.__get_data__(),
+            tint: this.getTint(),
+            alpha: this.getOpacity(),
+        }
     }
 }

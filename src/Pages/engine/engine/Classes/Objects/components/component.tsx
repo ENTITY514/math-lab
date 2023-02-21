@@ -12,6 +12,13 @@ export class Component {
     }
 
     __react_view__() {
-        return <ComponentView object={this.object}/>
+        return <ComponentView object={this.object} />
+    }
+
+    __get_data__() {
+        return {
+            type: this.type,
+            id: this.id
+        }
     }
 }
