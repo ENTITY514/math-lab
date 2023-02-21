@@ -1,10 +1,9 @@
 import * as React from 'react'
 import style from './editor.module.css'
 import { Engine } from '../../../engine/main';
-import { Icon } from '../../../../../Components/Icon/icon';
 
 
-export const Editor: React.FC = () => {
+export const CodeEditor: React.FC = () => {
     const engine = new Engine()
     const [, set_update_count] = React.useState<boolean>(false)
     React.useEffect(() => {
