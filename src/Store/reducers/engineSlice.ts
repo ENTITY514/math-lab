@@ -8,7 +8,10 @@ let initialState: IEngine = {
         name: "project_name",
         id: nanoid()
     },
-    view_ready: false
+    view_ready: {
+        main: false,
+        test: false
+    }
 }
 
 export const EngineSlice = createSlice({
@@ -18,8 +21,11 @@ export const EngineSlice = createSlice({
         changeSection: (state, action: PayloadAction<Sections>) => {
             state.active_section = action.payload
         },
-        ViewCreate: (state) => {
-            state.view_ready = true
+        MainViewCreate: (state) => {
+            state.view_ready.main = true
+        },
+        TestViewCreate: (state) => {
+            state.view_ready.test = true
         }
     }
 })

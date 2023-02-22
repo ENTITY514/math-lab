@@ -10,16 +10,21 @@ export class Test {
     engine: Engine
     app!: PIXI.Application
     canvasContainer: HTMLDivElement | undefined
-    test_module!: Test
     object_module!: ObjectsModule
     data_module!: DataModule
-    tool_module!: ToolModule
-    dev_file_system!: ENGINE_FILE_SYSTEM_MODULE
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     script_module!: ScriptModule
     constructor(engine: Engine) {
         this.engine = engine
+        this.initRenderer();
+        this.render();
+        this.file_system = new ENGINE_FILE_SYSTEM_MODULE()
+        this.script_module = new ScriptModule(this as unknown as Engine)
+        this.object_module = new ObjectsModule(this as unknown as Engine)
+        this.data_module = new DataModule(this as unknown as Engine)
+        this.animate()
     }
+
     addView(canvasContainer: HTMLDivElement) {
         this.canvasContainer = canvasContainer
         this.canvasContainer.style.display = "grid"
@@ -42,9 +47,6 @@ export class Test {
     animate() {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
-            this.object_module.objects.forEach(object => {
-                this.tool_module.update()
-            });
         });
     }
 }

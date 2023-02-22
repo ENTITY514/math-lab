@@ -4,7 +4,11 @@ export interface IEngine {
         name: string,
         id: string
     }
-    view_ready: boolean
+    view_ready:
+    {
+        main: boolean,
+        test: boolean
+    }
 }
 
 export enum Sections {

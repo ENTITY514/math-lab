@@ -7,12 +7,12 @@ import style from "./pixi_window.module.css"
 export const PixiWindow: React.FC = () => {
     const state = useAppSelector(state => state.engineSlice)
     const dispatch = useAppDispatch()
-    const viewCreate = EngineSlice.actions.MainViewCreate
+    const viewCreate = EngineSlice.actions.TestViewCreate
     const view_ref = React.useRef(null)
     const engine = new Engine()
     React.useEffect(() => {
-        if (view_ref.current && !state.view_ready.main) {
-            engine.addView(view_ref.current)
+        if (view_ref.current && !state.view_ready.test) {
+            engine.test_module.addView(view_ref.current)
             dispatch(viewCreate)
         }
     }, [])
