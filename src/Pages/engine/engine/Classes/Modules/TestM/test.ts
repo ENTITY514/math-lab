@@ -14,6 +14,7 @@ export class Test {
     data_module!: DataModule
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     script_module!: ScriptModule
+    prev: string = ""
     constructor(engine: Engine) {
         this.engine = engine
         this.initRenderer();
@@ -36,6 +37,12 @@ export class Test {
 
     initRenderer() {
         this.app = new PIXI.Application({ width: 100, height: 100, backgroundColor: 0x000000 });
+    }
+
+    build_app_from_data_set(data: string) {
+        if (data !== this.prev) {
+            this.prev = data
+        }
     }
 
     update() {

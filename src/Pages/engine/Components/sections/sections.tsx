@@ -13,9 +13,23 @@ export const SectionsChoice: React.FC = () => {
     }
     return (
         <div className={style.container}>
-            <Link className={style.section} to="main" >Основной редактор</Link>
-            <Link className={style.section} to="code" >Текстовый редактор</Link>
-            <Link className={style.section} to="test" >Тест</Link>
-        </div>
+            <div
+                className={state.active_section === Sections.MAIN ? style.active_section : style.section}
+                onClick={() => { handleClick(Sections.MAIN) }}
+            >
+                Основной редактор
+            </div>
+            <div className={state.active_section === Sections.CODE_EDITOR ? style.active_section : style.section}
+                onClick={() => { handleClick(Sections.CODE_EDITOR) }}
+            >
+                Текстовый редактор
+            </div>
+            <div
+                className={state.active_section === Sections.TEST ? style.active_section : style.section}
+                onClick={() => { handleClick(Sections.TEST) }}
+            >
+                Тест
+            </div>
+        </div >
     )
 }
