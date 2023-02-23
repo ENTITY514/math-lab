@@ -16,7 +16,7 @@ export class ObjectsModule extends Module {
         this.active_object = object
     }
 
-    createObject() {
+    createObject(): Sprite {
         const object = new Sprite()
         this.objects.push(object)
         if (this.engine.data_module.is_dev_mode) {
@@ -29,6 +29,14 @@ export class ObjectsModule extends Module {
         }
         this.engine.app.stage.addChild(object.sprite);
         this.engine.data_module.create_data_set()
+        return object
+    }
+
+    clear() {
+        this.objects.forEach(object => {
+            this.engine.app.stage.removeChild(object.sprite)
+        });
+        this.objects = []
     }
 
     deleteObject() {

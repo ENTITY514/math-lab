@@ -5,6 +5,8 @@ import { DataModule } from "../DataM/data_module";
 import { ObjectsModule } from "../ObjectsM/objects_module";
 import { ScriptModule } from "../ScriptM/script_module";
 import { ToolModule } from "../ToolsM/tools_module";
+import { Sprite } from "../../Objects/ViewObjects/spite";
+import { ABD_sprite } from "./data_of_objects";
 
 export class Test {
     engine: Engine
@@ -42,6 +44,14 @@ export class Test {
     build_app_from_data_set(data: string) {
         if (data !== this.prev) {
             this.prev = data
+            this.object_module.clear()
+            let parsed_data = JSON.parse(data) as Array<ABD_sprite>
+            parsed_data.forEach(object => {
+                if (object.type === "sprite") {
+                    const obj = this.object_module.createObject()
+                    obj.__create_from_data(object)
+                }
+            });
         }
     }
 

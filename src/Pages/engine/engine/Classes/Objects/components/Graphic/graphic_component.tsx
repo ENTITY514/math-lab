@@ -3,6 +3,8 @@ import { Sprite } from "../../ViewObjects/spite";
 import { GraphicView } from "./graphic_view";
 import { TextureFile } from "../../DataObjects/texture_file";
 import * as PIXI from 'pixi.js'
+import { ABD_component, ABD_graphic_component } from "../../../Modules/TestM/data_of_objects";
+import { Engine } from "../../../../main";
 
 export class GraphicsComponent extends Component {
     object!: Sprite
@@ -61,9 +63,21 @@ export class GraphicsComponent extends Component {
         return {
             type: this.type,
             id: this.id,
-            texture_file: this.getTextureFile()?.__get_data__(),
+            texture_file_name: this.getTextureFile()?.name,
             tint: this.getTint(),
             alpha: this.getOpacity(),
+        } as ABD_graphic_component
+    }
+
+
+    __create_from_data(data: ABD_graphic_component): void {
+        let engine = new Engine()
+        this.type = data.type
+        this.id = data.id
+        this.changeTint(data.tint)
+        this.changeOpacity(data.alpha)
+        if (data.texture_file_name !== undefined) {
+            this.setTexture(engine.file_system.root.findFirstFileByName(data.texture_file_name) as TextureFile)
         }
     }
 }
