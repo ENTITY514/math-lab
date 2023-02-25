@@ -5,6 +5,7 @@ import { Primitive } from "./primitive";
 import { TextureFile } from "../DataObjects/texture_file";
 import { GraphicsComponent } from "../components/Graphic/graphic_component";
 import { ABD_graphic_component, ABD_sprite, ABD_transform_component } from "../../Modules/TestM/data_of_objects";
+import { ScriptComponent } from "../components/Script/script_component";
 
 export class Sprite extends Primitive {
     sprite!: PIXI.Sprite;
@@ -23,6 +24,7 @@ export class Sprite extends Primitive {
         this.transform = new Transform(this)
         this.transform.setSize(200, 200)
         new GraphicsComponent(this)
+        new ScriptComponent(this)
     }
 
     __get_data__() {

@@ -30,3 +30,7 @@ export interface ABD_graphic_component extends ABD_component {
     alpha: number,
     blend_mode: number
 }
+
+export interface ABD_script_component extends ABD_component {
+    scripts: Array<string>
+}
