@@ -14,7 +14,7 @@ export const Files: React.FC = () => {
         return () => {
             clearInterval(interval)
         }
-    })
+    },[])
 
     const [isDragging, setIsDragging] = React.useState<boolean>(false)
 

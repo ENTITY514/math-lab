@@ -11,7 +11,7 @@ export const CodeEditor: React.FC = () => {
         return () => {
             clearInterval(interval)
         }
-    })
+    },[])
     const view = React.useMemo(() => {
         return engine.script_module.active_file !== null ?
             engine.script_module.get_editor() :

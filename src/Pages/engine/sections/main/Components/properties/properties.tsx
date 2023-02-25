@@ -10,7 +10,7 @@ export const Properties: React.FC = () => {
         return () => {
             clearInterval(interval)
         }
-    })
+    },[])
     return (
         <div className={style.container}>
             {engine.object_module.active_object?.components.map((component) => {

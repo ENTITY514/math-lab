@@ -12,7 +12,7 @@ export const Objects: React.FC = () => {
         return () => {
             clearInterval(interval)
         }
-    })
+    },[])
     return (
         <div className={style.container}>
             {

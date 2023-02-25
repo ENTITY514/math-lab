@@ -7,11 +7,11 @@ export const Files: React.FC = () => {
     const files = engine.script_module.files
     const [, set_update_count] = React.useState<boolean>(false)
     React.useEffect(() => {
-        const interval = setInterval(() => set_update_count(prev => !prev), 50);
+        const interval = setInterval(() => set_update_count(prev => !prev), 200);
         return () => {
             clearInterval(interval)
         }
-    })
+    }, [])
     const render_files = React.useMemo(() => {
         return files.map((file) => {
             return (

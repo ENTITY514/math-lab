@@ -26,7 +26,6 @@ export class ScriptModule extends Module {
             this.add_editable_file(file as ScriptFile)
             this.script_editor = <CodeMirror
                 value={this.active_file.data}
-                height="500px"
                 theme={atomone}
                 extensions={[javascript()]}
                 onChange={(value, viewUpdate) => { this.update_active_file(value, viewUpdate) }}
