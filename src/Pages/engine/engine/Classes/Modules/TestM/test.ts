@@ -5,8 +5,10 @@ import { DataModule } from "../DataM/data_module";
 import { ObjectsModule } from "../ObjectsM/objects_module";
 import { ScriptModule } from "../ScriptM/script_module";
 import { ToolModule } from "../ToolsM/tools_module";
-import { Sprite } from "../../Objects/ViewObjects/spite";
+import { Sprite } from "../../Objects/ViewObjects/sprite";
 import { ABD_sprite } from "./data_of_objects";
+import { ScriptComponent } from "../../Objects/components/Script/script_component";
+import { ScriptObject } from "./script_class";
 
 export class Test {
     engine: Engine
@@ -51,6 +53,17 @@ export class Test {
                     const obj = this.object_module.createObject()
                     obj.__create_from_data(object)
                 }
+            });
+            this.object_module.objects.forEach(object => {
+                object.components.forEach(component => {
+                    if (component instanceof ScriptComponent) {
+                        component.scripts.forEach(script => {
+                            let script_object: ScriptObject = script.__get_script_class__(object)
+                            console.log(script_object);
+                            script_object.onStart()
+                        });
+                    }
+                });
             });
         }
     }

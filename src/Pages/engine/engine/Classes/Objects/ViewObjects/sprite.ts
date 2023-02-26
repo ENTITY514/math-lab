@@ -4,7 +4,7 @@ import { Component } from "../components/component";
 import { Primitive } from "./primitive";
 import { TextureFile } from "../DataObjects/texture_file";
 import { GraphicsComponent } from "../components/Graphic/graphic_component";
-import { ABD_graphic_component, ABD_sprite, ABD_transform_component } from "../../Modules/TestM/data_of_objects";
+import { ABD_graphic_component, ABD_script_component, ABD_sprite, ABD_transform_component } from "../../Modules/TestM/data_of_objects";
 import { ScriptComponent } from "../components/Script/script_component";
 
 export class Sprite extends Primitive {
@@ -12,6 +12,7 @@ export class Sprite extends Primitive {
     components: Array<Component> = [];
     transform: Transform
     texture_file!: TextureFile | null
+    scripts: {};
     constructor(
         name: string = "Sprite",
         type: string = "sprite",
@@ -25,7 +26,10 @@ export class Sprite extends Primitive {
         this.transform.setSize(200, 200)
         new GraphicsComponent(this)
         new ScriptComponent(this)
+        this.scripts = {}
     }
+
+
 
     __get_data__() {
         const components = this.components.map((component) => {
@@ -57,6 +61,12 @@ export class Sprite extends Primitive {
                     let graphic_component = new GraphicsComponent(this)
                     graphic_component.__create_from_data(component as ABD_graphic_component)
                     this.components.push(graphic_component)
+                    break;
+
+                case "script":
+                    let script_component = new ScriptComponent(this)
+                    script_component.__create_from_data(component as ABD_script_component)
+                    this.components.push(script_component)
                     break;
 
                 default:

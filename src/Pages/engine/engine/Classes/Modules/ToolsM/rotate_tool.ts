@@ -2,7 +2,7 @@ import * as PIXI from 'pixi.js'
 import { Assets } from '../../../../assets/get'
 import { Engine } from '../../../main'
 import { TextureFile } from '../../Objects/DataObjects/texture_file'
-import { Sprite } from '../../Objects/ViewObjects/spite'
+import { Sprite } from '../../Objects/ViewObjects/sprite'
 import { DevAssets } from '../assets/get'
 import { tools_name } from './tools_module'
 

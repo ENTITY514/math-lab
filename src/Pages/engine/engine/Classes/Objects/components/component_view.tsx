@@ -1,4 +1,4 @@
-import { Sprite } from "../ViewObjects/spite"
+import { Sprite } from "../ViewObjects/sprite"
 
 interface ComponentViewProps {
     object: Sprite

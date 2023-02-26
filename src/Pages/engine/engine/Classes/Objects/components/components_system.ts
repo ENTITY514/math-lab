@@ -1,4 +1,4 @@
-import { Sprite } from "../ViewObjects/spite";
+import { Sprite } from "../ViewObjects/sprite";
 import { Component } from "./component";
 
 export class ComponentSystem {

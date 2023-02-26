@@ -1,15 +1,19 @@
 export const DefaultSS = {
-    script:`
-    return class Script {
-        constructor() {
+  script: `
+    return class ScriptObject {
+      object;
+      constructor(object) {
+          this.object = object
           console.log("Hello,World")
-        }
-        onUpdate(){
-          
-        }
-        onStart(){
-          
-        }
       }
+  
+      onStart() {
+          console.log(this.object)
+      }
+  
+      onUpdate() {
+  
+      }
+  }
     `
 }

@@ -1,7 +1,7 @@
 import React from "react"
 import { Engine } from "../../../../main"
 import { TextureFile } from "../../DataObjects/texture_file"
-import { Sprite } from "../../ViewObjects/spite"
+import { Sprite } from "../../ViewObjects/sprite"
 import { GraphicsComponent } from "./graphic_component"
 import style from "./graphic_view.module.css"
 

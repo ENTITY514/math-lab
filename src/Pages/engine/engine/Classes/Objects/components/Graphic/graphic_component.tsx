@@ -1,5 +1,5 @@
 import { Component } from "../component";
-import { Sprite } from "../../ViewObjects/spite";
+import { Sprite } from "../../ViewObjects/sprite";
 import { GraphicView } from "./graphic_view";
 import { TextureFile } from "../../DataObjects/texture_file";
 import * as PIXI from 'pixi.js'

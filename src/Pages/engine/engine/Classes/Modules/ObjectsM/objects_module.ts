@@ -1,6 +1,6 @@
 import { Engine } from "../../../main";
 import { Module } from "../module";
-import { Sprite } from "../../Objects/ViewObjects/spite";
+import { Sprite } from "../../Objects/ViewObjects/sprite";
 import { Primitive } from "../../Objects/ViewObjects/primitive";
 
 export class ObjectsModule extends Module {

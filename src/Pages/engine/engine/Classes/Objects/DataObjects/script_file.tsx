@@ -2,6 +2,7 @@ import { FileType } from "../../../Types/file_types";
 import { Directory } from "./directory";
 import { File } from "./file";
 import { Assets } from "../../../../assets/get";
+import { Sprite } from "../ViewObjects/sprite";
 
 export class ScriptFile extends File {
     data: string = ""
@@ -16,13 +17,13 @@ export class ScriptFile extends File {
         this.data = data
     }
 
-    execute() {
-        return (new Function(this.data))()
+    execute(object: Sprite) {
+        return (new Function(this.data))(object)
     }
 
-    __get_script_class__() {
-        const script_class = this.execute()
-        return new script_class()
+    __get_script_class__(object: Sprite) {
+        const script_class = this.execute(object)
+        return new script_class(object)
     }
 
     updateScript(data: string) {
