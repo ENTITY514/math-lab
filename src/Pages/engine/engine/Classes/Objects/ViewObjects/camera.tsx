@@ -92,9 +92,10 @@ export class DevCamera {
         );
         this.tiling_sprite.position.x = -this._bg_px
         this.tiling_sprite.position.y = -this._bg_px
-        this.tiling_sprite.scale.x = 4
-        this.tiling_sprite.scale.y = 4
-        this.tiling_sprite.alpha = 0.4
+        this.tiling_sprite.scale.x = 1
+        this.tiling_sprite.scale.y = 1
+        this.tiling_sprite.alpha = 1
+        this.tiling_sprite.tint = 0x555555
         app.stage.addChild(this.tiling_sprite);
     }
 
