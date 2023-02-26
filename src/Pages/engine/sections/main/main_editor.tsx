@@ -10,6 +10,9 @@ import style from "./main_editor.module.css"
 
 export const MainEditor: React.FC = () => {
     const engine = React.useRef(new Engine())
+    React.useEffect(() => {
+        engine.current.updateActiveWindow("main")
+    }, [])
     return (
         <div className={style.container}>
             <Objects />

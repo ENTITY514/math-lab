@@ -54,6 +54,18 @@ export class Engine {
     render() {
     }
 
+    updateActiveWindow(active_window: string) {
+        if (active_window === "test") {
+            this.app.ticker.stop()
+            this.test_module.app.start()
+        }
+        else if (active_window === "main") {
+            this.app.ticker.start()
+            this.test_module.app.stop()
+        }
+
+    }
+
     animate() {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
