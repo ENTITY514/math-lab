@@ -56,7 +56,6 @@ export class ScriptComponent extends Component {
                 this.addScript(file)
             }
         });
-        console.log(this.scripts);
 
     }
 }

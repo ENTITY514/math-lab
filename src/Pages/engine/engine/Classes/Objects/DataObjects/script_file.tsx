@@ -3,6 +3,7 @@ import { Directory } from "./directory";
 import { File } from "./file";
 import { Assets } from "../../../../assets/get";
 import { Sprite } from "../ViewObjects/sprite";
+import { ScriptObject } from "../../Modules/TestM/script_class";
 
 export class ScriptFile extends File {
     data: string = ""
@@ -17,12 +18,13 @@ export class ScriptFile extends File {
         this.data = data
     }
 
-    execute(object: Sprite) {
-        return (new Function(this.data))(object)
+    execute() {
+        let execute = (new Function(this.data))()
+        return execute
     }
 
     __get_script_class__(object: Sprite) {
-        const script_class = this.execute(object)
+        const script_class = this.execute()
         return new script_class(object)
     }
 

@@ -9,6 +9,7 @@ import { Sprite } from "../../Objects/ViewObjects/sprite";
 import { ABD_sprite } from "./data_of_objects";
 import { ScriptComponent } from "../../Objects/components/Script/script_component";
 import { ScriptObject } from "./script_class";
+import { EventModule } from "../EventModule/event_module";
 
 export class Test {
     engine: Engine
@@ -18,6 +19,7 @@ export class Test {
     data_module!: DataModule
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     script_module!: ScriptModule
+    event_module: EventModule
     prev: string = ""
     constructor(engine: Engine) {
         this.engine = engine
@@ -27,6 +29,7 @@ export class Test {
         this.script_module = new ScriptModule(this as unknown as Engine)
         this.object_module = new ObjectsModule(this as unknown as Engine)
         this.data_module = new DataModule(this as unknown as Engine)
+        this.event_module = new EventModule(this as unknown as Engine)
         this.animate()
     }
 
@@ -47,6 +50,9 @@ export class Test {
         if (data !== this.prev) {
             this.prev = data
             this.object_module.clear()
+            this.event_module.clearAllEvent()
+            this.event_module.addEvent("onStart")
+            this.event_module.addEvent("onUpdate")
             let parsed_data = JSON.parse(data) as Array<ABD_sprite>
             parsed_data.forEach(object => {
                 if (object.type === "sprite") {
@@ -59,16 +65,27 @@ export class Test {
                     if (component instanceof ScriptComponent) {
                         component.scripts.forEach(script => {
                             let script_object: ScriptObject = script.__get_script_class__(object)
-                            console.log(script_object);
-                            script_object.onStart()
+                            this.event_module.addSubcriberOn("onStart", script_object.onStart.bind(script_object))
+                            this.event_module.addSubcriberOn("onUpdate", script_object.onUpdate.bind(script_object))
                         });
                     }
                 });
             });
+            let onUpdate = this.event_module.getEvent("onUpdate")
+            this.app.ticker.remove(this.update)
+            this.update = (delta: number) => {
+                onUpdate?.execute()
+            }
+            this.animate()
         }
     }
 
-    update() {
+    startTest() {
+        let onStart = this.event_module.getEvent("onStart")
+        onStart?.execute()
+    }
+
+    update(delta: number) {
     }
 
     render() {
@@ -76,7 +93,7 @@ export class Test {
 
     animate() {
         let elapsed = 0.0;
-        this.app.ticker.add((delta) => {
-        });
+        this.startTest()
+        this.app.ticker.add(this.update);
     }
 }

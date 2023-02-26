@@ -4,15 +4,15 @@ export const DefaultSS = {
       object;
       constructor(object) {
           this.object = object
-          console.log("Hello,World")
+          console.log("Script Was Created")
       }
   
       onStart() {
-          console.log(this.object)
+          console.log("OnStart")
       }
   
       onUpdate() {
-  
+          console.log("OnUpdate")
       }
   }
     `
