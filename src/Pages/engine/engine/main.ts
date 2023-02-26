@@ -5,6 +5,7 @@ import { ScriptModule } from "./Classes/Modules/ScriptM/script_module"
 import { Test } from "./Classes/Modules/TestM/test"
 import { ToolModule } from "./Classes/Modules/ToolsM/tools_module"
 import { ENGINE_FILE_SYSTEM_MODULE } from "./Classes/Objects/DataObjects/file_system"
+import { DevCamera } from "./Classes/Objects/ViewObjects/camera"
 
 export class Engine {
     private static _instance: any
@@ -17,6 +18,7 @@ export class Engine {
     dev_file_system!: ENGINE_FILE_SYSTEM_MODULE
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     script_module!: ScriptModule
+    dev_camera!: DevCamera
     constructor() {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
@@ -30,6 +32,7 @@ export class Engine {
         this.object_module = new ObjectsModule(this)
         this.data_module = new DataModule(this)
         this.tool_module = new ToolModule(this)
+        this.dev_camera = new DevCamera(this.app)
         this.animate()
         Engine._instance = this
         return Engine._instance
@@ -38,6 +41,9 @@ export class Engine {
     addView(canvasContainer: HTMLDivElement) {
         this.canvasContainer = canvasContainer
         this.canvasContainer.style.display = "grid"
+        this.app.view.oncontextmenu = function () {
+            return false;
+        }
         if (this.canvasContainer.children.length < 1) {
             this.canvasContainer.appendChild(this.app.view);
             this.app.resizeTo = this.canvasContainer
