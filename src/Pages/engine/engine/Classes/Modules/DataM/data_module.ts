@@ -16,4 +16,8 @@ export class DataModule extends Module {
     create_game_from_data_set() {
 
     }
+
+    compileAppToHTML() {
+        return new Blob(["Hello, world!"], { type: 'text/html' });
+    }
 }

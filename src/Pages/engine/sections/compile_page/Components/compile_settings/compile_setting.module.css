@@ -1,0 +1,9 @@
+.container {
+    color: rgb(255, 255, 255);
+    padding: 10px;
+}
+
+.box{
+    display: grid;
+    grid-template-columns:  1fr 60px;
+}

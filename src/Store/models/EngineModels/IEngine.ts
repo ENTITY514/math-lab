@@ -15,4 +15,5 @@ export enum Sections {
     MAIN,
     CODE_EDITOR,
     TEST,
+    EXPORT
 }

@@ -69,6 +69,10 @@ export class Engine {
             this.app.ticker.start()
             this.test_module.app.stop()
         }
+        else if (active_window === "compile") {
+            this.app.ticker.stop()
+            this.test_module.app.stop()
+        }
 
     }
 

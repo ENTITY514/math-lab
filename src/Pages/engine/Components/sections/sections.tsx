@@ -30,6 +30,12 @@ export const SectionsChoice: React.FC = () => {
             >
                 Тест
             </div>
+            <div
+                className={state.active_section === Sections.EXPORT ? style.active_section : style.section}
+                onClick={() => { handleClick(Sections.EXPORT) }}
+            >
+                Экспорт
+            </div>
         </div >
     )
 }
