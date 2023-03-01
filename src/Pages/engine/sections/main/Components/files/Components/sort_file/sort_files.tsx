@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { Assets } from '../../../../../../../../assets/get'
 import { Icon } from '../../../../../../../../Components/Icon/icon'
-import { Assets } from '../../../../../../assets/get'
 import style from './sort_files.module.css'
 
 interface ISortFilesProps {

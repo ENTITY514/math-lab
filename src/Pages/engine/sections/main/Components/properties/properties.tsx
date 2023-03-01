@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../../../engine/main"
+import { Engine } from "../../../../../../Engine/main"
 import style from "./properties.module.css"
 
 export const Properties: React.FC = () => {

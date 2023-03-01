@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../engine/main"
+import { Engine } from "../../../../Engine/main"
 import style from "./compilation_page.module.css"
 import { CompilationSettings } from "./Components/compile_settings/compile_settings"
 import { CompilationTypeChoice } from "./Components/compile_type_choice/compile_type_choice"

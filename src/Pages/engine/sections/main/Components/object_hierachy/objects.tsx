@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../../../engine/main"
+import { Engine } from "../../../../../../Engine/main"
 import { Object } from "./Components/Object/object"
 import style from "./objects.module.css"
 

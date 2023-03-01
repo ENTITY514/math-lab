@@ -1,12 +1,14 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
+import { Engine } from "../../Engine/main";
 import { IEngine, Sections } from "../models/EngineModels/IEngine";
 
 let initialState: IEngine = {
     active_section: Sections.MAIN,
+    engine: new Engine(),
     project_data: {
-        name: "project_name",
-        id: nanoid()
+        name: null,
+        id: null
     },
     view_ready: {
         main: false,
@@ -18,14 +20,17 @@ export const EngineSlice = createSlice({
     name: 'engine',
     initialState,
     reducers: {
-        changeSection: (state, action: PayloadAction<Sections>) => {
+        changeActiveSection: (state, action: PayloadAction<Sections>) => {
             state.active_section = action.payload
         },
-        MainViewCreate: (state) => {
+        mainViewCreate: (state) => {
             state.view_ready.main = true
         },
-        TestViewCreate: (state) => {
+        testViewCreate: (state) => {
             state.view_ready.test = true
+        },
+        openProject: (state, action: PayloadAction<string>) => {
+            state.engine.data_module.openProject(action.payload)
         }
     }
 })

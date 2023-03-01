@@ -7,7 +7,7 @@ import style from "./sections.module.css"
 export const SectionsChoice: React.FC = () => {
     const state = useAppSelector(state => state.engineSlice)
     const dispatch = useAppDispatch()
-    const { changeSection } = EngineSlice.actions
+    const { changeActiveSection: changeSection } = EngineSlice.actions
     const handleClick = (section: Sections) => {
         dispatch(changeSection(section))
     }

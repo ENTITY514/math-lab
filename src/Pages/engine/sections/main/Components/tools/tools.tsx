@@ -1,9 +1,9 @@
 import React from "react"
+import { Assets } from "../../../../../../assets/get"
 import { Button } from "../../../../../../Components/Button/button"
 import { DropDownMenu } from "../../../../../../Components/DropDownMenu/drop-down-menu"
-import { Assets } from "../../../../assets/get"
-import { tools_name } from "../../../../engine/Classes/Modules/ToolsM/tools_module"
-import { Engine } from "../../../../engine/main"
+import { tools_name } from "../../../../../../Engine/Classes/Modules/ToolsM/tools_module"
+import { Engine } from "../../../../../../Engine/main"
 import style from "./tools.module.css"
 
 export const Tools: React.FC = () => {

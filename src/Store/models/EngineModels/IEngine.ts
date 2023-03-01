@@ -1,8 +1,12 @@
+import { Engine } from "../../../Engine/main"
+
+
 export interface IEngine {
     active_section: Sections
+    engine: Engine
     project_data: {
-        name: string,
-        id: string
+        name: string | null,
+        id: string | null
     }
     view_ready:
     {

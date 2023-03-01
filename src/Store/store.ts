@@ -1,8 +1,7 @@
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import HUDSlice from "./reducers/HUDSlice";
 import userSlice from "./reducers/UserSlice";
 import engineSlice from "./reducers/engineSlice";
-
 
 const rootReducers = combineReducers({
     userSlice,
@@ -10,9 +9,17 @@ const rootReducers = combineReducers({
     engineSlice
 })
 
+const middleware = getDefaultMiddleware({
+    immutableCheck: false,
+    serializableCheck: false,
+    thunk: true,
+});
+
 export const setupStore = () => {
     return configureStore({
-        reducer: rootReducers
+        reducer: rootReducers,
+        middleware,
+        devTools: process.env.NODE_ENV !== 'production'
     })
 }
 

@@ -1,7 +1,6 @@
 import React from "react"
-import { File } from "../../../../engine/Classes/Objects/DataObjects/file"
-import { TextureFile } from "../../../../engine/Classes/Objects/DataObjects/texture_file"
-import { Engine } from "../../../../engine/main"
+import { TextureFile } from "../../../../../../Engine/Classes/Objects/DataObjects/texture_file"
+import { Engine } from "../../../../../../Engine/main"
 import { Actions } from "./Components/actions/actions"
 import style from "./files.module.css"
 

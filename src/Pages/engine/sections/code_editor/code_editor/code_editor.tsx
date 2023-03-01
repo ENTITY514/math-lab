@@ -1,6 +1,6 @@
 import * as React from 'react'
+import { Engine } from '../../../../../Engine/main'
 import style from './editor.module.css'
-import { Engine } from '../../../engine/main';
 
 
 export const CodeEditor: React.FC = () => {
