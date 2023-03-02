@@ -2,7 +2,7 @@ import { Entity } from "./entity";
 import * as PIXI from "pixi.js"
 import { Component } from "../components/component";
 import { Transform } from "../components/Transform/transform_component";
-import { ABD_primitive, ABD_transform_component } from "../../Modules/TestM/data_of_objects";
+import { PrimitiveData, TransformComponentData } from "../../../Types/objects_interfaces";
 
 export class Primitive extends Entity {
     sprite!: PIXI.Sprite;
@@ -25,10 +25,10 @@ export class Primitive extends Entity {
             type: this.type,
             id: this.id,
             components: components
-        } as ABD_primitive
+        } as PrimitiveData
     }
 
-    __create_from_data(data: ABD_primitive) {
+    __create_from_data(data: PrimitiveData) {
         this.setName(data.name)
         this.id = data.id
         this._type = data.type
@@ -37,7 +37,7 @@ export class Primitive extends Entity {
             switch (component.type) {
                 case "transform":
                     let transform_component = new Transform(this)
-                    transform_component.__create_from_data(component as ABD_transform_component)
+                    transform_component.__create_from_data(component as TransformComponentData)
                     this.transform = transform_component
                     this.components.push(transform_component)
                     break;

@@ -1,15 +1,14 @@
-import { Engine } from "../../../main";
 import * as PIXI from "pixi.js"
-import { ENGINE_FILE_SYSTEM_MODULE } from "../../Objects/DataObjects/file_system";
 import { DataModule } from "../DataM/data_module";
 import { ObjectsModule } from "../ObjectsM/objects_module";
 import { ScriptModule } from "../ScriptM/script_module";
 import { ToolModule } from "../ToolsM/tools_module";
-import { Sprite } from "../../Objects/ViewObjects/sprite";
-import { ABD_sprite } from "./data_of_objects";
-import { ScriptComponent } from "../../Objects/components/Script/script_component";
+import { SpriteData } from "../../Types/objects_interfaces";
 import { ScriptObject } from "./script_class";
 import { EventModule } from "../EventModule/event_module";
+import { ENGINE_FILE_SYSTEM_MODULE } from "../../Classes/Objects/DataObjects/file_system";
+import { Engine } from "../../core";
+import { ScriptComponent } from "../../Classes/Objects/components/Script/script_component";
 
 export class Test {
     engine: Engine
@@ -53,7 +52,7 @@ export class Test {
             this.event_module.clearAllEvent()
             this.event_module.addEvent("onStart")
             this.event_module.addEvent("onUpdate")
-            let parsed_data = JSON.parse(data) as Array<ABD_sprite>
+            let parsed_data = JSON.parse(data) as Array<SpriteData>
             parsed_data.forEach(object => {
                 if (object.type === "sprite") {
                     const obj = this.object_module.createObject()

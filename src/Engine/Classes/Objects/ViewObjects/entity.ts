@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid"
-import { ABD_entity } from "../../Modules/TestM/data_of_objects"
+import { EntityData } from "../../../Types/objects_interfaces"
 
 export class Entity {
     _name: string
@@ -46,10 +46,10 @@ export class Entity {
             name: this.name,
             type: this.type,
             id: this.id,
-        } as ABD_entity
+        } as EntityData
     }
 
-    __create_from_data(data: ABD_entity) {
+    __create_from_data(data: EntityData) {
         this.setName(data.name)
         this.id = data.id
         this._type = data.type

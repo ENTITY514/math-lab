@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { nanoid } from "nanoid";
-import { Engine } from "../../Engine/main";
+import { Engine } from "../../Engine/core";
 import { IEngine, Sections } from "../models/EngineModels/IEngine";
 
 let initialState: IEngine = {

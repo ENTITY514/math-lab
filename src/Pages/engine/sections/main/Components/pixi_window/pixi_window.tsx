@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../../../../../Engine/main"
+import { Engine } from "../../../../../../Engine/core"
 import { useAppDispatch, useAppSelector } from "../../../../../../Store/hooks/redux"
 import { EngineSlice } from "../../../../../../Store/reducers/engineSlice"
 import style from "./pixi_window.module.css"

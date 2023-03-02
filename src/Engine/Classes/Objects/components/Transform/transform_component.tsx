@@ -2,7 +2,7 @@ import { Size2, Vector2 } from "../../../../Types/math_types";
 import { Component } from "../component";
 import { TransformView } from "./trasform_view";
 import { Primitive } from "../../ViewObjects/primitive";
-import { ABD_transform_component } from "../../../Modules/TestM/data_of_objects";
+import { TransformComponentData } from "../../../../Types/objects_interfaces";
 
 export class Transform extends Component {
     object!: Primitive
@@ -72,10 +72,10 @@ export class Transform extends Component {
             position: this.getPosition(),
             rotation: this.getRotation(),
             size: this.getSize(),
-        } as ABD_transform_component
+        } as TransformComponentData
     }
 
-    __create_from_data(data: ABD_transform_component): void {
+    __create_from_data(data: TransformComponentData): void {
         this.type = data.type
         this.id = data.id
         this.setPosition(data.position.x, data.position.y)

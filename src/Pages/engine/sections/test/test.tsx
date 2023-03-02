@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../../../Engine/main"
+import { Engine } from "../../../../Engine/core"
 import { PixiWindow } from "./components/pixi_window/pixi_window"
 import style from "./test.module.css"
 

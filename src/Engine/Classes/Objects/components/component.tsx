@@ -1,5 +1,5 @@
 import { nanoid } from "nanoid";
-import { ABD_component } from "../../Modules/TestM/data_of_objects";
+import { ComponentData } from "../../../Types/objects_interfaces";
 import { ComponentView } from "./component_view";
 
 export class Component {
@@ -23,7 +23,7 @@ export class Component {
         }
     }
 
-    __create_from_data(data: ABD_component) {
+    __create_from_data(data: ComponentData) {
         this.type = data.type
         this.id = data.id
     }

@@ -1,4 +1,4 @@
-import { Engine } from "../../../main";
+import { Engine } from "../../core";
 import { RotateTool } from "./rotate_tool";
 import { SizeTool } from "./size_tool";
 import { TransformTool } from "./transform_tool";

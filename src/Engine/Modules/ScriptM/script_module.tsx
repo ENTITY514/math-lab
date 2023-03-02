@@ -1,11 +1,11 @@
-import { Engine } from "../../../main";
-import { ScriptFile } from "../../Objects/DataObjects/script_file";
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 // @ts-ignore
 import { atomone } from '@uiw/codemirror-theme-atomone';
 import { Module } from "../module";
 import { DefaultSS } from "./default_script_text";
+import { ScriptFile } from '../../Classes/Objects/DataObjects/script_file';
+import { Engine } from '../../core';
 
 export class ScriptModule extends Module {
     active_file: ScriptFile | null = null

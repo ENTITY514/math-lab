@@ -1,11 +1,11 @@
 import * as PIXI from "pixi.js"
-import { DataModule } from "./Classes/Modules/DataM/data_module"
-import { ObjectsModule } from "./Classes/Modules/ObjectsM/objects_module"
-import { ScriptModule } from "./Classes/Modules/ScriptM/script_module"
-import { Test } from "./Classes/Modules/TestM/test"
-import { ToolModule } from "./Classes/Modules/ToolsM/tools_module"
 import { ENGINE_FILE_SYSTEM_MODULE } from "./Classes/Objects/DataObjects/file_system"
 import { DevCamera } from "./Classes/Objects/ViewObjects/camera"
+import { DataModule } from "./Modules/DataM/data_module"
+import { ObjectsModule } from "./Modules/ObjectsM/objects_module"
+import { ScriptModule } from "./Modules/ScriptM/script_module"
+import { Test } from "./Modules/TestM/test"
+import { ToolModule } from "./Modules/ToolsM/tools_module"
 
 export class Engine {
     private static _instance: any

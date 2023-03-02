@@ -1,7 +1,8 @@
-import { Engine } from "../../../main";
+
+import { Primitive } from "../../Classes/Objects/ViewObjects/primitive";
+import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
+import { Engine } from "../../core";
 import { Module } from "../module";
-import { Sprite } from "../../Objects/ViewObjects/sprite";
-import { Primitive } from "../../Objects/ViewObjects/primitive";
 
 export class ObjectsModule extends Module {
     objects: Array<Sprite>;

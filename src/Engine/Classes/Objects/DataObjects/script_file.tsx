@@ -3,7 +3,6 @@ import { Directory } from "./directory";
 import { File } from "./file";
 import { Assets } from "../../../../assets/get";
 import { Sprite } from "../ViewObjects/sprite";
-import { ScriptObject } from "../../Modules/TestM/script_class";
 
 export class ScriptFile extends File {
     data: string = ""

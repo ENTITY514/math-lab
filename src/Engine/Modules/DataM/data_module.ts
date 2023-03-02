@@ -1,6 +1,6 @@
-import { Engine } from "../../../main";
+import { Engine } from "../../core";
 import { Module } from "../module";
-import { ABD_sprite } from "../TestM/data_of_objects";
+import { SpriteData } from "../../Types/objects_interfaces";
 
 export class DataModule extends Module {
     is_dev_mode: boolean = true
@@ -24,7 +24,7 @@ export class DataModule extends Module {
 
     openProject(data: string) {
         this.engine.object_module.clear()
-        let parsed_data = JSON.parse(data) as Array<ABD_sprite>
+        let parsed_data = JSON.parse(data) as Array<SpriteData>
         parsed_data.forEach(object => {
             if (object.type === "sprite") {
                 const obj = this.engine.object_module.createObject()

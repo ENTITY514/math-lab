@@ -1,5 +1,5 @@
 import { Primitive } from "../../../../../../../../Engine/Classes/Objects/ViewObjects/primitive"
-import { Engine } from "../../../../../../../../Engine/main"
+import { Engine } from "../../../../../../../../Engine/core"
 import style from "./object.module.css"
 
 interface IObjectProps {

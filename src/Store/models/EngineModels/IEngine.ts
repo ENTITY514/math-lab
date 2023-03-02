@@ -1,4 +1,4 @@
-import { Engine } from "../../../Engine/main"
+import { Engine } from "../../../Engine/core"
 
 
 export interface IEngine {

@@ -3,7 +3,6 @@ import { Directory } from "./directory";
 import { File } from "./file";
 import * as PIXI from 'pixi.js'
 import { FileView } from "./views/view";
-import { Assets } from "../../../../assets/get";
 
 export class TextureFile extends File {
     data: string = ""

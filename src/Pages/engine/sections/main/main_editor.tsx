@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../../../Engine/main"
+import { Engine } from "../../../../Engine/core"
 import { Console } from "./Components/console/console"
 import { Files } from "./Components/files/files"
 import { Objects } from "./Components/object_hierachy/objects"

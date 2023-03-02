@@ -1,4 +1,4 @@
-import { Engine } from "../../../main";
+import { Engine } from "../../core";
 import { Module } from "../module";
 import { Event } from "./event";
 

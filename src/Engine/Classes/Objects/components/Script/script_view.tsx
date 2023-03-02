@@ -1,5 +1,5 @@
 import React from "react"
-import { Engine } from "../../../../main"
+import { Engine } from "../../../../core"
 import { ScriptComponent } from "./script_component"
 import style from "./script_view.module.css"
 import { ScriptFile } from "../../DataObjects/script_file"

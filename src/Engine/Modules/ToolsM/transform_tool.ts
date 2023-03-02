@@ -1,10 +1,10 @@
-import { Engine } from "../../../main";
-import { Vector2 } from "../../../Types/math_types";
-import { TextureFile } from "../../Objects/DataObjects/texture_file";
-import { Sprite } from "../../Objects/ViewObjects/sprite";
 import { DevAssets } from "../assets/get";
 import * as PIXI from "pixi.js"
 import { tools_name } from "./tools_module";
+import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
+import { TextureFile } from "../../Classes/Objects/DataObjects/texture_file";
+import { Engine } from "../../core";
+import { Vector2 } from "../../Types/math_types";
 
 export class TransformTool {
     position: Vector2

@@ -1,6 +1,6 @@
 import React from "react"
 import { ScriptFile } from "../../../../../Engine/Classes/Objects/DataObjects/script_file"
-import { Engine } from "../../../../../Engine/main"
+import { Engine } from "../../../../../Engine/core"
 import style from "./open_files.module.css"
 
 export const OpenFiles: React.FC = () => {

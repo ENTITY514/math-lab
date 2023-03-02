@@ -1,4 +1,4 @@
-import { Engine } from "../../main";
+import { Engine } from "../core"
 
 export class Module {
     engine: Engine

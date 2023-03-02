@@ -1,5 +1,5 @@
 import React, { useMemo } from "react"
-import { Engine } from "../../../../../Engine/main"
+import { Engine } from "../../../../../Engine/core"
 import style from "./files.module.css"
 
 export const Files: React.FC = () => {

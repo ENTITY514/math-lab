@@ -1,9 +1,9 @@
 import { Component } from "../component";
 import { Sprite } from "../../ViewObjects/sprite";
 import { ScriptView } from "./script_view";
-import { ABD_script_component } from "../../../Modules/TestM/data_of_objects";
 import { ScriptFile } from "../../DataObjects/script_file";
-import { Engine } from "../../../../main";
+import { Engine } from "../../../../core";
+import { ScriptComponentData } from "../../../../Types/objects_interfaces";
 
 export class ScriptComponent extends Component {
     object!: Sprite
@@ -41,11 +41,11 @@ export class ScriptComponent extends Component {
             type: this.type,
             id: this.id,
             scripts
-        } as ABD_script_component
+        } as ScriptComponentData
     }
 
 
-    __create_from_data(data: ABD_script_component): void {
+    __create_from_data(data: ScriptComponentData): void {
         let engine = new Engine()
         this.type = data.type
         this.id = data.id

@@ -4,8 +4,8 @@ import { Component } from "../components/component";
 import { Primitive } from "./primitive";
 import { TextureFile } from "../DataObjects/texture_file";
 import { GraphicsComponent } from "../components/Graphic/graphic_component";
-import { ABD_graphic_component, ABD_script_component, ABD_sprite, ABD_transform_component } from "../../Modules/TestM/data_of_objects";
 import { ScriptComponent } from "../components/Script/script_component";
+import { SpriteData, TransformComponentData, GraphicComponentData, ScriptComponentData } from "../../../Types/objects_interfaces";
 
 export class Sprite extends Primitive {
     sprite!: PIXI.Sprite;
@@ -40,10 +40,10 @@ export class Sprite extends Primitive {
             type: this.type,
             id: this.id,
             components: components
-        } as ABD_sprite
+        } as SpriteData
     }
 
-    __create_from_data(data: ABD_sprite) {
+    __create_from_data(data: SpriteData) {
         this.setName(data.name)
         this.id = data.id
         this._type = data.type
@@ -52,20 +52,20 @@ export class Sprite extends Primitive {
             switch (component.type) {
                 case "transform":
                     let transform_component = new Transform(this)
-                    transform_component.__create_from_data(component as ABD_transform_component)
+                    transform_component.__create_from_data(component as TransformComponentData)
                     this.transform = transform_component
                     this.components.push(transform_component)
                     break;
 
                 case "graphic":
                     let graphic_component = new GraphicsComponent(this)
-                    graphic_component.__create_from_data(component as ABD_graphic_component)
+                    graphic_component.__create_from_data(component as GraphicComponentData)
                     this.components.push(graphic_component)
                     break;
 
                 case "script":
                     let script_component = new ScriptComponent(this)
-                    script_component.__create_from_data(component as ABD_script_component)
+                    script_component.__create_from_data(component as ScriptComponentData)
                     this.components.push(script_component)
                     break;
 

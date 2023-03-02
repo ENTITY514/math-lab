@@ -3,8 +3,8 @@ import { Sprite } from "../../ViewObjects/sprite";
 import { GraphicView } from "./graphic_view";
 import { TextureFile } from "../../DataObjects/texture_file";
 import * as PIXI from 'pixi.js'
-import { ABD_component, ABD_graphic_component } from "../../../Modules/TestM/data_of_objects";
-import { Engine } from "../../../../main";
+import { Engine } from "../../../../core";
+import { GraphicComponentData } from "../../../../Types/objects_interfaces";
 
 export class GraphicsComponent extends Component {
     object!: Sprite
@@ -66,11 +66,11 @@ export class GraphicsComponent extends Component {
             texture_file_name: this.getTextureFile()?.name,
             tint: this.getTint(),
             alpha: this.getOpacity(),
-        } as ABD_graphic_component
+        } as GraphicComponentData
     }
 
 
-    __create_from_data(data: ABD_graphic_component): void {
+    __create_from_data(data: GraphicComponentData): void {
         let engine = new Engine()
         this.type = data.type
         this.id = data.id
