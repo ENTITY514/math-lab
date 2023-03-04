@@ -1,6 +1,7 @@
 from django.apps import AppConfig
 
 
-class AuthConfig(AppConfig):
+class ArticleConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'auth'
+    name = 'article'
+    verbose_name="Статьи"
