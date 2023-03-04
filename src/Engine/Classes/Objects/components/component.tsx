@@ -16,7 +16,7 @@ export class Component {
         return <ComponentView object={this.object} />
     }
 
-    __get_data__() {
+    __get_data__(): ComponentData {
         return {
             type: this.type,
             id: this.id
