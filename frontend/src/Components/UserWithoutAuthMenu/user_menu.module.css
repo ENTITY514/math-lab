@@ -1,0 +1,16 @@
+.container {
+    position: absolute;
+    display: grid;
+    width: 200px;
+    height: 100px;
+    color: white;
+    border-radius: 20px;
+    top: 50px;
+    right: 50px;
+    padding: 10px;
+    background-color: #242836;
+}
+
+.container_ {
+    display: none;
+}

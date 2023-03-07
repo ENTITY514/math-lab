@@ -1,6 +1,5 @@
 import { nanoid } from 'nanoid'
 import * as React from 'react'
-import { useAppDispatch } from '../../Store/hooks/redux'
 import style from './drop-down-menu.module.css'
 
 interface Item {
