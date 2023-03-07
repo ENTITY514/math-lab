@@ -1,28 +1,12 @@
-.container_two {
+.container {
     padding: 10px;
-    height: 300px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
+    width: 250px;
+    display: flex;
+    flex-direction: row;
     grid-gap: 10px;
     background-color: rgba(0, 0, 0, 0.842);
     position: absolute;
-    left: 10px;
-    top: calc(50% - 100px);
-    border-radius: 10px;
-}
-
-.container_one {
-    padding: 10px;
-    height: 300px;
-    display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: 40px 1fr;
-    line-height: 30px;
-    color:white;
-    grid-row-gap: 10px;
-    background-color: rgba(0, 0, 0, 0.842);
-    position: absolute;
-    left: 10px;
-    top: calc(50% - 100px);
+    left: calc(50% - 125px);
+    bottom: 10px;
     border-radius: 10px;
 }
