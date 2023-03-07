@@ -1,0 +1,9 @@
+.container {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}
+
+.container:hover {
+    box-shadow: 0 0 5px white, 0 0 10px rgb(255, 255, 155), 0 0 20px rgb(255, 255, 0);
+}

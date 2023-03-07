@@ -1,7 +1,7 @@
 import React from "react"
 import { Assets } from "../../../../../../assets/get"
-import { Button } from "../../../../../../Components/Button/button"
-import { InputWithName } from "../../../../../../Components/NameWithInput/input_with_name"
+import { Button } from "../../../../../../UI/Button/button"
+import { InputWithName } from "../../../../../../UI/NameWithInput/input_with_name"
 import style from "./compile_setting.module.css"
 
 export interface ICompilationSettingsProps {

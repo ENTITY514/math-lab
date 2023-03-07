@@ -4,7 +4,8 @@ import { IUser } from "../models/IUser";
 let initialState: IUser = {
     isAuthorized: false,
     isGuest: false,
-    user_name: null,
+    user_name: "Гость",
+    user_icon: "./default_user_icon.png"
 
 }
 
@@ -12,7 +13,7 @@ export const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        
+
     }
 })
 
