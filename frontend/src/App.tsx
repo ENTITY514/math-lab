@@ -1,9 +1,7 @@
-import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import { SideBar } from './Components/SideBar/sidebar';
-import { useTimeout } from './Hooks/useTimeout';
 import { Articles } from './Pages/articles/articles';
+import { Auth } from './Pages/auth/auth';
 import { Docs } from './Pages/docs/docs';
 import { EnginePage } from './Pages/engine/engine';
 import { Main } from './Pages/main/main';
@@ -13,16 +11,14 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <SideBar />
-        <div className='main'>
-          <Routes>
-            <Route path='' element={<Main />} />
-            <Route path='/workview/*' element={<WorkView />} />
-            <Route path='/docs/*' element={<Docs />} />
-            <Route path='/articles/*' element={<Articles />} />
-            <Route path='/engine/*' element={<EnginePage />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path='' element={<Main />} />
+          <Route path='/workview/*' element={<WorkView />} />
+          <Route path='/docs/*' element={<Docs />} />
+          <Route path='/articles/*' element={<Articles />} />
+          <Route path='/engine/*' element={<EnginePage />} />
+          <Route path='/auth/*' element={<Auth />} />
+        </Routes>
       </div>
     </BrowserRouter>
   );
