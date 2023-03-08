@@ -1,20 +1,20 @@
 import React from "react"
-import style from "./input_with_name.module.css"
+import style from "./input.module.css"
 
-interface IInputWithNameProps {
-    title: string
+interface IInputUIProps {
     placeHolder?: string
+    type?: string
     onEnter?: (value: string) => void
     onChange?: (value: string) => void
 }
 
-export const InputWithName: React.FC<IInputWithNameProps> = ({
-    title,
+export const InputUI: React.FC<IInputUIProps> = ({
     placeHolder = "Введите название",
     onEnter = () => { },
     onChange = () => { },
+    type = "text",
 }) => {
-    const [value, setValue] = React.useState<string>(title)
+    const [value, setValue] = React.useState<string>("")
     const input_ref = React.useRef<HTMLInputElement>(null)
 
     const handlerChange = () => {
@@ -40,6 +40,7 @@ export const InputWithName: React.FC<IInputWithNameProps> = ({
                 onChange={handlerChange}
                 onKeyDown={hadlerKeyDown}
                 placeholder={placeHolder}
+                type={type}
             />
         </div >
     )

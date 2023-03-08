@@ -15,7 +15,7 @@ export const UserWithoutAuthMenu: React.FC<UserWithoutAuthMenuProps> = ({ is_ope
     return (
         <div className={is_open ? style.container : style.container_}>
             <Link to={"auth"} className={style.action}>Войти</Link> <LittleIcon url="/login.png" />
-            <div className={style.action}>Зарегистрироваться</div> <LittleIcon url="/login.png" />
+            <div className={style.action}>Зарегистрироваться</div> <LittleIcon url="/register.png" />
         </div>
     )
 }
