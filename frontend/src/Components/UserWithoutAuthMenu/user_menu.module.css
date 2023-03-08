@@ -1,16 +1,28 @@
 .container {
     position: absolute;
     display: grid;
-    width: 200px;
-    height: 100px;
+    grid-template-columns: 1fr 30px;
+    grid-gap: 10px;
     color: white;
-    border-radius: 20px;
+    border-radius: 10px;
     top: 50px;
     right: 50px;
-    padding: 10px;
-    background-color: #242836;
+    padding: 5px;
+    background-color: rgb(53, 53, 53);
+    z-index: 200;
 }
 
 .container_ {
     display: none;
+}
+
+.action {
+    height: 20px;
+    line-height: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.action:hover {
+    color: rgb(255, 255, 155)
 }

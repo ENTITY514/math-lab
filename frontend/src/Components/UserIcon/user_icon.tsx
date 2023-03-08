@@ -22,6 +22,7 @@ export const UserIcon: React.FC<UserIconProps> = ({ is_link = false }) => {
         return (
             <div className={style.container} onClick={() => { set_is_open(prev => !prev) }}>
                 <ImageUI url={user_icon} />
+                {is_open ? <div className={style.bg}></div> : null}
                 <UserMenu action={() => { set_is_open(prev => !prev) }} is_open={is_open} />
             </div>
         )
