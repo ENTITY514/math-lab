@@ -4,12 +4,22 @@ import style from "./input.module.css"
 interface IInputUIProps {
     placeHolder?: string
     type?: string
+    width?: string
+    height?: string
+    padding?: string
+    margin?: string
+    background?:string
     onEnter?: (value: string) => void
     onChange?: (value: string) => void
 }
 
 export const InputUI: React.FC<IInputUIProps> = ({
     placeHolder = "Введите название",
+    width = "100px",
+    height = "30px",
+    padding = "10px",
+    margin = "10px",
+    background,
     onEnter = () => { },
     onChange = () => { },
     type = "text",
@@ -32,16 +42,21 @@ export const InputUI: React.FC<IInputUIProps> = ({
     }
 
     return (
-        <div className={style.container} >
-            <input
-                ref={input_ref}
-                className={style.input}
-                value={value}
-                onChange={handlerChange}
-                onKeyDown={hadlerKeyDown}
-                placeholder={placeHolder}
-                type={type}
-            />
-        </div >
+        <input
+            ref={input_ref}
+            className={style.input}
+            value={value}
+            onChange={handlerChange}
+            onKeyDown={hadlerKeyDown}
+            placeholder={placeHolder}
+            type={type}
+            style={{
+                width,
+                height,
+                margin,
+                padding,
+                background
+            }}
+        />
     )
 }

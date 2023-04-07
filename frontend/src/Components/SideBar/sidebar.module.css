@@ -1,12 +1,11 @@
 .container {
     padding: 10px;
-    width: 250px;
     display: flex;
     flex-direction: row;
     grid-gap: 10px;
-    background-color: rgba(0, 0, 0, 0.842);
+    background-color: rgba(0, 0, 0);
     position: absolute;
-    left: calc(50% - 125px);
-    bottom: 10px;
+    left: 5px;
+    bottom: 5px;
     border-radius: 10px;
 }
