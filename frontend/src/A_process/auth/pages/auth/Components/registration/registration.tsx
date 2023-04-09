@@ -10,31 +10,48 @@ export const RegistrationForm: React.FC = () => {
     const user = useAppSelector(state => state.userSlice)
     const dispatch = useAppDispatch()
     const actions = userSlice.actions
-    React.useEffect(() => {
-        axios.post('http://127.0.0.1:8000/api/reg', {
-            firstName: 'Fred',
-            lastName: 'Flintstone'
-        })
-            .then(function (response) {
-                console.log(response);
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-    },[])
+
+    const [data, set_data] = React.useState({
+        username: "",
+        password: "",
+        email: ""
+    })
+
+    const setName = (value: string) => {
+        set_data(prev => { return { ...prev, username: value } })
+    }
+    const setMail = (value: string) => {
+        set_data(prev => { return { ...prev, email: value } })
+    }
+    const setPassword = (value: string) => {
+        set_data(prev => { return { ...prev, password: value } })
+    }
+
+    const handleSubmit = async () => {
+        try {
+            await axios.post('http://127.0.0.1:8000/api/v1/auth/users/', data).
+                then(res => {
+                    console.log(res.data.username);
+                    if (res.data.username) {
+                        dispatch(actions.setIsLogPage(true))
+                    }
+                }).
+                catch(error => console.log(error));
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
-        <form action="" method="post">
-            <div className={style.box}>
-                <div className={style.image_wrapper}>
-                    <ImageUI url="/CROSS-ENGINE-logo.png" />
-                </div>
-                <h2 className={style.title}>Регистрация</h2>
-                <InputUI placeHolder={"Username"} />
-                <InputUI placeHolder={"Mail"} type={"mail"} />
-                <InputUI placeHolder={"Password"} type={"password"} />
-                <button className={style.button}>Зарегистрироваться</button>
-                <div className={style.link} onClick={() => { dispatch(actions.setIsLogPage(true)) }}>Есть аккаунт?</div>
+        <div className={style.box}>
+            <div className={style.image_wrapper}>
+                <ImageUI url="/CROSS-ENGINE-logo.png" />
             </div>
-        </form>
+            <h2 className={style.title}>Регистрация</h2>
+            <InputUI placeHolder={"Username"} onChange={setName} />
+            <InputUI placeHolder={"Mail"} type={"mail"} onChange={setMail} />
+            <InputUI placeHolder={"Password"} type={"password"} onChange={setPassword} />
+            <button className={style.button} onClick={() => { handleSubmit() }}>Зарегистрироваться</button>
+            <div className={style.link}  onClick={() => { dispatch(actions.setIsLogPage(true)) }}>Есть аккаунт?</div>
+        </div>
     )
 }
