@@ -21,7 +21,12 @@ const links = [
         url: "articles/*",
         icon: "icons/google-docs.png",
         name: "Статьи"
-    }
+    },
+    {
+        url: "/dev",
+        icon: "icons/code.png",
+        name: "Разработка"
+    },
 ]
 
 function UserSection() {

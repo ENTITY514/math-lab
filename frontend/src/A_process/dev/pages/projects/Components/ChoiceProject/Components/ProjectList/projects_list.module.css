@@ -1,0 +1,9 @@
+.container{
+    color: aquamarine;
+    background-color: #000000;
+    border-radius: 20px;
+}
+
+.project{
+    margin: 5px 10px;
+}

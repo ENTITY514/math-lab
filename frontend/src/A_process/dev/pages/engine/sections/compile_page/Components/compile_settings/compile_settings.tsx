@@ -1,6 +1,6 @@
 import React from "react"
 import style from "./compile_setting.module.css"
-import { Button } from "../../../../../../../../UI/Button/button"
+import { ButtonIcon } from "../../../../../../../../UI/ButtonIcon/button"
 import { InputWithName } from "../../../../../../../../UI/NameWithInput/input_with_name"
 import { Assets } from "../../../../../../../../assets/get"
 
@@ -15,7 +15,7 @@ export const CompilationSettings: React.FC<ICompilationSettingsProps> = ({ chang
                 <h2 className={style.title}>
                     Настройки экспорта
                 </h2>
-                <Button url={Assets.turn_back} is_active={false} action={() => { change_selection(true) }} />
+                <ButtonIcon url={Assets.turn_back} is_active={false} action={() => { change_selection(true) }} />
                 <InputWithName title={""} onEnter={(value: string) => { }} placeHolder={"Введите название проекта..."} />
             </div>
         </div>
