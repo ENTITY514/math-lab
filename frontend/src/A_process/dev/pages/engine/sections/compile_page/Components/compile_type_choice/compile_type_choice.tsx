@@ -1,16 +1,18 @@
 import React from "react"
 import style from "./compile_type_choice.module.css"
+import { Text } from "../../../../../../../../UI/Text/text"
+import { Button } from "../../../../../../../../UI/Button/button"
+import { useNavigate } from "react-router-dom"
 
-export interface ICompilationTypeChoiceProps {
-    change_selection: (value: boolean) => void
-}
 
-export const CompilationTypeChoice: React.FC<ICompilationTypeChoiceProps> = ({change_selection}) => {
+export const CompilationTypeChoice: React.FC = () => {
+    let nav = useNavigate()
     return (
         <div className={style.container}>
             <div className={style.compile_settings}>
-                Выбор типа экспорта
-                <div onClick={() => { change_selection(false) }}>HTML</div>
+                <Text>Выбор типа экспорта</Text>
+                <Button text={"HTML"} onClick={() => { nav("JSON") }} />
+                <Button text={"JSON"} onClick={() => { nav("JSON") }} />
             </div>
         </div>
     )
