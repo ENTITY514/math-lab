@@ -1,3 +1,4 @@
+import { DirectoryData } from "../../../Types/file_types"
 import { Directory } from "./directory"
 import { File } from "./file"
 
@@ -67,5 +68,18 @@ export class ENGINE_FILE_SYSTEM_MODULE {
         else if (this.sort_type === "type_revers") {
             this.active_dir.ReverseSortChildsOnName()
         }
+    }
+    __get_data__() {
+        return this.root.__get_data__()
+    }
+
+    __create_from_data(data: DirectoryData) {
+        this.root = new Directory('root', null)
+        this.active_dir = this.root
+        this.dir_history = []
+        this.dir_history.push(this.active_dir)
+        this.sort_type = 'name_normal'
+        this.active_file = null
+        this.root.__create_from_data(data)
     }
 }

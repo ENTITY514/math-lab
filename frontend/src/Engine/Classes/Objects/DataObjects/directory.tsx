@@ -1,9 +1,10 @@
 import { nanoid } from "nanoid"
 import { Assets } from "../../../../assets/get"
-import { FileType } from "../../../Types/file_types"
+import { DirectoryData, FileType } from "../../../Types/file_types"
 import { File } from "./file"
 import { TextureFile } from "./texture_file"
 import { FileView } from "./views/view"
+import { ScriptFile } from "./script_file"
 
 type FileTypes = TextureFile | File
 
@@ -267,5 +268,54 @@ export class Directory {
                 return 0
             }
         }).reverse()
+    }
+
+
+    __get_data__() {
+        let childs: any[] = []
+        this.childs.forEach(child => {
+            childs.push(child.__get_data__())
+        });
+        let dir = {
+            name: this.name,
+            id: this.id,
+            childs: childs,
+            is_file: false
+        }
+        return dir;
+    }
+
+    __create_from_data(data: DirectoryData) {
+        this._set_id(data.id)
+        this.name = data.name
+        console.log(data);
+        
+
+        data.childs.forEach(child => {
+            console.log(child.is_file)
+            if (child.is_file) {
+                if (child.type === FileType.TEXTURE) {
+                    let file = new TextureFile("", "", this)
+                    file.__create_from_data(child)
+                    this.addFile(file)
+                }
+                if (child.type === FileType.SCRIPT) {
+                    let file = new ScriptFile("", "", this)
+                    file.__create_from_data(child)
+                    this.addFile(file)
+
+                }
+                if (child.type === FileType.TXT) {
+                    let file = new File("", FileType.TXT, "", this)
+                    file.__create_from_data(child)
+                    this.addFile(file)
+                }
+            }
+            if (!child.is_file) {
+                let dir = new Directory(child.name, this)
+                dir.__create_from_data(child)
+                this.addDirectory(dir)
+            }
+        });
     }
 }

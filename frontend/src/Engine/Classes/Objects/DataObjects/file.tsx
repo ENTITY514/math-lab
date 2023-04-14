@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid"
 import { Assets } from "../../../../assets/get"
-import { FileType } from "../../../Types/file_types"
+import { FileData, FileType } from "../../../Types/file_types"
 import { Directory } from "./directory"
 import { FileView } from "./views/view"
 
@@ -46,7 +46,7 @@ export class File {
         return <FileView title={this.name} url={this.icon_url} size={size} key={this.id} id={this.id} />
     }
 
-    __get_data__() {
+    __get_data__(): FileData {
         return {
             id: this.id,
             name: this.name,
@@ -54,7 +54,15 @@ export class File {
             url: this.url,
             metadata: this.metadata,
             data: this.data,
-            parent: this.parent
-        }
+            is_file: true
+        } as FileData
+    }
+
+    __create_from_data(data: FileData) {
+        this.name = data.name
+        this.id = data.id
+        this.type = data.type as FileType
+        this.data = data.data
+        this.metadata = data.metadata
     }
 }

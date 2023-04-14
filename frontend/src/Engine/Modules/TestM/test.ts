@@ -9,6 +9,7 @@ import { EventModule } from "../EventModule/event_module";
 import { ENGINE_FILE_SYSTEM_MODULE } from "../../Classes/Objects/DataObjects/file_system";
 import { Engine } from "../../core";
 import { ScriptComponent } from "../../Classes/Objects/components/Script/script_component";
+import { DirectoryData } from "../../Types/file_types";
 
 export class Test {
     engine: Engine
@@ -52,13 +53,15 @@ export class Test {
             this.event_module.clearAllEvent()
             this.event_module.addEvent("onStart")
             this.event_module.addEvent("onUpdate")
-            let parsed_data = JSON.parse(data) as Array<SpriteData>
-            parsed_data.forEach(object => {
+            let parsed_data = JSON.parse(data) as { objects: Array<SpriteData>, file_system: DirectoryData }
+            parsed_data.objects.forEach(object => {
                 if (object.type === "sprite") {
                     const obj = this.object_module.createObject()
                     obj.__create_from_data(object)
                 }
             });
+            this.file_system.__create_from_data(parsed_data.file_system)
+            console.log(this.file_system)
             this.object_module.objects.forEach(object => {
                 object.components.forEach(component => {
                     if (component instanceof ScriptComponent) {

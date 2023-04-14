@@ -1,4 +1,4 @@
-import { Entity } from "./entity";
+import { Entity } from "../entity";
 import * as PIXI from "pixi.js"
 import { Component } from "../components/component";
 import { Transform } from "../components/Transform/transform_component";
@@ -14,6 +14,7 @@ export class Primitive extends Entity {
         this.sprite.anchor.x = 0.5
         this.sprite.anchor.y = 0.5
         this.transform = new Transform(this)
+        this.components = []
     }
 
     __get_data__() {
@@ -41,7 +42,7 @@ export class Primitive extends Entity {
                     this.transform = transform_component
                     this.components.push(transform_component)
                     break;
-            
+
                 default:
                     break;
             }

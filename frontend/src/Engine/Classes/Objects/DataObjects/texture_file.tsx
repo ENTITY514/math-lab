@@ -1,4 +1,4 @@
-import { FileType } from "../../../Types/file_types";
+import { FileData, FileType } from "../../../Types/file_types";
 import { Directory } from "./directory";
 import { File } from "./file";
 import * as PIXI from 'pixi.js'
@@ -20,6 +20,20 @@ export class TextureFile extends File {
     }
 
     __file_view__(size: string) {
-        return <FileView title={ this.name } url = { this.data } size = { size } key = { this.id } id={this.id} />
+        return <FileView title={this.name} url={this.data} size={size} key={this.id} id={this.id} />
+    }
+
+    __create_from_data(data: FileData) {
+        this.name = data.name
+        this.id = data.id
+        this.type = data.type as FileType
+        this.data = data.data
+        this.metadata = data.metadata
+        if (this.data !== "") {
+            this.texture = PIXI.Texture.from(this.data)
+        }
+        else {
+            this.texture = PIXI.Texture.WHITE
+        }
     }
 }

@@ -1,16 +1,14 @@
 import { nanoid } from "nanoid"
-import { EntityData } from "../../../Types/objects_interfaces"
+import { EntityData } from "../../Types/objects_interfaces"
 
-export class Entity {
+export class Entity implements EntityData {
     _name: string
     _type: string
     id: string
-    components: any
     constructor(name: string, type: string) {
         this._name = name
         this._type = type
         this.id = nanoid()
-        this.components = []
     }
 
     setName(name: string): void {

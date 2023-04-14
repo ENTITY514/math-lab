@@ -3,3 +3,20 @@ export enum FileType {
     TEXTURE = "txtr",
     SCRIPT = "mljs"
 }
+
+export interface FileData {
+    id: string
+    name: string
+    type: string
+    url: string
+    metadata: string
+    data: string
+    is_file: true
+}
+
+export interface DirectoryData {
+    name: string
+    id: string
+    childs: Array<FileData | DirectoryData>,
+    is_file: false
+}

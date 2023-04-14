@@ -9,9 +9,15 @@ export class DataModule extends Module {
     }
 
     create_data_set(): string {
-        return JSON.stringify(this.engine.object_module.objects.map(object => {
-            return object.__get_data__()
-        }))
+        console.log("start export");
+        
+        let data_set = {
+            objects: this.engine.object_module.objects.map(object => {
+                return object.__get_data__()
+            }),
+            file_system: this.engine.file_system.__get_data__()
+        }
+        return JSON.stringify(data_set)
     }
 
     create_game_from_data_set() {
