@@ -19,40 +19,40 @@ export class GraphicsComponent extends Component {
     }
 
     getOpacity(): number {
-        return this.object.sprite.alpha
+        return this.object.display_object.alpha
     }
 
     getTint(): number {
-        return this.object.sprite.tint
+        return this.object.display_object.tint
     }
 
     getBlendMode(): PIXI.BLEND_MODES {
-        return this.object.sprite.blendMode
+        return this.object.display_object.blendMode
     }
 
     setTexture(texture_file: TextureFile) {
-        this.object.sprite.texture = texture_file.texture
+        this.object.display_object.texture = texture_file.texture
         this.object.texture_file = texture_file
     }
 
     changeOpacity(value: number) {
         if (value > 0) {
             if (value <= 1) {
-                this.object.sprite.alpha = value
+                this.object.display_object.alpha = value
             }
             else {
-                this.object.sprite.alpha = 1
+                this.object.display_object.alpha = 1
             }
         }
 
     }
 
     changeTint(value: number) {
-        this.object.sprite.tint = value
+        this.object.display_object.tint = value
     }
 
     changeBlendMode(blendMode: PIXI.BLEND_MODES) {
-        this.object.sprite.blendMode = blendMode
+        this.object.display_object.blendMode = blendMode
     }
 
     __react_view__() {

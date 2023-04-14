@@ -8,7 +8,8 @@ interface IInputUIProps {
     height?: string
     padding?: string
     margin?: string
-    background?:string
+    background?: string
+    title?: string
     onEnter?: (value: string) => void
     onChange?: (value: string) => void
 }
@@ -20,11 +21,12 @@ export const InputUI: React.FC<IInputUIProps> = ({
     padding = "10px",
     margin = "10px",
     background,
+    title = "",
     onEnter = () => { },
     onChange = () => { },
     type = "text",
 }) => {
-    const [value, setValue] = React.useState<string>("")
+    const [value, setValue] = React.useState<string>(title)
     const input_ref = React.useRef<HTMLInputElement>(null)
 
     const handlerChange = () => {

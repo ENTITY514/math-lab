@@ -80,8 +80,9 @@ export class Engine {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
             this.object_module.objects.forEach(object => {
-                this.tool_module.update()
+                object.update()
             });
+            this.tool_module.update()
         });
     }
 }

@@ -1,0 +1,20 @@
+.container {
+    width: 92%;
+    background-color: rgb(0, 0, 0);
+    border-radius: 10px;
+    margin:  5px auto;
+    padding: 5px;
+}
+
+.name{
+    margin: 5px 0;
+}
+
+.data{
+    margin: 5px
+}
+
+.box{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

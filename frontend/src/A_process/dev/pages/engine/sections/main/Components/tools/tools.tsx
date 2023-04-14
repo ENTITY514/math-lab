@@ -9,8 +9,12 @@ import { Assets } from "../../../../../../../../assets/get"
 export const Tools: React.FC = () => {
     const enigne = new Engine()
     const actions = [{
-        title: "Создать обьект",
-        action: () => { enigne.object_module.createObject() }
+        title: "Создать спрайт",
+        action: () => { enigne.object_module.createObject("sprite") }
+    },
+    {
+        title: "Создать Систему Частиц",
+        action: () => { enigne.object_module.createObject("ParticleSystem") }
     }]
     const [, set_update_count] = React.useState<boolean>(false)
     const changeTool = (tool: tools_name) => {

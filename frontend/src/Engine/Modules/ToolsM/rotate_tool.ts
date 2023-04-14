@@ -47,15 +47,15 @@ export class RotateTool {
         });
 
         this.objects.forEach(object => {
-            object.sprite.anchor.set(0.5, 0.5)
-            object.sprite.interactive = true
+            object.display_object.anchor.set(0.5, 0.5)
+            object.display_object.interactive = true
             switch (object.name) {
                 case 'rotate arrow':
                     object.transform.setAngle(0)
                     object.transform.setSize(100, 100)
-                    object.sprite.on('mousedown', (e) => {
+                    object.display_object.on('mousedown', (e) => {
                         this._drag = true
-                        const mouse_pos = e.data.getLocalPosition(object.sprite.parent)
+                        const mouse_pos = e.data.getLocalPosition(object.display_object.parent)
                         const vector = { x: mouse_pos.x - this.position.x, y: mouse_pos.y - this.position.y }
                         const dist = Math.sqrt((vector.x * vector.x + vector.y * vector.y))
                         const norm = { x: vector.x / dist, y: vector.y / dist }
@@ -63,12 +63,12 @@ export class RotateTool {
                         this.angle_click = angle - this.objects[0].transform.rotation
                         
                     });
-                    object.sprite.on('mouseup', () => {
+                    object.display_object.on('mouseup', () => {
                         this._drag = false
                     });
-                    object.sprite.on('mousemove', (e) => {
+                    object.display_object.on('mousemove', (e) => {
                         if (this._drag) {
-                            const mouse_pos = e.data.getLocalPosition(object.sprite.parent)
+                            const mouse_pos = e.data.getLocalPosition(object.display_object.parent)
                             const vector = { x: mouse_pos.x - this.position.x, y: mouse_pos.y - this.position.y }
                             const dist = Math.sqrt((vector.x * vector.x + vector.y * vector.y))
                             const norm = { x: vector.x / dist, y: vector.y / dist }
@@ -89,8 +89,8 @@ export class RotateTool {
         this.scale = { x, y }
         this.objects.forEach(boject => {
             boject.transform.setSize(boject.transform.size.width * this.scale.x, boject.transform.size.height * this.scale.y)
-            boject.sprite.scale.x = this.scale.x
-            boject.sprite.scale.y = this.scale.y
+            boject.display_object.scale.x = this.scale.x
+            boject.display_object.scale.y = this.scale.y
         });
     }
 
@@ -101,7 +101,7 @@ export class RotateTool {
 
     setActive() {
         this.objects.forEach(object => {
-            this.engine.app.stage.addChild(object.sprite)
+            this.engine.app.stage.addChild(object.display_object)
         });
         if (this.engine.object_module.active_object !== null) {
             this.setPosition(this.engine.object_module.active_object.transform.position.x, this.engine.object_module.active_object.transform.position.y)
@@ -111,7 +111,7 @@ export class RotateTool {
 
     setNonActive() {
         this.objects.forEach(object => {
-            this.engine.app.stage.removeChild(object.sprite)
+            this.engine.app.stage.removeChild(object.display_object)
         });
 
     }

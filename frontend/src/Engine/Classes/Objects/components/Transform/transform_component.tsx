@@ -13,52 +13,52 @@ export class Transform extends Component {
     }
 
     getPosition(): Vector2 {
-        return { x: this.object.sprite.position.x, y: this.object.sprite.position.x }
+        return { x: this.object.display_object.position.x, y: this.object.display_object.position.x }
     }
 
     get position(): Vector2 {
-        return { x: this.object.sprite.position.x, y: this.object.sprite.position.y }
+        return { x: this.object.display_object.position.x, y: this.object.display_object.position.y }
     }
 
     setPosition(x: number, y: number) {
-        this.object.sprite.position = { x, y }
+        this.object.display_object.position = { x, y }
     }
 
     getRotation(): number {
-        return this.object.sprite.rotation
+        return this.object.display_object.rotation
     }
 
     get rotation(): number {
-        return this.object.sprite.rotation
+        return this.object.display_object.rotation
     }
 
     setRotation(rotation: number) {
-        this.object.sprite.rotation = rotation
+        this.object.display_object.rotation = rotation
     }
 
     getAngle(): number {
-        return this.object.sprite.angle
+        return this.object.display_object.angle
     }
 
     get angle(): number {
-        return this.object.sprite.angle
+        return this.object.display_object.angle
     }
 
     setAngle(angle: number) {
-        return this.object.sprite.angle = angle
+        return this.object.display_object.angle = angle
     }
 
     getSize(): Size2 {
-        return { width: this.object.sprite.width, height: this.object.sprite.height }
+        return { width: this.object.display_object.width, height: this.object.display_object.height }
     }
 
     get size(): Size2 {
-        return { width: this.object.sprite.width, height: this.object.sprite.height }
+        return { width: this.object.display_object.width, height: this.object.display_object.height }
     }
 
     setSize(width: number, height: number) {
-        this.object.sprite.width = width
-        this.object.sprite.height = height
+        this.object.display_object.width = width
+        this.object.display_object.height = height
     }
 
     __react_view__() {

@@ -1,19 +1,18 @@
 import React from "react"
 import { Engine } from "../../../../core"
-import { TextureFile } from "../../DataObjects/texture_file"
-import { Sprite } from "../../ViewObjects/sprite"
-import { GraphicsComponent } from "./graphic_component"
-import style from "./graphic_view.module.css"
+import style from "./particle_system_settings.module.css"
+import { ParticleSystemSettingsComponent } from "./particle_system_settings"
+import { InputWithName } from "../../../../../UI/NameWithInput/input_with_name"
+import { Text } from "../../../../../UI/Text/text"
+import { InputUI } from "../../../../../UI/InputUI/input"
 
-interface GraphicViewProps {
-    component: GraphicsComponent
+interface ParticleSystemSettingsViewProps {
+    component: ParticleSystemSettingsComponent
 }
 
-export const GraphicView: React.FC<GraphicViewProps> = ({ component }) => {
+export const ParticleSystemSettingsView: React.FC<ParticleSystemSettingsViewProps> = ({ component }) => {
     const engine = new Engine()
     const alpha_inp_ref = React.useRef<HTMLInputElement>(null)
-    const tint_inp_ref = React.useRef<HTMLInputElement>(null)
-    const getTintToHex = React.useMemo(() => { return "#" + component.getTint().toString(16) }, [component.object.display_object.tint])
 
     const [isDragging, setIsDragging] = React.useState<boolean>(false)
     const handleDrag = (e: DragEvent) => {
@@ -34,14 +33,13 @@ export const GraphicView: React.FC<GraphicViewProps> = ({ component }) => {
         e.stopPropagation()
         setIsDragging(false)
     }
-    
+
     const handleDrop = (e: DragEvent) => {
         e.preventDefault()
         e.stopPropagation()
         if (e.dataTransfer?.getData('id')) {
             const texture = engine.file_system.active_dir.findFileByID(e.dataTransfer.getData('id'))
             if (texture !== null) {
-                component.setTexture(texture as TextureFile)
             }
         }
     }
@@ -63,26 +61,19 @@ export const GraphicView: React.FC<GraphicViewProps> = ({ component }) => {
         }
     }, [])
 
+    const ChangeHandler = () => {
+        component.object.updateSystem()
+    }
+
     return (
         <div className={style.container}>
-            <div className={style.name}>Graphics</div>
-            <div className={style.textureName} ref={texture_inp_ref}>Texture file: {component.getTextureFile() ? component.getTextureFile()?.name : "None File"}</div>
-            <div className={style.tint}>Tint: {getTintToHex}</div><input
-                ref={tint_inp_ref}
-                value={getTintToHex}
-                type="color"
-                onChange={() => {
-                    component.changeTint(Number("0x" + tint_inp_ref.current?.value.slice(1)))
-                }}
-            />
-            <div className={style.opacity}>Alpha: {component.getOpacity()}</div>
-            <input
-                ref={alpha_inp_ref}
-                type="range"
-                value={component.getOpacity() * 100}
-                max={100} min={0}
-                onChange={() => { component.changeOpacity(Number(alpha_inp_ref.current?.value) / 100) }}
-            />
+            <div className={style.name}>ParticleSystem Settings</div>
+            <div className={style.box}>
+                <Text>Max speed:</Text><InputUI title={component.object.max_speed.toString()} type="number" onChange={(value) => { component.object.max_speed = Number(value); ChangeHandler() }} />
+                <Text>Min speed:</Text><InputUI title={component.object.min_speed.toString()} type="number" onChange={(value) => { component.object.min_speed = Number(value); ChangeHandler() }} />
+                <Text>Max size:</Text><InputUI title={component.object.max_size.toString()} type="number" onChange={(value) => { component.object.max_size = Number(value); ChangeHandler() }} />
+                <Text>Min size:</Text><InputUI title={component.object.max_size.toString()} type="number" onChange={(value) => { component.object.min_size = Number(value); ChangeHandler() }} />
+            </div>
         </div>
     )
 }

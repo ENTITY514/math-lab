@@ -9,8 +9,6 @@ export class DataModule extends Module {
     }
 
     create_data_set(): string {
-        console.log("start export");
-        
         let data_set = {
             objects: this.engine.object_module.objects.map(object => {
                 return object.__get_data__()
@@ -33,7 +31,7 @@ export class DataModule extends Module {
         let parsed_data = JSON.parse(data) as Array<SpriteData>
         parsed_data.forEach(object => {
             if (object.type === "sprite") {
-                const obj = this.engine.object_module.createObject()
+                const obj = this.engine.object_module.createObject("sprite")
                 obj.__create_from_data(object)
             }
         });

@@ -63,76 +63,76 @@ export class SizeTool {
         });
 
         this.objects.forEach(object => {
-            object.sprite.anchor.set(0.5, 0.5)
-            object.sprite.interactive = true
+            object.display_object.anchor.set(0.5, 0.5)
+            object.display_object.interactive = true
             object.transform.setSize(object.transform.size.width * this.scale.x, object.transform.size.height * this.scale.y)
             switch (object.name) {
                 case 'move arrow right':
                     object.transform.setAngle(0)
-                    object.sprite.on('mousedown', () => {
+                    object.display_object.on('mousedown', () => {
                         this._drag_right = true
                     });
-                    object.sprite.on('mouseup', () => {
+                    object.display_object.on('mouseup', () => {
                         this._drag_right = false
                     });
-                    object.sprite.on('mousemove', (e) => {
+                    object.display_object.on('mousemove', (e) => {
                         if (this._drag_right) {
-                            this._setSquare('right', e.data.getLocalPosition(object.sprite.parent).x)
+                            this._setSquare('right', e.data.getLocalPosition(object.display_object.parent).x)
                         }
                     });
                     break;
                 case 'move arrow top':
                     object.transform.setAngle(270)
-                    object.sprite.on('mousedown', () => {
+                    object.display_object.on('mousedown', () => {
                         this._drag_top = true
                     });
-                    object.sprite.on('mouseup', () => {
+                    object.display_object.on('mouseup', () => {
                         this._drag_top = false
                     });
-                    object.sprite.on('mousemove', (e) => {
+                    object.display_object.on('mousemove', (e) => {
                         if (this._drag_top) {
-                            this._setSquare('top', e.data.getLocalPosition(object.sprite.parent).y)
+                            this._setSquare('top', e.data.getLocalPosition(object.display_object.parent).y)
                         }
                     });
                     break;
                 case 'move arrow left':
                     object.transform.setAngle(180)
-                    object.sprite.on('mousedown', () => {
+                    object.display_object.on('mousedown', () => {
                         this._drag_left = true
                     });
-                    object.sprite.on('mouseup', () => {
+                    object.display_object.on('mouseup', () => {
                         this._drag_left = false
                     });
-                    object.sprite.on('mousemove', (e) => {
+                    object.display_object.on('mousemove', (e) => {
                         if (this._drag_left) {
-                            this._setSquare('left', e.data.getLocalPosition(object.sprite.parent).x)
+                            this._setSquare('left', e.data.getLocalPosition(object.display_object.parent).x)
                         }
                     });
                     break;
                 case 'move arrow down':
                     object.transform.setAngle(90)
-                    object.sprite.on('mousedown', () => {
+                    object.display_object.on('mousedown', () => {
                         this._drag_bottom = true
                     });
-                    object.sprite.on('mouseup', () => {
+                    object.display_object.on('mouseup', () => {
                         this._drag_bottom = false
                     });
-                    object.sprite.on('mousemove', (e) => {
+                    object.display_object.on('mousemove', (e) => {
                         if (this._drag_bottom) {
-                            this._setSquare('bottom', e.data.getLocalPosition(object.sprite.parent).y)
+                            this._setSquare('bottom', e.data.getLocalPosition(object.display_object.parent).y)
                         }
                     });
                     break;
 
                 case 'point':
-                    object.sprite.anchor.set(0.5, 0.5)
+                    object.display_object.anchor.set(0.5, 0.5)
                     break;
 
                 default:
                     break;
             }
-            object.sprite.position.x = this.position.x
-            object.sprite.position.y = this.position.y
+            object.display_object.position.x = this.position.x
+            object.display_object.position.y = this.position.y
         });
     }
 
@@ -159,7 +159,7 @@ export class SizeTool {
             this.objects[3].transform.setPosition(this.position.x, this.position.y + height)
             this.objects[4].transform.setPosition(this.position.x, this.position.y)
             this.objects.forEach(object => {
-                this.engine.app.stage.addChild(object.sprite)
+                this.engine.app.stage.addChild(object.display_object)
             });
         }
     }
@@ -204,7 +204,7 @@ export class SizeTool {
 
     setNonActive() {
         this.objects.forEach(object => {
-            this.engine.app.stage.removeChild(object.sprite)
+            this.engine.app.stage.removeChild(object.display_object)
         });
     }
 

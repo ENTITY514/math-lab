@@ -1,10 +1,12 @@
 import { nanoid } from "nanoid"
-import { EntityData } from "../../Types/objects_interfaces"
+import { EntityData } from "../../../Types/objects_interfaces"
+import { DisplayObject } from "pixi.js"
 
 export class Entity implements EntityData {
     _name: string
     _type: string
     id: string
+    display_object: DisplayObject | undefined
     constructor(name: string, type: string) {
         this._name = name
         this._type = type

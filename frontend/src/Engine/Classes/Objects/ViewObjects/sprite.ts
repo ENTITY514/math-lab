@@ -8,7 +8,7 @@ import { ScriptComponent } from "../components/Script/script_component";
 import { SpriteData, TransformComponentData, GraphicComponentData, ScriptComponentData } from "../../../Types/objects_interfaces";
 
 export class Sprite extends Primitive {
-    sprite!: PIXI.Sprite;
+    display_object!: PIXI.Sprite;
     components: Array<Component> = [];
     transform: Transform
     texture_file!: TextureFile | null
@@ -18,10 +18,10 @@ export class Sprite extends Primitive {
         type: string = "sprite",
         texture_file?: TextureFile | undefined) {
         super(name, type)
-        this.sprite = texture_file ? new PIXI.Sprite(texture_file.texture) : this.sprite = new PIXI.Sprite(PIXI.Texture.WHITE)
+        this.display_object = texture_file ? new PIXI.Sprite(texture_file.texture) : this.display_object = new PIXI.Sprite(PIXI.Texture.WHITE)
         this.texture_file = texture_file ? texture_file : null
-        this.sprite.anchor.x = 0.5
-        this.sprite.anchor.y = 0.5
+        this.display_object.anchor.x = 0.5
+        this.display_object.anchor.y = 0.5
         this.transform = new Transform(this)
         this.transform.setSize(200, 200)
         new GraphicsComponent(this)
