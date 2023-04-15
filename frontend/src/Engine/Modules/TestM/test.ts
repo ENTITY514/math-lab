@@ -56,10 +56,8 @@ export class Test {
             this.event_module.addEvent("onUpdate")
             let parsed_data = JSON.parse(data) as { objects: Array<SpriteData>, file_system: DirectoryData }
             parsed_data.objects.forEach(object => {
-                if (object.type === "sprite") {
-                    const obj = this.object_module.createObject("sprite")
-                    obj.__create_from_data(object)
-                }
+                const obj = this.object_module.createObject(object.type)
+                obj.__create_from_data(object)
             });
             this.file_system.__create_from_data(parsed_data.file_system)
             this.object_module.objects.forEach(object => {

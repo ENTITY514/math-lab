@@ -18,7 +18,7 @@ export class DataModule extends Module {
         return JSON.stringify(data_set)
     }
 
-    create_game_from_data_set() {
+    create_from_data_set() {
 
     }
 
@@ -30,10 +30,8 @@ export class DataModule extends Module {
         this.engine.object_module.clear()
         let parsed_data = JSON.parse(data) as Array<SpriteData>
         parsed_data.forEach(object => {
-            if (object.type === "sprite") {
-                const obj = this.engine.object_module.createObject("sprite")
+                const obj = this.engine.object_module.createObject(object.type)
                 obj.__create_from_data(object)
-            }
         });
     }
 }

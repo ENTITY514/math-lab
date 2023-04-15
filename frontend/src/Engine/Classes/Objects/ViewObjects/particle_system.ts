@@ -4,6 +4,8 @@ import { Primitive } from "./primitive";
 import { Vector2 } from "../../../Types/math_types";
 import { Component } from "../components/component";
 import { ParticleSystemSettingsComponent } from "../components/ParticleSystemSettings/particle_system_settings";
+import { GraphicsComponent } from "../components/Graphic/graphic_component";
+import { ObjectTypes } from "../../../Types/object_types";
 
 interface Particle {
     particle: PIXI.Sprite
@@ -27,7 +29,6 @@ export class ParticleSystem extends Primitive {
     tick: number
     constructor(
         name: string = "ParticleSystem",
-        type: string = "ParticleSystem",
         particle_count: number,
         max_speed: number,
         min_speed: number,
@@ -35,7 +36,7 @@ export class ParticleSystem extends Primitive {
         max_size: number,
         min_size: number,
     ) {
-        super(name, type)
+        super(name, ObjectTypes.PARTICLESYSTEM)
         this.particle_count = particle_count
         this.max_size = max_size
         this.min_size = min_size

@@ -6,6 +6,7 @@ import { TextureFile } from "../DataObjects/texture_file";
 import { GraphicsComponent } from "../components/Graphic/graphic_component";
 import { ScriptComponent } from "../components/Script/script_component";
 import { SpriteData, TransformComponentData, GraphicComponentData, ScriptComponentData } from "../../../Types/objects_interfaces";
+import { ObjectTypes } from "../../../Types/object_types";
 
 export class Sprite extends Primitive {
     display_object!: PIXI.Sprite;
@@ -15,7 +16,7 @@ export class Sprite extends Primitive {
     scripts: {};
     constructor(
         name: string = "Sprite",
-        type: string = "sprite",
+        type: ObjectTypes = ObjectTypes.SPRITE,
         texture_file?: TextureFile | undefined) {
         super(name, type)
         this.display_object = texture_file ? new PIXI.Sprite(texture_file.texture) : this.display_object = new PIXI.Sprite(PIXI.Texture.WHITE)

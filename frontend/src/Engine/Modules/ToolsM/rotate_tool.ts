@@ -36,7 +36,7 @@ export class RotateTool {
 
         const arrow = new Sprite(
             'rotate arrow',
-            'Arrow',
+            undefined,
             this.base_arrow_texture
         )
 
@@ -61,7 +61,7 @@ export class RotateTool {
                         const norm = { x: vector.x / dist, y: vector.y / dist }
                         const angle = Math.atan2(norm.y, norm.x)
                         this.angle_click = angle - this.objects[0].transform.rotation
-                        
+
                     });
                     object.display_object.on('mouseup', () => {
                         this._drag = false

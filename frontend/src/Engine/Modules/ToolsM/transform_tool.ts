@@ -43,11 +43,11 @@ export class TransformTool {
 
         //Создание спрайтов для инструмента
 
-        const arrow_right = new Sprite('move arrow right', 'Arrow', this.base_arrow_texture)
-        const arrow_top = new Sprite('move arrow top', 'Arrow', this.base_arrow_texture)
-        const arrow_left = new Sprite('move arrow left', 'Arrow', this.base_arrow_texture)
-        const arrow_down = new Sprite('move arrow down', 'Arrow', this.base_arrow_texture)
-        const point = new Sprite('point', 'Point', this.base_point_texture)
+        const arrow_right = new Sprite('move arrow right', undefined, this.base_arrow_texture)
+        const arrow_top = new Sprite('move arrow top', undefined, this.base_arrow_texture)
+        const arrow_left = new Sprite('move arrow left', undefined, this.base_arrow_texture)
+        const arrow_down = new Sprite('move arrow down', undefined, this.base_arrow_texture)
+        const point = new Sprite('point', undefined, this.base_point_texture)
 
         this.objects.push(arrow_right)
         this.objects.push(arrow_top)

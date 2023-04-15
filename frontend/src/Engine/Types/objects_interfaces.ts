@@ -1,8 +1,9 @@
 import { Size2, Vector2 } from "./math_types";
+import { ObjectTypes } from "./object_types";
 
 export interface EntityData {
     name: string,
-    type: string,
+    type: ObjectTypes,
     id: string,
 }
 

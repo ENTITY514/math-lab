@@ -3,20 +3,21 @@ import * as PIXI from "pixi.js"
 import { Component } from "../components/component";
 import { Transform } from "../components/Transform/transform_component";
 import { PrimitiveData, TransformComponentData } from "../../../Types/objects_interfaces";
+import { ObjectTypes } from "../../../Types/object_types";
 
 export class Primitive extends Entity {
     display_object!: PIXI.Container;
     components: Array<Component> = [];
     transform: Transform
-    constructor(name: string = "primitive", type: string = "primitive") {
+    constructor(name: string = "primitive", type: ObjectTypes = ObjectTypes.PRIMITIVE) {
         super(name, type)
         this.display_object = new PIXI.Sprite(PIXI.Texture.EMPTY)
         this.transform = new Transform(this)
         this.components = []
     }
 
-    update(){
-        
+    update() {
+
     }
 
     __get_data__() {

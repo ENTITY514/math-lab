@@ -5,16 +5,17 @@ import { tools_name } from "../../../../../../../../Engine/Modules/ToolsM/tools_
 import { ButtonIcon } from "../../../../../../../../UI/ButtonIcon/button"
 import { DropDownMenu } from "../../../../../../../../UI/DropDownMenu/drop-down-menu"
 import { Assets } from "../../../../../../../../assets/get"
+import { ObjectTypes } from "../../../../../../../../Engine/Types/object_types"
 
 export const Tools: React.FC = () => {
     const enigne = new Engine()
     const actions = [{
         title: "Создать спрайт",
-        action: () => { enigne.object_module.createObject("sprite") }
+        action: () => { enigne.object_module.createObject(ObjectTypes.SPRITE) }
     },
     {
         title: "Создать Систему Частиц",
-        action: () => { enigne.object_module.createObject("ParticleSystem") }
+        action: () => { enigne.object_module.createObject(ObjectTypes.PARTICLESYSTEM) }
     }]
     const [, set_update_count] = React.useState<boolean>(false)
     const changeTool = (tool: tools_name) => {
