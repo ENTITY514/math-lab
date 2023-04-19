@@ -13,7 +13,7 @@ export class Transform extends Component {
     }
 
     getPosition(): Vector2 {
-        return { x: this.object.display_object.position.x, y: this.object.display_object.position.x }
+        return { x: this.object.display_object.position.x, y: this.object.display_object.position.y }
     }
 
     get position(): Vector2 {

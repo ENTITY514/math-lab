@@ -12,14 +12,13 @@ export class ScriptFile extends File {
         data: string,
         parent: Directory,
     ) {
-        super(name, FileType.TEXTURE, data, parent)
+        super(name, FileType.SCRIPT, data, parent)
         this.icon_url = Assets.script_file
         this.data = data
     }
 
     execute() {
-        let execute = (new Function(this.data))()
-        return execute
+        return (new Function(this.data))()
     }
 
     __get_script_class__(object: Sprite) {
