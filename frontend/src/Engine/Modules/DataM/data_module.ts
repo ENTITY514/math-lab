@@ -9,6 +9,8 @@ export class DataModule extends Module {
     }
 
     create_data_set(): string {
+        console.log("data");
+        
         let data_set = {
             objects: this.engine.object_module.objects.map(object => {
                 return object.__get_data__()
