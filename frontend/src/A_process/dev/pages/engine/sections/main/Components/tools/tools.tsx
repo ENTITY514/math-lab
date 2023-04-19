@@ -16,6 +16,10 @@ export const Tools: React.FC = () => {
     {
         title: "Создать Систему Частиц",
         action: () => { enigne.object_module.createObject(ObjectTypes.PARTICLESYSTEM) }
+    },
+    {
+        title: "Создать Текст",
+        action: () => { enigne.object_module.createObject(ObjectTypes.TEXT) }
     }]
     const [, set_update_count] = React.useState<boolean>(false)
     const changeTool = (tool: tools_name) => {

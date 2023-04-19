@@ -3,5 +3,6 @@ export enum ObjectTypes {
     PRIMITIVE="primitive",
     SPRITE="sprite",
     PARTICLESYSTEM="particle_system",
-    EMPTYOBJECT="empty_object"
+    EMPTYOBJECT="empty_object",
+    TEXT="text"
 }
