@@ -1,4 +1,4 @@
-import { DevAssets } from "../assets/get";
+import { DevAssets } from "../../assets/get";
 import * as PIXI from "pixi.js"
 import { tools_name } from "./tools_module";
 import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";

@@ -18,6 +18,10 @@ export const Tools: React.FC = () => {
         action: () => { enigne.object_module.createObject(ObjectTypes.PARTICLESYSTEM) }
     },
     {
+        title: "Создать Пустой Объект",
+        action: () => { enigne.object_module.createObject(ObjectTypes.EMPTYOBJECT) }
+    },
+    {
         title: "Создать Текст",
         action: () => { enigne.object_module.createObject(ObjectTypes.TEXT) }
     }]

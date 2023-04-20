@@ -1,4 +1,5 @@
 
+import { EmptyObject } from "../../Classes/Objects/ViewObjects/empty";
 import { ParticleSystem } from "../../Classes/Objects/ViewObjects/particle_system";
 import { Primitive } from "../../Classes/Objects/ViewObjects/primitive";
 import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
@@ -14,10 +15,6 @@ export class ObjectsModule extends Module {
         super(engine)
         this.objects = []
         this.active_object = null
-        for (let i = 0; i < 1000; i++) {
-            let obj = this.createObject(ObjectTypes.SPRITE)
-            obj.transform.setPosition(Math.random() * 10000, Math.random() * 10000)
-        }
     }
 
     setActiveObject(object: Primitive) {
@@ -39,17 +36,23 @@ export class ObjectsModule extends Module {
                 object = new Text()
                 break;
 
+            case ObjectTypes.EMPTYOBJECT:
+                object = new EmptyObject()
+                break;
+
             default:
                 object = new Primitive("primitive")
                 break;
         }
         this.objects.push(object)
-        object.display_object.buttonMode = true
-        object.display_object.interactive = true
-        object.display_object.on("mousedown", (e) => {
-            this.active_object = object
-            this.engine.tool_module.update_tool_state(true)
-        })
+        if (this.engine.data_module.is_dev_mode) {
+            object.display_object.buttonMode = true
+            object.display_object.interactive = true
+            object.display_object.on("mousedown", (e) => {
+                this.active_object = object
+                this.engine.tool_module.update_tool_state(true)
+            })
+        }
         this.engine.app.stage.addChild(object.display_object);
         return object
     }

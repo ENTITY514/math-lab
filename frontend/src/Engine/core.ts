@@ -6,6 +6,7 @@ import { ObjectsModule } from "./Modules/ObjectsM/objects_module"
 import { ScriptModule } from "./Modules/ScriptM/script_module"
 import { Test } from "./Modules/TestM/test"
 import { ToolModule } from "./Modules/ToolsM/tools_module"
+import { InputModule } from "./Modules/InputModule/input_module"
 
 export class Engine {
     private static _instance: any
@@ -18,6 +19,7 @@ export class Engine {
     dev_file_system!: ENGINE_FILE_SYSTEM_MODULE
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     script_module!: ScriptModule
+    input_module!: InputModule
     dev_camera!: DevCamera
     constructor() {
         if (typeof Engine._instance === 'object') {
@@ -32,6 +34,7 @@ export class Engine {
         this.object_module = new ObjectsModule(this)
         this.data_module = new DataModule(this)
         this.tool_module = new ToolModule(this)
+        this.input_module = new InputModule(this)
         this.dev_camera = new DevCamera(this.app)
         this.animate()
         Engine._instance = this

@@ -3,7 +3,7 @@ import { Assets } from '../../../assets/get'
 import { TextureFile } from '../../Classes/Objects/DataObjects/texture_file'
 import { Sprite } from '../../Classes/Objects/ViewObjects/sprite'
 import { Engine } from '../../core'
-import { DevAssets } from '../assets/get'
+import { DevAssets } from '../../assets/get'
 import { tools_name } from './tools_module'
 
 export class RotateTool {

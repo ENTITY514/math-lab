@@ -4,11 +4,12 @@ import { ScriptView } from "./script_view";
 import { ScriptFile } from "../../DataObjects/script_file";
 import { Engine } from "../../../../core";
 import { ScriptComponentData } from "../../../../Types/objects_interfaces";
+import { Primitive } from "../../ViewObjects/primitive";
 
 export class ScriptComponent extends Component {
-    object!: Sprite
+    object!: Primitive
     scripts: Array<ScriptFile> = []
-    constructor(object: Sprite) {
+    constructor(object: Primitive) {
         super(object, "script")
         this.object = object
         this.object.components.push(this)
