@@ -11,6 +11,7 @@ import { Engine } from "../../core";
 import { ScriptComponent } from "../../Classes/Objects/components/Script/script_component";
 import { DirectoryData } from "../../Types/file_types";
 import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
+import { InputModule } from "../InputModule/input_module";
 
 export class Test {
     engine: Engine
@@ -21,6 +22,7 @@ export class Test {
     file_system!: ENGINE_FILE_SYSTEM_MODULE
     script_module!: ScriptModule
     event_module: EventModule
+    input_module!: InputModule
     prev: string = ""
     constructor(engine: Engine) {
         this.engine = engine
@@ -31,6 +33,7 @@ export class Test {
         this.object_module = new ObjectsModule(this as unknown as Engine)
         this.data_module = new DataModule(this as unknown as Engine)
         this.event_module = new EventModule(this as unknown as Engine)
+        this.input_module = new InputModule(this as unknown as Engine)
         this.animate()
     }
 
