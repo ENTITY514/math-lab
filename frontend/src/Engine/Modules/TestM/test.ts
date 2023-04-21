@@ -34,6 +34,13 @@ export class Test {
         this.data_module = new DataModule(this as unknown as Engine)
         this.event_module = new EventModule(this as unknown as Engine)
         this.input_module = new InputModule(this as unknown as Engine)
+        //@ts-ignore
+        globalThis.core = {
+            file_system: this.file_system,
+            object_module: this.object_module,
+            input_module: this.input_module,
+            event_module: this.event_module
+        }
         this.animate()
     }
 

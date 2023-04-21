@@ -2,6 +2,7 @@ export class ScriptObject {
     object;
     constructor(object) {
         this.object = object
+        this.core = globalThis.core
         console.log("Script Was Created")
     }
 
