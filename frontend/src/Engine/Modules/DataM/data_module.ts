@@ -2,6 +2,7 @@ import { Engine } from "../../core";
 import { Module } from "../module";
 import { PrimitiveData, SpriteData } from "../../Types/objects_interfaces";
 import { DirectoryData } from "../../Types/file_types";
+import { Directory } from "../../Classes/Objects/DataObjects/directory";
 
 interface IDataSet {
     data_module: {
@@ -67,5 +68,14 @@ export class DataModule extends Module {
             const obj = this.engine.object_module.createObject(object.type)
             obj.__create_from_data(object)
         });
+    }
+
+    clearProject() {
+        this.engine.object_module.clear()
+        this.engine.tool_module.update_tool_state(false)
+        this.engine.script_module.set_active_file(null)
+        this.engine.script_module.files = []
+        this.engine.file_system.root = new Directory("root", null)
+        this.engine.dev_camera.setPosition(0, 0)
     }
 }

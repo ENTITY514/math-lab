@@ -45,7 +45,7 @@ export class ObjectsModule extends Module {
                 break;
         }
         this.objects.push(object)
-        
+
         if (this.engine.data_module.is_dev_mode) {
             object.display_object.buttonMode = true
             object.display_object.interactive = true
@@ -59,6 +59,7 @@ export class ObjectsModule extends Module {
     }
 
     clear() {
+        this.active_object = null
         this.objects.forEach(object => {
             this.engine.app.stage.removeChild(object.display_object)
         });

@@ -5,8 +5,8 @@ import { Text } from "../../../../../../UI/Text/text"
 import { Title } from "../../../../../../UI/Title/title"
 import style from "./create_project.module.css"
 import React from "react"
-import { ProjectApi } from "../../../../../../services/project_api"
-import axios from "axios"
+import { useNavigate } from "react-router-dom"
+import { Engine } from "../../../../../../Engine/core"
 
 export interface IProjectData {
     name: string,
@@ -17,6 +17,7 @@ export interface IProjectData {
 }
 
 export const CreateProject: React.FC = () => {
+    const nav = useNavigate()
     const [state, setState] = React.useState({
         name: "",
         type: "Presentation",
@@ -26,11 +27,9 @@ export const CreateProject: React.FC = () => {
     })
 
     const Create = () => {
-        let project_data = localStorage.getItem("projects_list")
-        let projects = JSON.parse(project_data ? project_data : "[]") as Array<IProjectData>
-        localStorage.setItem(state.name, JSON.stringify(state))
-        projects.push(state)
-        localStorage.setItem("projects_list", JSON.stringify(projects))
+        //логика создания проекта и отправка его на сервер
+        nav("/dev/engine")
+        new Engine().data_module.clearProject()
     }
 
     return (
@@ -38,9 +37,8 @@ export const CreateProject: React.FC = () => {
             <Title title={"Создание проекта"} size={2} />
             <InputUI placeHolder="Введите название проекта..." width="100%" height="auto" onChange={(value) => { setState(prev => { return { ...prev, name: value } }) }} />
             <InputUI placeHolder="Введите описание проекта..." width="100%" height="auto" onChange={(value) => { setState(prev => { return { ...prev, description: value } }) }} />
-            <Text>Type: Game</Text>
+            <Text>Type: Presentation</Text>
             <Button text={"Создать проект"} onClick={Create} />
-            <Button text={"Открыть проект из файла"} onClick={Create} />
         </div>
     )
 }

@@ -9,7 +9,7 @@ interface IProjectInfoProps {
         name: string
         description: string
         type: string
-    }
+    } | undefined
 }
 
 export const ProjectInfo: React.FC<IProjectInfoProps> = ({ project }) => {
