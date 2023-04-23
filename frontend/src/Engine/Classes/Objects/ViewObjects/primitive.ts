@@ -43,7 +43,6 @@ export class Primitive extends Entity {
                     let transform_component = new Transform(this)
                     transform_component.__create_from_data(component as TransformComponentData)
                     this.transform = transform_component
-                    this.components.push(transform_component)
                     break;
 
                 default:

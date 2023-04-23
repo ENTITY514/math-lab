@@ -45,6 +45,7 @@ export class ObjectsModule extends Module {
                 break;
         }
         this.objects.push(object)
+        
         if (this.engine.data_module.is_dev_mode) {
             object.display_object.buttonMode = true
             object.display_object.interactive = true

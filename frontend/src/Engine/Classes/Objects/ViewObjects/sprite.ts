@@ -55,19 +55,16 @@ export class Sprite extends Primitive {
                     let transform_component = new Transform(this)
                     transform_component.__create_from_data(component as TransformComponentData)
                     this.transform = transform_component
-                    this.components.push(transform_component)
                     break;
 
                 case "graphic":
                     let graphic_component = new GraphicsComponent(this)
                     graphic_component.__create_from_data(component as GraphicComponentData)
-                    this.components.push(graphic_component)
                     break;
 
                 case "script":
                     let script_component = new ScriptComponent(this)
                     script_component.__create_from_data(component as ScriptComponentData)
-                    this.components.push(script_component)
                     break;
 
                 default:

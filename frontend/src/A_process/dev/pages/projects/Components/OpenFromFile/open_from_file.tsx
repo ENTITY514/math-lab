@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom"
+import { Engine } from "../../../../../../Engine/core"
 import { Title } from "../../../../../../UI/Title/title"
 import style from "./open_from_file.module.css"
 import React from "react"
 
 export const OpenProjectFromFile: React.FC = () => {
+    let nav = useNavigate()
     const [isDragging, setIsDragging] = React.useState(false)
     const handleDrag = (e: DragEvent) => {
         e.preventDefault()
@@ -35,7 +38,9 @@ export const OpenProjectFromFile: React.FC = () => {
         }
         reader.onload = function () {
             console.log(JSON.parse(reader.result as string));
-
+            let engine = new Engine()
+            engine.data_module.create_from_data_set(reader.result as string)
+            nav("/dev/engine")
         };
     }
 
