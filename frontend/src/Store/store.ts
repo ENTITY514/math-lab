@@ -2,11 +2,13 @@ import { combineReducers, configureStore, getDefaultMiddleware } from "@reduxjs/
 import HUDSlice from "./reducers/HUDSlice";
 import userSlice from "./reducers/UserSlice";
 import engineSlice from "./reducers/engineSlice";
+import { ProjectApi } from "../services/project_api";
 
 const rootReducers = combineReducers({
     userSlice,
     HUDSlice,
-    engineSlice
+    engineSlice,
+    [ProjectApi.reducerPath]: ProjectApi.reducer
 })
 
 const middleware = getDefaultMiddleware({

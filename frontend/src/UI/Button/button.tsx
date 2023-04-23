@@ -28,7 +28,19 @@ export const Button: React.FC<IButtonProps> = ({
     bgColor = "#5a564c"
 }) => {
     return (
-        <div className={style.container} onClick={onClick} style={{ fontSize: fontSize + "em", color, margin, padding, fontWeight, borderRadius, width, height, backgroundColor: bgColor }}>
+        <div className={style.container} onClick={onClick}
+            style={{
+                fontSize: fontSize + "em",
+                color,
+                margin,
+                padding,
+                fontWeight,
+                borderRadius,
+                width,
+                height,
+                backgroundColor: bgColor,
+                lineHeight: height
+            }}>
             <div className={style.img}>{text}</div>
         </div >
     )

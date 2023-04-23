@@ -1,8 +1,8 @@
 from django.db import models
 
 
-class Project(models.Model):
-    project_name: models.CharField(max_length=200)
+class Est(models.Model):
+    project__oeifh_name: models.CharField(max_length=200)
     project_data: models.TextField("project data for build")
     pub_date: models.DateField("date of publication", auto_created=True)
 

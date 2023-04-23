@@ -7,7 +7,7 @@ import { Projects } from './pages/projects/projects';
 function DevSection() {
     return (
         <Routes>
-            <Route path='' element={<Projects />} />
+            <Route path='/*' element={<Projects />} />
             <Route path='docs/*' element={<Docs />} />
             <Route path='engine/*' element={<EnginePage />} />
             <Route path='settings/*' element={<Settings />} />

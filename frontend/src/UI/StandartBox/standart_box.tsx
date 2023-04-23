@@ -1,7 +1,7 @@
-import style from "./text.module.css"
+import style from "./standart_box.module.css"
 
 interface IStandartBoxProps {
-    children: string
+    children: string | JSX.Element | React.ReactNode
     margin?: string
     padding?: string
     width?: string

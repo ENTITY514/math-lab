@@ -1,9 +1,22 @@
-.container{
+.container {
     width: 800px;
-    height: 600px;
+    height: 500px;
     background-color: #2c2c2c;
     color: aquamarine;
     margin: 50px auto;
     display: grid;
-    grid-template-rows: 1fr 70px;
+    grid-template-rows: 50px 1fr;
+    border-radius: 10px;
+}
+
+.link {
+    color: aquamarine;
+}
+
+.links {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
 }
