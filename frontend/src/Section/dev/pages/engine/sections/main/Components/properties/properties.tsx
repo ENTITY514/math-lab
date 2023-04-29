@@ -1,6 +1,7 @@
 import React from "react"
 import style from "./properties.module.css"
 import { Engine } from "../../../../../../../../Engine/core"
+import { InputUI } from "../../../../../../../../UI/InputUI/input"
 
 export const Properties: React.FC = () => {
     const engine = new Engine()
@@ -10,9 +11,27 @@ export const Properties: React.FC = () => {
         return () => {
             clearInterval(interval)
         }
-    },[])
+    }, [])
     return (
         <div className={style.container}>
+            {engine.object_module.active_object ? <div className={style.box}>
+                <div className={style.name}>Имя объекта:</div>
+                <InputUI
+                    placeHolder="Введите имя объекта..."
+                    title={engine.object_module.active_object?.name}
+                    onChange={(value) => { if (engine.object_module.active_object) { engine.object_module.active_object.name = value } }}
+                    width="80%"
+                    height="10px"
+                    margin="1px" />
+                <div className={style.name}>Тег:</div>
+                <InputUI
+                    placeHolder="Введите тег объекта..."
+                    title={engine.object_module.active_object?.tag}
+                    onChange={(value) => { if (engine.object_module.active_object) { engine.object_module.active_object.tag = value } }}
+                    width="80%"
+                    height="10px"
+                    margin="1px" />
+            </div> : null}
             {engine.object_module.active_object?.components.map((component) => {
                 return (
                     component.__react_view__()

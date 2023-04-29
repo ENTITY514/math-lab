@@ -22,6 +22,16 @@ export class ObjectsModule extends Module {
         this.active_object = object
     }
 
+    findByTag(tag: string): Array<Primitive> {
+        let obj: Primitive[] = []
+        this.objects.forEach(element => {
+            if (element.tag === tag) {
+                obj.push(element)
+            }
+        });
+        return obj
+    }
+
     createObject(type: ObjectTypes, name?: string): Primitive {
         let object: Sprite | Primitive | null | ParticleSystem
         switch (type) {
@@ -40,7 +50,7 @@ export class ObjectsModule extends Module {
             case ObjectTypes.EMPTYOBJECT:
                 object = new EmptyObject()
                 break;
-                
+
             case ObjectTypes.CAMERA:
                 object = new Camera(this.engine.app, this.engine.data_module)
                 break;

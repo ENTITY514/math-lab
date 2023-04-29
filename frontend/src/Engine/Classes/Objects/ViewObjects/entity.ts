@@ -8,10 +8,31 @@ export class Entity implements EntityData {
     _type: ObjectTypes
     id: string
     display_object: DisplayObject | undefined
+    _tag: string = ""
     constructor(name: string, type: ObjectTypes = ObjectTypes.ENTITY) {
         this._name = name
         this._type = type
         this.id = nanoid()
+    }
+
+    setTag(tag: string): void {
+        if (tag !== "") {
+            this._tag = tag
+        }
+    }
+
+    set tag(tag: string) {
+        if (tag !== "") {
+            this._tag = tag
+        }
+    }
+
+    getTag(): string {
+        return this._tag
+    }
+
+    get tag(): string {
+        return this._tag
     }
 
     setName(name: string): void {
