@@ -30,6 +30,8 @@ export const CreateProject: React.FC = () => {
         //логика создания проекта и отправка его на сервер
         nav("/dev/engine")
         new Engine().data_module.clearProject()
+        new Engine().data_module.project_data.name = state.name
+        new Engine().data_module.project_data.type = state.type
     }
 
     return (

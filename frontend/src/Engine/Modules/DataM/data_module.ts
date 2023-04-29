@@ -3,6 +3,7 @@ import { Module } from "../module";
 import { PrimitiveData, SpriteData } from "../../Types/objects_interfaces";
 import { DirectoryData } from "../../Types/file_types";
 import { Directory } from "../../Classes/Objects/DataObjects/directory";
+import { nanoid } from "nanoid";
 
 interface IDataSet {
     data_module: {
@@ -21,7 +22,7 @@ interface IDataSet {
 
 export class DataModule extends Module {
     is_dev_mode: boolean = true
-    project_data!: {
+    project_data: {
         name: string
         id: string
         device: string
@@ -33,6 +34,17 @@ export class DataModule extends Module {
     }
     constructor(engine: Engine) {
         super(engine)
+        this.project_data = {
+            name: "",
+            id: nanoid(),
+            device: "any",
+            type: "any",
+            screen_settings: {
+                width: 1920,
+                height: 1080
+            }
+
+        }
     }
 
     create_data_set(): string {
@@ -76,6 +88,7 @@ export class DataModule extends Module {
         this.engine.script_module.set_active_file(null)
         this.engine.script_module.files = []
         this.engine.file_system.root = new Directory("root", null)
+        this.engine.file_system.active_dir = this.engine.file_system.root
         this.engine.dev_camera.setPosition(0, 0)
     }
 }

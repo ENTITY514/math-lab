@@ -61,14 +61,29 @@ export class Test {
         if (data !== this.prev) {
             this.prev = data
             this.object_module.clear()
+
+            console.log(this.canvasContainer?.clientWidth);
+            let aspect_ratio = Number(this.engine.data_module.project_data.screen_settings.width) / Number(this.engine.data_module.project_data.screen_settings.height)
+            this.app.view.width-=350
+            this.app.view.height = this.app.view.width / aspect_ratio
+            if (this.canvasContainer) {
+                this.canvasContainer.style.height = this.app.view.height + "px"
+                this.canvasContainer.style.width = this.app.view.width + "px"
+                this.canvasContainer.style.margin = "auto"
+            }
+
+
             this.event_module.clearAllEvent()
             this.event_module.addEvent("onStart")
             this.event_module.addEvent("onUpdate")
+
             let parsed_data = JSON.parse(data) as { objects: Array<SpriteData>, file_system: DirectoryData }
+
             parsed_data.objects.forEach(object => {
                 const obj = this.object_module.createObject(object.type)
                 obj.__create_from_data(object)
             });
+
             this.file_system.__create_from_data(parsed_data.file_system)
             this.object_module.objects.forEach(object => {
                 object.components.forEach(component => {
@@ -83,8 +98,10 @@ export class Test {
                     }
                 });
             });
+
             let onUpdate = this.event_module.getEvent("onUpdate")
             this.app.ticker.remove(this.update)
+
             this.update = (delta: number) => {
                 onUpdate?.execute()
             }

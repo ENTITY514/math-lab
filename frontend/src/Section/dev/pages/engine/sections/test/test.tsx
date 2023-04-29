@@ -10,9 +10,10 @@ export const Test: React.FC = () => {
         engine.updateActiveWindow("test")
     }, [])
     return (
-        <div className={style.container}>
+        <div className={engine.test_module.input_module.inputs.length ?style.container:style.mono_container}>
             <PixiWindow />
-            <InputWindow />
+            {engine.test_module.input_module.inputs.length ?
+                <InputWindow /> : null}
         </div>
     )
 }

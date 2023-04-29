@@ -1,0 +1,12 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 4px;
+    width: 80%;
+    min-height: 500px;
+    height: 80%;
+    background-color: #333333;
+    border-radius: 20px;
+    margin: auto;
+    color: white;
+}

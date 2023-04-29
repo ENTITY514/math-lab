@@ -12,10 +12,6 @@ export class InputModule extends Module {
     inputs: Array<Input> = []
     constructor(engine: Engine) {
         super(engine)
-        this.register(INPUTTYPES.TEXT)
-        this.register(INPUTTYPES.NUMBER)
-        this.register(INPUTTYPES.RANGE)
-        this.register(INPUTTYPES.COLOR)
     }
 
     register(input_type: string | INPUTTYPES) {

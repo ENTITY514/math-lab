@@ -1,9 +1,9 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import UserSection from './A_process/user';
-import AuthSection from './A_process/auth';
-import DevSection from './A_process/dev';
-import MarketPlaceSection from './A_process/marketplace';
-import Admin from './A_process/admin';
+import Admin from './Section/admin';
+import AuthSection from './Section/auth';
+import DevSection from './Section/dev';
+import MarketPlaceSection from './Section/marketplace';
+import UserSection from './Section/user';
 
 function App() {
   return (

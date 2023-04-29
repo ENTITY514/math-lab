@@ -9,7 +9,7 @@ interface IInputUIProps {
     padding?: string
     margin?: string
     background?: string
-    title?: string
+    title?: string | number
     onEnter?: (value: string) => void
     onChange?: (value: string) => void
 }
@@ -26,7 +26,7 @@ export const InputUI: React.FC<IInputUIProps> = ({
     onChange = () => { },
     type = "text",
 }) => {
-    const [value, setValue] = React.useState<string>(title)
+    const [value, setValue] = React.useState<string | number>(title)
     const input_ref = React.useRef<HTMLInputElement>(null)
 
     const handlerChange = () => {
@@ -38,7 +38,7 @@ export const InputUI: React.FC<IInputUIProps> = ({
 
     const hadlerKeyDown = (e: React.KeyboardEvent) => {
         if (e.code === "Enter") {
-            onEnter(value)
+            onEnter(value.toString())
             input_ref.current?.blur()
         }
     }

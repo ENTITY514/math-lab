@@ -14,6 +14,9 @@ export const SectionsChoice: React.FC = () => {
             <Link to="test" className={style.section}>
                 Тест
             </Link>
+            <Link to="settings" className={style.section}>
+                Настройки
+            </Link>
             <Link to="compile" className={style.section}>
                 Экспорт
             </Link>
