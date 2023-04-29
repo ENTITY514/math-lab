@@ -1,12 +1,13 @@
 import * as PIXI from "pixi.js"
 import { ENGINE_FILE_SYSTEM_MODULE } from "./Classes/Objects/DataObjects/file_system"
-import { DevCamera } from "./Classes/Objects/ViewObjects/camera"
+import { DevCamera } from "./Classes/Objects/ViewObjects/dev_camera"
 import { DataModule } from "./Modules/DataM/data_module"
 import { ObjectsModule } from "./Modules/ObjectsM/objects_module"
 import { ScriptModule } from "./Modules/ScriptM/script_module"
 import { Test } from "./Modules/TestM/test"
 import { ToolModule } from "./Modules/ToolsM/tools_module"
 import { InputModule } from "./Modules/InputModule/input_module"
+import { ObjectTypes } from "./Types/object_types"
 
 export class Engine {
     private static _instance: any
@@ -51,10 +52,12 @@ export class Engine {
             this.canvasContainer.appendChild(this.app.view);
             this.app.resizeTo = this.canvasContainer
         }
+        
+        this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
     }
 
     initRenderer() {
-        this.app = new PIXI.Application({ width: 100, height: 100, backgroundColor: 0x444444 });
+        this.app = new PIXI.Application({ width: 100, height: 100, backgroundColor: 0x000000 });
     }
 
     update() {
@@ -80,6 +83,7 @@ export class Engine {
     }
 
     animate() {
+        this.object_module.createObject(ObjectTypes.CAMERA)
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
             this.object_module.objects.forEach(object => {

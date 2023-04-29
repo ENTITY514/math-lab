@@ -4,5 +4,6 @@ export enum ObjectTypes {
     SPRITE="sprite",
     PARTICLESYSTEM="particle_system",
     EMPTYOBJECT="empty_object",
-    TEXT="text"
+    TEXT="text",
+    CAMERA="camera"
 }

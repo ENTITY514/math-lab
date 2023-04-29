@@ -1,81 +1,53 @@
 import * as PIXI from 'pixi.js'
-import { Assets } from '../../../../assets/get'
 import { Vector2 } from '../../../Types/math_types'
+import { Primitive } from './primitive'
+import { ObjectTypes } from '../../../Types/object_types'
+import { DevAssets } from '../../../assets/get'
+import { DataModule } from '../../../Modules/DataM/data_module'
 
-export class DevCamera {
+export class Camera extends Primitive {
+    display_object: PIXI.Sprite
     world: PIXI.Container<PIXI.DisplayObject>
-    position_!: Vector2
     mouse_coords_global!: {
         x: number
         y: number
     }
-    move_camera: boolean
-    camera_speed: number
     canvas: HTMLCanvasElement
     is_drag: boolean
     click_coor: { x: number, y: number }
-    tiling_sprite!: PIXI.TilingSprite
     scale: number
-    _bg_px = 5000
-    constructor(app: PIXI.Application) {
+    screen_w: number
+    screen_h: number
+    borders: Array<PIXI.Sprite>
+    app: PIXI.Application
+    data_module: DataModule
+    border_r: number = 8
+    constructor(app: PIXI.Application, data_module: DataModule) {
+        super("camera", ObjectTypes.CAMERA)
+        this.app = app
+        this.data_module = data_module
+        this.display_object = new PIXI.Sprite(PIXI.Texture.from(DevAssets.camera))
+        this.display_object.anchor.x = 0.5
+        this.display_object.anchor.y = 0.5
+        this.display_object.scale.x = 0.2
+        this.display_object.scale.y = 0.2
+
+        this.screen_w = Number(data_module.project_data.screen_settings.width)
+        this.screen_h = Number(data_module.project_data.screen_settings.height)
+
+        this.borders = []
+
         this.world = app.stage
         this.world.interactive = true
         this.world.buttonMode = true
-        this.move_camera = true
         this.position = { x: 0, y: 0 }
-        this.camera_speed = 20
         this.canvas = app.view
         this.is_drag = false
         this.click_coor = { x: 0, y: 0 }
         this.scale = 1
-        this._createBG(app)
 
+        this.createBorder()
 
-
-        this.canvas.onmousedown = (e: MouseEvent) => {
-            if (e.button === 2) {
-                this.is_drag = true
-                this.click_coor = { x: e.offsetX, y: e.offsetY }
-            }
-        }
-
-        this.canvas.onmouseup = (e: MouseEvent) => {
-            if (e.button === 2) {
-                this.is_drag = false
-            }
-        }
-
-        this.canvas.onmousemove = (e: MouseEvent) => {
-            if (this.is_drag) {
-                this.world.x += e.movementX
-                this.world.y += e.movementY
-                const dx = this.mouse_coords_global.x - this.tiling_sprite.position.x
-                const dy = this.mouse_coords_global.y - this.tiling_sprite.position.y
-
-                if (dx < 1000 / this.scale) {
-                    this.tiling_sprite.position.x -= 1000 / this.scale
-                }
-                if (dx > 3000 / this.scale) {
-                    this.tiling_sprite.position.x += 1000 / this.scale
-                }
-                if (dy < 1000 / this.scale) {
-                    this.tiling_sprite.position.y -= 1000 / this.scale
-                }
-                if (dy > 3000 / this.scale) {
-                    this.tiling_sprite.position.y += 1000 / this.scale
-                }
-
-            }
-        }
-
-        this.canvas.onwheel = (e: WheelEvent) => {
-            this.scale -= e.deltaY / 5000
-            if (this.scale < 0.1) {
-                this.scale = 0.1
-            }
-            app.stage.scale.x = this.scale
-            app.stage.scale.y = this.scale
-        }
 
 
         this.world.on('pointermove', (e: PIXI.InteractionEvent) => {
@@ -83,20 +55,50 @@ export class DevCamera {
         })
     }
 
-    _createBG(app: PIXI.Application) {
-        const texture = PIXI.Texture.from(Assets.bg_square)
-        this.tiling_sprite = new PIXI.TilingSprite(
-            texture,
-            this._bg_px * 2,
-            this._bg_px * 2,
-        );
-        this.tiling_sprite.position.x = -this._bg_px
-        this.tiling_sprite.position.y = -this._bg_px
-        this.tiling_sprite.scale.x = 1
-        this.tiling_sprite.scale.y = 1
-        this.tiling_sprite.alpha = 1
-        this.tiling_sprite.tint = 0x555555
-        app.stage.addChild(this.tiling_sprite);
+    createBorder() {
+        let right_border = new PIXI.Sprite(PIXI.Texture.WHITE)
+        right_border.anchor.x = 0.5
+        right_border.anchor.y = 0.5
+        right_border.width = this.border_r
+        right_border.height = this.screen_h + this.border_r * 3
+        right_border.position.y = this.transform.position.y
+        right_border.position.x = this.transform.position.x + this.screen_w / 2 + this.border_r
+
+
+        let left_border = new PIXI.Sprite(PIXI.Texture.WHITE)
+        left_border.anchor.x = 0.5
+        left_border.anchor.y = 0.5
+        left_border.width = this.border_r
+        left_border.height = this.screen_h + this.border_r * 3
+        left_border.position.y = this.transform.position.y
+        left_border.position.x = this.transform.position.x - this.screen_w / 2 - this.border_r
+
+
+        let top_border = new PIXI.Sprite(PIXI.Texture.WHITE)
+        top_border.anchor.x = 0.5
+        top_border.anchor.y = 0.5
+        top_border.width = this.screen_w + this.border_r * 3
+        top_border.height = this.border_r
+        top_border.position.y = this.transform.position.y - this.screen_h / 2 - this.border_r
+        top_border.position.x = this.transform.position.x
+
+        let bottom_border = new PIXI.Sprite(PIXI.Texture.WHITE)
+        bottom_border.anchor.x = 0.5
+        bottom_border.anchor.y = 0.5
+        bottom_border.width = this.screen_w + this.border_r * 3
+        bottom_border.height = this.border_r
+        bottom_border.position.y = this.transform.position.y + this.screen_h / 2 + this.border_r
+        bottom_border.position.x = this.transform.position.x
+
+        this.borders.push(right_border)
+        this.borders.push(left_border)
+        this.borders.push(top_border)
+        this.borders.push(bottom_border)
+
+        this.app.stage.addChild(right_border)
+        this.app.stage.addChild(left_border)
+        this.app.stage.addChild(top_border)
+        this.app.stage.addChild(bottom_border)
     }
 
     setPosition(x: number = this.world.x, y: number = this.world.y) {
@@ -115,5 +117,21 @@ export class DevCamera {
     set position(pos: Vector2) {
         this.world.x = pos.x
         this.world.y = pos.y
+    }
+
+    update(): void {
+        this.borders[0].position.y = this.transform.position.y
+        this.borders[0].position.x = this.transform.position.x + this.screen_w / 2 + this.border_r
+
+
+        this.borders[1].position.y = this.transform.position.y
+        this.borders[1].position.x = this.transform.position.x - this.screen_w / 2 - this.border_r
+
+
+        this.borders[2].position.y = this.transform.position.y - this.screen_h / 2 - this.border_r
+        this.borders[2].position.x = this.transform.position.x
+
+        this.borders[3].position.y = this.transform.position.y + this.screen_h / 2 + this.border_r
+        this.borders[3].position.x = this.transform.position.x
     }
 }

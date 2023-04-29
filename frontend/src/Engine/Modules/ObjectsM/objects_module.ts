@@ -1,4 +1,5 @@
 
+import { Camera } from "../../Classes/Objects/ViewObjects/camera";
 import { EmptyObject } from "../../Classes/Objects/ViewObjects/empty";
 import { ParticleSystem } from "../../Classes/Objects/ViewObjects/particle_system";
 import { Primitive } from "../../Classes/Objects/ViewObjects/primitive";
@@ -38,6 +39,10 @@ export class ObjectsModule extends Module {
 
             case ObjectTypes.EMPTYOBJECT:
                 object = new EmptyObject()
+                break;
+                
+            case ObjectTypes.CAMERA:
+                object = new Camera(this.engine.app, this.engine.data_module)
                 break;
 
             default:
