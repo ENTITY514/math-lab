@@ -2,8 +2,7 @@ import * as PIXI from "pixi.js"
 import { DataModule } from "../DataM/data_module";
 import { ObjectsModule } from "../ObjectsM/objects_module";
 import { ScriptModule } from "../ScriptM/script_module";
-import { PrimitiveData, SpriteData } from "../../Types/objects_interfaces";
-import { ScriptObject } from "./script_class";
+import { PrimitiveData } from "../../Types/objects_interfaces";
 import { EventModule } from "../EventModule/event_module";
 import { ENGINE_FILE_SYSTEM_MODULE } from "../../Classes/Objects/DataObjects/file_system";
 import { Engine } from "../../core";
@@ -11,9 +10,8 @@ import { ScriptComponent } from "../../Classes/Objects/components/Script/script_
 import { DirectoryData } from "../../Types/file_types";
 import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
 import { InputModule } from "../InputModule/input_module";
-import { Camera } from "../../Classes/Objects/ViewObjects/camera";
-import { ObjectTypes } from "../../Types/object_types";
 import { Vector2 } from "../../Types/math_types";
+import { ScriptObject } from "../TestM/script_class";
 
 interface IDataSet {
     camera_obj: { position: Vector2 }
@@ -31,7 +29,7 @@ interface IDataSet {
     file_system: DirectoryData
 }
 
-export class Test {
+export class View {
     engine: Engine
     app!: PIXI.Application
     canvasContainer: HTMLDivElement | undefined
@@ -113,7 +111,7 @@ export class Test {
             parsed_data.objects.forEach(object => {
                 const obj = this.object_module.createObject(object.type)
                 obj.__create_from_data(object)
-            })
+            });
 
             this.file_system.__create_from_data(parsed_data.file_system)
             this.object_module.objects.forEach(object => {
@@ -129,13 +127,6 @@ export class Test {
                     }
                 });
             });
-            //@ts-ignore
-            globalThis.core = {
-                file_system: this.file_system,
-                object_module: this.object_module,
-                input_module: this.input_module,
-                event_module: this.event_module
-            }
             this.app.stage.sortChildren()
 
             let onUpdate = this.event_module.getEvent("onUpdate")

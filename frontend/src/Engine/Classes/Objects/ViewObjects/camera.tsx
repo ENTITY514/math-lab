@@ -26,6 +26,7 @@ export class Camera {
         this.world = this.app.stage
         if (this.data_module.is_dev_mode) {
             this.display_object = new PIXI.Sprite(PIXI.Texture.from(DevAssets.camera))
+            this.display_object.zIndex = 1000
             this.display_object.anchor.x = 0.5
             this.display_object.anchor.y = 0.5
             this.display_object.scale.x = 0.2
@@ -124,25 +125,25 @@ export class Camera {
     }
 
     setPosition(x: number, y: number) {
-        this.world.x = -x+this.width*this.k/2
-        this.world.y = -y+this.height*this.k/2
+        this.world.x = -x + this.width * this.k / 2
+        this.world.y = -y + this.height * this.k / 2
     }
 
     getPosition() {
-        return { x: -this.world.x, y: -this.world.y }
+        return { x: -this.world.x - this.width * this.k / 2, y: -this.world.y - this.height * this.k / 2 }
     }
 
     get position(): Vector2 {
-        return { x: -this.world.x, y: -this.world.y }
+        return { x: -this.world.x - this.width * this.k / 2, y: -this.world.y - this.height * this.k / 2 }
     }
 
     set position(pos: Vector2) {
-        this.world.x = -pos.x
-        this.world.y = -pos.y
+        this.world.x = -pos.x + this.height * this.k / 2
+        this.world.y = -pos.y + this.height * this.k / 2
     }
 
     __create_from_data(data: CameraData): void {
-        this.setPosition(data.position.x, data.position.y)
+        this.setPosition(data.position.x * this.k, data.position.y * this.k)
     }
 
     __get_data__(): CameraData {

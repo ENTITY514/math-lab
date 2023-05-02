@@ -4,6 +4,7 @@ import { CreateProject } from "./Components/CreateProject/create_project"
 import { ProjectChoice } from "./Components/ChoiceProject/choice_project"
 import { Link, Route, Routes } from "react-router-dom"
 import { OpenProjectFromFile } from "./Components/OpenFromFile/open_from_file"
+import { View } from "./Components/View/test"
 
 export const Projects: React.FC = () => {
     return (

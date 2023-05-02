@@ -20,6 +20,9 @@ export const SectionsChoice: React.FC = () => {
             <Link to="compile" className={style.section}>
                 Экспорт
             </Link>
+            <Link to="/dev/view" className={style.section}>
+                Просмотр
+            </Link>
         </div >
     )
 }

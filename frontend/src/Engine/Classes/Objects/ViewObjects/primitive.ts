@@ -28,6 +28,7 @@ export class Primitive extends Entity {
             name: this.name,
             type: this.type,
             id: this.id,
+            tag: this.tag,
             components: components
         } as PrimitiveData
     }
@@ -37,6 +38,7 @@ export class Primitive extends Entity {
         this.id = data.id
         this._type = data.type
         this.components = []
+        this.tag = data.tag
         data.components.forEach(component => {
             switch (component.type) {
                 case "transform":

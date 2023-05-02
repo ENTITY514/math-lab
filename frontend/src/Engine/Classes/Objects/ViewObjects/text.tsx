@@ -29,7 +29,6 @@ export class Text extends Primitive {
         this.transform = new Transform(this)
         this.scripts = {}
         new TextComponent(this)
-        this.style.fill = "black"
     }
 
     updateText(value: string) {

@@ -15,6 +15,10 @@ export const Properties: React.FC = () => {
     return (
         <div className={style.container}>
             {engine.object_module.active_object ? <div className={style.box}>
+                <div className={style.name} onClick={() => {
+                    engine.object_module.deleteObject(engine.object_module.active_object)
+                    engine.tool_module.update_tool_state(false)
+                }}>Удалить</div>
                 <div className={style.name}>Имя объекта:</div>
                 <InputUI
                     placeHolder="Введите имя объекта..."

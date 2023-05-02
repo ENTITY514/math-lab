@@ -288,10 +288,9 @@ export class Directory {
     __create_from_data(data: DirectoryData) {
         this._set_id(data.id)
         this.name = data.name
-        
+
 
         data.childs.forEach(child => {
-            console.log(child.is_file)
             if (child.is_file) {
                 if (child.type === FileType.TEXTURE) {
                     let file = new TextureFile("", "", this)

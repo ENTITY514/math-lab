@@ -40,6 +40,7 @@ export class Sprite extends Primitive {
             name: this.name,
             type: this.type,
             id: this.id,
+            tag: this.tag,
             components: components
         } as SpriteData
     }
@@ -48,6 +49,7 @@ export class Sprite extends Primitive {
         this.setName(data.name)
         this.id = data.id
         this._type = data.type
+        this.tag = data.tag
         this.components = []
         data.components.forEach(component => {
             switch (component.type) {

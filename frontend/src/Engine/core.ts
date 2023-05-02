@@ -8,6 +8,7 @@ import { Test } from "./Modules/TestM/test"
 import { ToolModule } from "./Modules/ToolsM/tools_module"
 import { InputModule } from "./Modules/InputModule/input_module"
 import { ObjectTypes } from "./Types/object_types"
+import { View } from "./Modules/View/test"
 
 export class Engine {
     private static _instance: any
@@ -22,6 +23,7 @@ export class Engine {
     script_module!: ScriptModule
     input_module!: InputModule
     dev_camera!: DevCamera
+    view!: View
     constructor() {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
@@ -29,6 +31,7 @@ export class Engine {
         this.initRenderer();
         this.render();
         this.test_module = new Test(this)
+        this.view = new View(this)
         this.dev_file_system = new ENGINE_FILE_SYSTEM_MODULE()
         this.file_system = new ENGINE_FILE_SYSTEM_MODULE()
         this.data_module = new DataModule(this)
@@ -52,9 +55,9 @@ export class Engine {
             this.canvasContainer.appendChild(this.app.view);
             this.app.resizeTo = this.canvasContainer
         }
-        
+
         this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
-        
+
     }
 
     initRenderer() {

@@ -68,6 +68,7 @@ export class Entity implements EntityData {
             name: this.name,
             type: this.type,
             id: this.id,
+            tag: this.tag,
         } as EntityData
     }
 
@@ -75,5 +76,6 @@ export class Entity implements EntityData {
         this.setName(data.name)
         this.id = data.id
         this._type = data.type
+        this.tag = data.tag
     }
 }

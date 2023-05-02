@@ -84,7 +84,7 @@ export const TextView: React.FC<TextViewProps> = ({ component }) => {
         }
     }, [])
 
-    const getColorToHex = React.useMemo(() => { return "#" + component.object.style.fill.toString(16) }, [component.object.display_object.tint])
+    const getColorToHex = React.useMemo(() => { return String(component.object.style.fill) }, [component.object.display_object.tint])
 
     return (
         <div className={style.container}>
@@ -123,7 +123,7 @@ export const TextView: React.FC<TextViewProps> = ({ component }) => {
             </select>
             <div className={style.tint}>Color: {getColorToHex}</div><input
                 ref={fonts_color_ref}
-                value={getColorToHex}
+                value={String(component.object.style.fill)}
                 type="color"
                 onChange={() => {
                     component.object.style.fill = (Number("0x" + fonts_color_ref.current?.value.slice(1)))

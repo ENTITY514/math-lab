@@ -25,8 +25,12 @@ export class ObjectsModule extends Module {
     }
 
     findByTag(tag: string): Array<Primitive> {
+        console.log(tag);
+        console.log(this.objects);
+
         let obj: Primitive[] = []
         this.objects.forEach(element => {
+            console.log(element.tag);
             if (element.tag === tag) {
                 obj.push(element)
             }
@@ -51,13 +55,17 @@ export class ObjectsModule extends Module {
 
             case ObjectTypes.EMPTYOBJECT:
                 object = new EmptyObject()
+                if (!this.engine.data_module.is_dev_mode) {
+                    object.display_object.alpha = 0
+                }
                 break;
 
             default:
                 object = new Primitive("primitive")
                 break;
         }
-        this.objects.push(object)
+        this.objects.push(object);
+
 
         if (this.engine.data_module.is_dev_mode) {
             object.display_object.buttonMode = true
@@ -79,6 +87,15 @@ export class ObjectsModule extends Module {
         this.objects = []
     }
 
-    deleteObject() {
+    deleteObject(obj: Primitive | null) {
+        if (obj) {
+            this.engine.app.stage.removeChild(obj.display_object)
+            for (let i = 0; i < this.objects.length; i++) {
+                if (obj === this.objects[i]) {
+                    this.objects.splice(i, 1)
+                }
+            }
+        }
+        this.active_object = null
     }
 }

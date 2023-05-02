@@ -5,6 +5,7 @@ export interface EntityData {
     name: string,
     type: ObjectTypes,
     id: string,
+    tag: string
 }
 
 export interface PrimitiveData extends EntityData {

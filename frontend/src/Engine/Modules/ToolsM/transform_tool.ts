@@ -49,6 +49,12 @@ export class TransformTool {
         const arrow_down = new Sprite('move arrow down', undefined, this.base_arrow_texture)
         const point = new Sprite('point', undefined, this.base_point_texture)
 
+        arrow_right.display_object.zIndex = 999
+        arrow_top.display_object.zIndex = 999
+        arrow_left.display_object.zIndex = 999
+        arrow_down.display_object.zIndex = 999
+        point.display_object.zIndex = 999
+
         this.objects.push(arrow_right)
         this.objects.push(arrow_top)
         this.objects.push(arrow_left)

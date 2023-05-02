@@ -40,6 +40,8 @@ export class RotateTool {
             this.base_arrow_texture
         )
 
+        arrow.display_object.zIndex = 999
+
         this.objects.push(arrow)
 
         window.addEventListener('mouseup', () => {
