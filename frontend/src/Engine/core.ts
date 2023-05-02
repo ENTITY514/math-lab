@@ -52,6 +52,9 @@ export class Engine {
             this.canvasContainer.appendChild(this.app.view);
             this.app.resizeTo = this.canvasContainer
         }
+        
+        this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
+        
     }
 
     initRenderer() {

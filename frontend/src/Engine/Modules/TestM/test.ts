@@ -91,14 +91,13 @@ export class Test {
             let parsed_data = JSON.parse(data) as IDataSet
 
 
-            this.object_module.camera.__create_from_data(parsed_data.camera_obj)
 
             if (this.canvasContainer) {
-
                 let h = this.canvasContainer.clientHeight
                 let aspect_ratio = Number(this.engine.data_module.project_data.screen_settings.width) / Number(this.engine.data_module.project_data.screen_settings.height)
                 this.app.view.height = h
-                this.app.view.width = this.app.view.height * aspect_ratio
+                this.app.view.width = h * aspect_ratio
+
 
                 let x = this.app.view.width / Number(this.data_module.project_data.screen_settings.width)
                 let y = this.app.view.height / Number(this.data_module.project_data.screen_settings.height)
@@ -106,7 +105,10 @@ export class Test {
                 this.app.stage.scale.x = x
                 this.app.stage.scale.y = y
 
+                this.object_module.camera.k = (x + y) / 2
             }
+
+            this.object_module.camera.__create_from_data(parsed_data.camera_obj)
 
             parsed_data.objects.forEach(object => {
                 const obj = this.object_module.createObject(object.type)

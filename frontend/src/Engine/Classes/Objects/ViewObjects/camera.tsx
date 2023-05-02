@@ -11,6 +11,7 @@ export class Camera {
     display_object: PIXI.Sprite
     border_width: number = 10
     borders: Array<PIXI.Sprite>
+    k: number = 1
     world: PIXI.Container<PIXI.DisplayObject>
     private width: number
     private height: number
@@ -123,21 +124,21 @@ export class Camera {
     }
 
     setPosition(x: number, y: number) {
-        this.world.x = -x + (this.width / 2)
-        this.world.y = -y + (this.height / 2)
+        this.world.x = -x+this.width*this.k/2
+        this.world.y = -y+this.height*this.k/2
     }
 
     getPosition() {
-        return { x: -this.world.x - this.app.view.width / 2, y: -this.world.y - this.app.view.height / 2 }
+        return { x: -this.world.x, y: -this.world.y }
     }
 
     get position(): Vector2 {
-        return { x: -this.world.x - this.app.view.width / 2, y: -this.world.y - this.app.view.height / 2 }
+        return { x: -this.world.x, y: -this.world.y }
     }
 
     set position(pos: Vector2) {
-        this.world.x = -pos.x + this.app.view.width / 2
-        this.world.y = -pos.y + this.app.view.height / 2
+        this.world.x = -pos.x
+        this.world.y = -pos.y
     }
 
     __create_from_data(data: CameraData): void {
