@@ -4,6 +4,7 @@
     border-radius: 10px;
     margin:  5px auto;
     padding: 5px;
+    display: grid;
 }
 
 .name{
@@ -12,4 +13,18 @@
 
 .data{
     margin: 5px
+}
+
+.select {
+    height: 30px;
+    line-height: 30px;
+    color: rgb(0, 255, 170);
+    background: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: none;
+}
+
+.select:focus {
+    border: none;
+    outline: none; 
 }

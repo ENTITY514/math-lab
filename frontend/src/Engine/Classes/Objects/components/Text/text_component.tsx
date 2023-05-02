@@ -3,6 +3,7 @@ import { GraphicComponentData } from "../../../../Types/objects_interfaces";
 import { Text } from "../../ViewObjects/text";
 import { TextView } from "./text_view";
 
+
 export class TextComponent extends Component {
     object!: Text
     constructor(object: Text) {
@@ -10,8 +11,6 @@ export class TextComponent extends Component {
         this.object = object
         this.object.components.push(this)
     }
-
-    
 
     __react_view__() {
         return <TextView component={this} key={this.id} />

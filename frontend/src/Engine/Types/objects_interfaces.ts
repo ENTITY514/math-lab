@@ -14,6 +14,21 @@ export interface PrimitiveData extends EntityData {
 export interface SpriteData extends PrimitiveData {
 }
 
+export interface TextData extends PrimitiveData {
+    text: string
+    text_style: {
+        fontFamily: string
+        fontStyle: string
+        fontSize: number
+        fontCaps: string
+        fontBold: string
+        wordWrapWidth: number
+        fill: string
+        wordWrap: boolean
+        lineJoin: string
+    }
+}
+
 export interface CameraData {
     position: Vector2
 }
