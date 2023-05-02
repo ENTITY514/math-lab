@@ -14,6 +14,10 @@ export interface PrimitiveData extends EntityData {
 export interface SpriteData extends PrimitiveData {
 }
 
+export interface CameraData {
+    position: Vector2
+}
+
 export interface ComponentData {
     type: string,
     id: string,

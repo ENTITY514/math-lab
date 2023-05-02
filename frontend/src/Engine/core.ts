@@ -31,9 +31,9 @@ export class Engine {
         this.test_module = new Test(this)
         this.dev_file_system = new ENGINE_FILE_SYSTEM_MODULE()
         this.file_system = new ENGINE_FILE_SYSTEM_MODULE()
+        this.data_module = new DataModule(this)
         this.script_module = new ScriptModule(this)
         this.object_module = new ObjectsModule(this)
-        this.data_module = new DataModule(this)
         this.tool_module = new ToolModule(this)
         this.input_module = new InputModule(this)
         this.dev_camera = new DevCamera(this.app)
@@ -52,8 +52,6 @@ export class Engine {
             this.canvasContainer.appendChild(this.app.view);
             this.app.resizeTo = this.canvasContainer
         }
-        
-        this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
     }
 
     initRenderer() {
@@ -83,9 +81,9 @@ export class Engine {
     }
 
     animate() {
-        this.object_module.createObject(ObjectTypes.CAMERA)
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
+            this.object_module.camera.update()
             this.object_module.objects.forEach(object => {
                 object.update()
             });

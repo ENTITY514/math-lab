@@ -1,4 +1,3 @@
-
 import { Camera } from "../../Classes/Objects/ViewObjects/camera";
 import { EmptyObject } from "../../Classes/Objects/ViewObjects/empty";
 import { ParticleSystem } from "../../Classes/Objects/ViewObjects/particle_system";
@@ -12,10 +11,13 @@ import { Module } from "../module";
 export class ObjectsModule extends Module {
     objects: Array<Primitive>;
     active_object: Primitive | null
+    camera: Camera
     constructor(engine: Engine) {
         super(engine)
         this.objects = []
         this.active_object = null
+        this.camera = new Camera(this.engine.app, this.engine.data_module)
+
     }
 
     setActiveObject(object: Primitive) {
@@ -49,10 +51,6 @@ export class ObjectsModule extends Module {
 
             case ObjectTypes.EMPTYOBJECT:
                 object = new EmptyObject()
-                break;
-
-            case ObjectTypes.CAMERA:
-                object = new Camera(this.engine.app, this.engine.data_module)
                 break;
 
             default:

@@ -288,7 +288,6 @@ export class Directory {
     __create_from_data(data: DirectoryData) {
         this._set_id(data.id)
         this.name = data.name
-        console.log(data);
         
 
         data.childs.forEach(child => {
