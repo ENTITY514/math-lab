@@ -14,7 +14,7 @@ export class File {
     parent: Directory
     icon_url!: string
     constructor(name: string, type: FileType, data: any, parent: Directory, metadata: any = null, file_icon: string = Assets.file_icon) {
-        this.name = name
+        this.name = name+nanoid()
         this.type = type
         this.data = data
         this.parent = parent

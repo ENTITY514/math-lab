@@ -129,6 +129,7 @@ export class Test {
                     }
                 });
             });
+            this.app.stage.sortChildren()
 
             let onUpdate = this.event_module.getEvent("onUpdate")
             this.app.ticker.remove(this.update)

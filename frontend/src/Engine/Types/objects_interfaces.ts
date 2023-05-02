@@ -42,6 +42,7 @@ export interface TransformComponentData extends ComponentData {
     position: Vector2,
     rotation: number,
     size: Size2
+    z_index: number
 }
 
 export interface GraphicComponentData extends ComponentData {

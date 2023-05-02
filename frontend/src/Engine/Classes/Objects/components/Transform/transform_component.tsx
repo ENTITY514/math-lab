@@ -72,6 +72,7 @@ export class Transform extends Component {
             position: this.getPosition(),
             rotation: this.getRotation(),
             size: this.getSize(),
+            z_index: this.object.display_object.zIndex
         } as TransformComponentData
     }
 
@@ -81,5 +82,6 @@ export class Transform extends Component {
         this.setPosition(data.position.x, data.position.y)
         this.setRotation(data.rotation)
         this.setSize(data.size.width, data.size.height)
+        this.object.display_object.zIndex = data.z_index
     }
 }
