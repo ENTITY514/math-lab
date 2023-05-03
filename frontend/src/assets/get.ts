@@ -20,7 +20,7 @@ import circle from './new-moon.png'
 import play from './play.png'
 import ui from './ui.png'
 import file_icon from "./file_icon.png"
-import presentation from "./presen.json"
+import presentation from "./pr.json"
 
 export const Assets = {
     add,
