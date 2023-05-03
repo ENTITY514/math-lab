@@ -73,6 +73,7 @@ export class DataModule extends Module {
             const obj = this.engine.object_module.createObject(object.type)
             obj.__create_from_data(object)
         });
+        this.engine.script_module.files = this.engine.file_system.root.getAllFilesByType("mljs")
     }
 
     compileAppToHTML() {

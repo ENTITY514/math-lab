@@ -69,6 +69,7 @@ export class Text extends Primitive {
         this._type = data.type
         this.updateText(data.text)
         this.components = []
+        new TextComponent(this)
         data.components.forEach(component => {
             switch (component.type) {
                 case "transform":

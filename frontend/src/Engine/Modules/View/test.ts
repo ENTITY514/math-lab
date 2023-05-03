@@ -12,6 +12,7 @@ import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
 import { InputModule } from "../InputModule/input_module";
 import { Vector2 } from "../../Types/math_types";
 import { ScriptObject } from "../TestM/script_class";
+import { Primitive } from "../../Classes/Objects/ViewObjects/primitive";
 
 interface IDataSet {
     camera_obj: { position: Vector2 }
@@ -56,7 +57,10 @@ export class View {
             file_system: this.file_system,
             object_module: this.object_module,
             input_module: this.input_module,
-            event_module: this.event_module
+            event_module: this.event_module,
+            time: {
+                deltaTime: 0
+            }
         }
         this.animate()
     }
@@ -87,8 +91,6 @@ export class View {
             this.event_module.addEvent("onUpdate")
 
             let parsed_data = JSON.parse(data) as IDataSet
-
-
 
             if (this.canvasContainer) {
                 let h = this.canvasContainer.clientHeight
@@ -127,12 +129,40 @@ export class View {
                     }
                 });
             });
+            //@ts-ignore
+            globalThis.core = {
+                file_system: this.file_system,
+                object_module: this.object_module,
+                input_module: this.input_module,
+                event_module: this.event_module,
+                time: {
+                    deltaTime: 0
+                }
+            }
+            //@ts-ignore
+            globalThis.core.math = {
+                distanse: (obj_one: Primitive, obj_two: Primitive) => {
+                    let dif_x = obj_one.transform.position.x - obj_two.transform.position.x
+                    let dif_y = obj_one.transform.position.y - obj_two.transform.position.y
+                    return Math.sqrt(Math.abs(dif_x * dif_x + dif_y * dif_y))
+                },
+                norm_vec: (obj_one: Primitive, obj_two: Primitive) => {
+                    let dif_x = obj_two.transform.position.x - obj_one.transform.position.x
+                    let dif_y = obj_two.transform.position.y - obj_one.transform.position.y
+                    let dist = Math.sqrt(Math.abs(dif_x * dif_x + dif_y * dif_y))
+                    return {
+                        x: dif_x / dist, y: dif_y / dist
+                    }
+                }
+            }
             this.app.stage.sortChildren()
 
             let onUpdate = this.event_module.getEvent("onUpdate")
             this.app.ticker.remove(this.update)
 
             this.update = (delta: number) => {
+                //@ts-ignore
+                globalThis.core.time.deltaTime = delta
                 onUpdate?.execute()
             }
             this.animate()

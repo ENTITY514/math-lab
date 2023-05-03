@@ -7,6 +7,7 @@ import style from "./create_project.module.css"
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import { Engine } from "../../../../../../Engine/core"
+import { Assets } from "../../../../../../assets/get"
 
 export interface IProjectData {
     name: string,
@@ -32,6 +33,7 @@ export const CreateProject: React.FC = () => {
         new Engine().data_module.clearProject()
         new Engine().data_module.project_data.name = state.name
         new Engine().data_module.project_data.type = state.type
+        new Engine().data_module.create_from_data_set(JSON.stringify(Assets.presentation))
     }
 
     return (

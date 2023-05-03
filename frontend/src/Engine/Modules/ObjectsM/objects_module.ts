@@ -25,12 +25,8 @@ export class ObjectsModule extends Module {
     }
 
     findByTag(tag: string): Array<Primitive> {
-        console.log(tag);
-        console.log(this.objects);
-
         let obj: Primitive[] = []
         this.objects.forEach(element => {
-            console.log(element.tag);
             if (element.tag === tag) {
                 obj.push(element)
             }

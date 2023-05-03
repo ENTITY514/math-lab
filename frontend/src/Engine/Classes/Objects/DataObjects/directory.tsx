@@ -90,7 +90,7 @@ export class Directory {
         let typed_files: T[] = []
         files = this.getAllFiles(files)
         files.forEach((file) => {
-            if (file instanceof type) {
+            if (file.type === type) {
                 typed_files.push(file as T)
             }
         });
