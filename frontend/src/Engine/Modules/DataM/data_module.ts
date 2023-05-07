@@ -62,7 +62,7 @@ export class DataModule extends Module {
     }
 
     create_from_data_set(data_set: string) {
-        this.engine.object_module.clear()
+        this.clearProject()
         let parsed_data = JSON.parse(data_set) as IDataSet
         this.project_data = parsed_data.data_module
         this.engine.object_module.camera.__create_from_data(parsed_data.camera_obj)
