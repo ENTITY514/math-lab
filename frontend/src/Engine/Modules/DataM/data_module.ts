@@ -5,6 +5,7 @@ import { DirectoryData } from "../../Types/file_types";
 import { Directory } from "../../Classes/Objects/DataObjects/directory";
 import { nanoid } from "nanoid";
 import { Vector2 } from "../../Types/math_types";
+import { ObjectTypes } from "../../Types/object_types";
 
 interface IDataSet {
     camera_obj: { position: Vector2 }
@@ -34,6 +35,7 @@ export class DataModule extends Module {
             height: string | number
         }
     }
+    buffer: any
     constructor(engine: Engine) {
         super(engine)
         this.project_data = {
@@ -45,8 +47,46 @@ export class DataModule extends Module {
                 width: 1920,
                 height: 1080
             }
-
         }
+        //@ts-ignore
+        globalThis.DevCore = {
+            buffer: {
+                is_click: false
+            }
+        }
+
+        window.addEventListener('keydown', function (event) {
+            //@ts-ignore
+            if (event.ctrlKey && event.key === 'c' && !globalThis.DevCore.buffer.is_click) {
+                new Engine().data_module.buffer = JSON.stringify(new Engine().object_module.active_object?.__get_data__())
+                //@ts-ignore
+                globalThis.DevCore.buffer.is_click = true
+            }
+        });
+
+        window.addEventListener('keyup', function (event) {
+            //@ts-ignore
+            if (event.key === 'c' | event.key === 'v') {
+                //@ts-ignore
+                globalThis.DevCore.buffer.is_click = false
+            }
+        });
+
+        window.addEventListener('keydown', function (event) {
+            //@ts-ignore
+            if (event.ctrlKey && event.key === 'v' && !globalThis.DevCore.buffer.is_click) {
+                if (new Engine().data_module.buffer) {
+                    let obj = JSON.parse(new Engine().data_module.buffer)
+                    if (obj.type = ObjectTypes.SPRITE) {
+                        let sp = new Engine().object_module.createObject(ObjectTypes.SPRITE)
+                        sp.__create_from_data(obj)
+                        sp.id = nanoid()
+                    }
+                }
+                //@ts-ignore
+                globalThis.DevCore.buffer.is_click = true
+            }
+        });
     }
 
     create_data_set(): string {
