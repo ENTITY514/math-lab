@@ -39,6 +39,10 @@ export class InputModule extends Module {
         this.inputs.push(inp)
     }
 
+    clear(){
+        this.inputs = []
+    }
+
     __get_data__() {
         let inputs_data = []
         this.inputs.forEach(input => {

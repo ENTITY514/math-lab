@@ -12,4 +12,9 @@ export const __Projects__: Array<__project_data__> = [
         data: Assets.presentation as unknown as string,
         img_url: null
     },
+    {
+        name: "Gas",
+        data: Assets.gas as unknown as string,
+        img_url: null
+    },
 ]

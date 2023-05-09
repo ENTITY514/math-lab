@@ -21,6 +21,7 @@ import play from './play.png'
 import ui from './ui.png'
 import file_icon from "./file_icon.png"
 import presentation from "./pr.json"
+import gas from "./gas.json"
 
 export const Assets = {
     add,
@@ -46,4 +47,5 @@ export const Assets = {
     ui,
     file_icon,
     presentation,
+    gas
 }

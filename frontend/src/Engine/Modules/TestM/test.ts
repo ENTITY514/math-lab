@@ -89,6 +89,7 @@ export class Test {
             this.object_module.clear()
 
             this.event_module.clearAllEvent()
+            this.input_module.clear()
             this.event_module.addEvent("onStart")
             this.event_module.addEvent("onUpdate")
 
@@ -97,8 +98,16 @@ export class Test {
             if (this.canvasContainer) {
                 let h = this.canvasContainer.clientHeight
                 let aspect_ratio = Number(this.engine.data_module.project_data.screen_settings.width) / Number(this.engine.data_module.project_data.screen_settings.height)
-                this.app.view.height = h
-                this.app.view.width = h * aspect_ratio
+
+                if (this.canvasContainer.clientWidth > h * aspect_ratio) {
+                    this.app.view.height = h
+                    this.app.view.width = h * aspect_ratio
+                }
+                else {
+                    this.app.view.width = this.canvasContainer.clientWidth
+                    this.app.view.height = this.canvasContainer.clientWidth / aspect_ratio
+                }
+
 
 
                 let x = this.app.view.width / Number(this.data_module.project_data.screen_settings.width)

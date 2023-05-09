@@ -12,6 +12,7 @@ export const View: React.FC = () => {
     return (
         <div className={style.container}>
             <PixiWindow />
+            <InputWindow />
         </div>
     )
 }
