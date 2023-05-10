@@ -55,6 +55,19 @@ export const Tools: React.FC = () => {
                     action={() => { changeTool(tools_name.ROTATE_TOOL) }} />
             </div>
 
+
+            {enigne.draw_module ?
+                <div className={style.tool}>
+                    <ButtonIcon
+                        url={Assets.paint}
+                        is_active={enigne.draw_module.is_draw_mode}
+                        action={() => {
+                            enigne.draw_module.is_draw_mode = !enigne.draw_module.is_draw_mode;
+                            set_update_count(prev => !prev)
+                        }} />
+                </div> : null
+            }
+
         </div >
     )
 }

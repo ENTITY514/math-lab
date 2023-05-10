@@ -9,6 +9,7 @@ import { ObjectTypes } from "../../Types/object_types";
 
 interface IDataSet {
     camera_obj: { position: Vector2 }
+    draw_module: Array<Array<number>>
     data_module: {
         name: string;
         id: string;
@@ -92,6 +93,7 @@ export class DataModule extends Module {
     create_data_set(): string {
         let data_set = {
             data_module: this.project_data,
+            draw_module: this.engine.draw_module.__get_data__(),
             camera_obj: this.engine.object_module.camera.__get_data__(),
             objects: this.engine.object_module.objects.map(object => {
                 return object.__get_data__()
@@ -105,6 +107,7 @@ export class DataModule extends Module {
         this.clearProject()
         let parsed_data = JSON.parse(data_set) as IDataSet
         this.project_data = parsed_data.data_module
+        this.engine.draw_module.__create_from_data(parsed_data.draw_module)
         this.engine.object_module.camera.__create_from_data(parsed_data.camera_obj)
         this.engine.object_module.camera.display_object.position.x = parsed_data.camera_obj.position.x
         this.engine.object_module.camera.display_object.position.y = parsed_data.camera_obj.position.y

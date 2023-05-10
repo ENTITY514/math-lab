@@ -14,6 +14,19 @@ export const Properties: React.FC = () => {
     }, [])
     return (
         <div className={style.container}>
+            {
+                engine.draw_module ?
+                    <div className={style.box}>
+                        <div className={style.name}>Размер кисти:</div>
+                        <InputUI
+                            type="number"
+                            title={engine.draw_module.size}
+                            onChange={(value) => { engine.draw_module.size = Number(value) }}
+                            width="80%"
+                            height="10px"
+                            margin="1px" />
+                    </div> : null
+            }
             {engine.object_module.active_object ? <div className={style.box}>
                 <div className={style.name} onClick={() => {
                     engine.object_module.deleteObject(engine.object_module.active_object)

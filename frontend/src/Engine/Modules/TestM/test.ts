@@ -15,9 +15,11 @@ import { Camera } from "../../Classes/Objects/ViewObjects/camera";
 import { ObjectTypes } from "../../Types/object_types";
 import { Vector2 } from "../../Types/math_types";
 import { Primitive } from "../../Classes/Objects/ViewObjects/primitive";
+import { DrawModule } from "../DrawModule/draw_module";
 
 interface IDataSet {
     camera_obj: { position: Vector2 }
+    draw_module: Array<Array<number>>
     data_module: {
         name: string;
         id: string;
@@ -43,6 +45,7 @@ export class Test {
     event_module: EventModule
     input_module!: InputModule
     prev: string = ""
+    draw_module!: DrawModule
     constructor(engine: Engine) {
         this.data_module = new DataModule(this as unknown as Engine)
         this.data_module.is_dev_mode = false
@@ -73,6 +76,7 @@ export class Test {
         if (this.canvasContainer.children.length < 1) {
             this.canvasContainer.appendChild(this.app.view);
         }
+        this.draw_module = new DrawModule(this as unknown as Engine)
     }
 
     initRenderer() {
@@ -118,6 +122,9 @@ export class Test {
 
                 this.object_module.camera.k = (x + y) / 2
             }
+
+
+            this.draw_module.__create_from_data(parsed_data.draw_module)
 
             this.object_module.camera.__create_from_data(parsed_data.camera_obj)
 

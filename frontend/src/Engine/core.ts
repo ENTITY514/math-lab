@@ -7,8 +7,8 @@ import { ScriptModule } from "./Modules/ScriptM/script_module"
 import { Test } from "./Modules/TestM/test"
 import { ToolModule } from "./Modules/ToolsM/tools_module"
 import { InputModule } from "./Modules/InputModule/input_module"
-import { ObjectTypes } from "./Types/object_types"
 import { View } from "./Modules/View/test"
+import { DrawModule } from "./Modules/DrawModule/draw_module"
 
 export class Engine {
     private static _instance: any
@@ -24,6 +24,7 @@ export class Engine {
     input_module!: InputModule
     dev_camera!: DevCamera
     view!: View
+    draw_module!: DrawModule
     constructor() {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
@@ -57,6 +58,7 @@ export class Engine {
         }
 
         this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
+        this.draw_module = new DrawModule(this)
 
     }
 
