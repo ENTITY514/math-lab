@@ -1,10 +1,10 @@
-.container {
-    height: 100%;
+.container{
     display: grid;
-    grid-template-columns: 1fr;
+    grid-template-columns: 4fr 1fr;
+    grid-gap: 4px;
 }
 
-.mono_container {
+.mono_container{
     display: grid;
     grid-template-columns: 1fr;
 }

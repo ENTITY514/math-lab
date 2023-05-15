@@ -23,6 +23,7 @@ import file_icon from "./file_icon.png"
 import presentation from "./pr.json"
 import gas from "./gas.json"
 import paint from "./paint-brush.png"
+import graph from "./graph.json"
 
 export const Assets = {
     add,
@@ -50,4 +51,5 @@ export const Assets = {
     presentation,
     gas,
     paint,
+    graph,
 }

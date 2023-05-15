@@ -91,6 +91,7 @@ export class View {
             this.object_module.clear()
 
             this.event_module.clearAllEvent()
+            this.input_module.clear()
             this.event_module.addEvent("onStart")
             this.event_module.addEvent("onUpdate")
 
@@ -111,7 +112,9 @@ export class View {
 
                 this.object_module.camera.k = (x + y) / 2
             }
-            this.draw_module.__create_from_data(parsed_data.draw_module)
+            if (parsed_data.draw_module) {
+                this.draw_module.__create_from_data(parsed_data.draw_module)
+            }
 
             this.object_module.camera.__create_from_data(parsed_data.camera_obj)
 

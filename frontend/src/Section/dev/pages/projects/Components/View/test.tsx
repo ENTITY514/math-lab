@@ -9,10 +9,18 @@ export const View: React.FC = () => {
     React.useEffect(() => {
         engine.updateActiveWindow("view")
     }, [])
+    const [, set_update_count] = React.useState<boolean>(false)
+    React.useEffect(() => {
+        const interval = setInterval(() => set_update_count(prev => !prev), 300);
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
     return (
-        <div className={style.container}>
+        <div className={engine.test_module.input_module.inputs.length ? style.container : style.mono_container}>
             <PixiWindow />
-            <InputWindow />
+            {engine.test_module.input_module.inputs.length ?
+                <InputWindow /> : null}
         </div>
     )
 }

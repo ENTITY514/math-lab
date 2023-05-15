@@ -1,7 +1,8 @@
 export enum FileType {
     TXT = "txt",
     TEXTURE = "txtr",
-    SCRIPT = "mljs"
+    SCRIPT = "mljs",
+    DEV_SCRIPT = "dmjs"
 }
 
 export interface FileData {

@@ -7,6 +7,7 @@ import { Properties } from "./Components/properties/properties"
 import { Tools } from "./Components/tools/tools"
 import style from "./main_editor.module.css"
 import { Engine } from "../../../../../../Engine/core"
+import { UserToolsView } from "./Components/user_tools/user_tools"
 
 export const MainEditor: React.FC = () => {
     const engine = React.useRef(new Engine())
@@ -15,7 +16,10 @@ export const MainEditor: React.FC = () => {
     }, [])
     return (
         <div className={style.container}>
-            <Objects />
+            <div className={style.box3}>
+                <Objects />
+                <UserToolsView />
+            </div>
             <div className={style.box}>
                 <div className={style.window}>
                     <PixiWindow />

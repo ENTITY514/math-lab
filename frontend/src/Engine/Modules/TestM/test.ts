@@ -124,7 +124,9 @@ export class Test {
             }
 
 
-            this.draw_module.__create_from_data(parsed_data.draw_module)
+            if (parsed_data.draw_module) {
+                this.draw_module.__create_from_data(parsed_data.draw_module)
+            }
 
             this.object_module.camera.__create_from_data(parsed_data.camera_obj)
 

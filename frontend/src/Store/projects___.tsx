@@ -17,4 +17,9 @@ export const __Projects__: Array<__project_data__> = [
         data: Assets.gas as unknown as string,
         img_url: null
     },
+    {
+        name: "Graphics",
+        data: Assets.graph as unknown as string,
+        img_url: null
+    },
 ]
