@@ -5,7 +5,8 @@ export enum INPUTTYPES {
     NUMBER = "number",
     RANGE = "range",
     BOOLEAN = "boolean",
-    COLOR = "color"
+    COLOR = "color",
+    BUTTON = "button"
 }
 
 export class Input {
@@ -14,11 +15,17 @@ export class Input {
     type: INPUTTYPES
     onChangeEvents: Array<(value: string) => void> = []
     value: string
+    label: string
     constructor(type: INPUTTYPES) {
         this.name = "input"
         this.id = nanoid()
         this.type = type
         this.value = ""
+        this.label = "input"
+    }
+
+    setLabel(label: string) {
+        this.label = label
     }
 
     onChange(callback: (value: string) => void) {

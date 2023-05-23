@@ -5,19 +5,36 @@ import { atomone } from '@uiw/codemirror-theme-atomone';
 import { Module } from "../module";
 import { DefaultSS } from "./default_script_text";
 import { ScriptFile } from '../../Classes/Objects/DataObjects/script_file';
+import { ScriptFileDev } from '../../Classes/Objects/DataObjects/script_dev';
 import { Engine } from '../../core';
+
+interface Error {
+    name: string,
+    message: string,
+    stack: string
+}
 
 export class ScriptModule extends Module {
     active_file: ScriptFile | null = null
     files: Array<ScriptFile> = []
     last_editable_files: Array<ScriptFile> = []
     script_editor!: JSX.Element;
+    console_value!: string
+    tools: Array<ScriptFileDev> = []
     constructor(engine: Engine) {
         super(engine)
+        this.console_value = ""
     }
 
     update_active_file(value: string, viewUpdate: any) {
         this.active_file?.updateScript(value)
+        try {
+            this.active_file?.execute()
+            this.console_value = ""
+        } catch (error) {
+            //@ts-ignore
+            this.console_value = error.toString();
+        }
     }
 
     set_active_file(file: ScriptFile | null) {
@@ -73,6 +90,14 @@ export class ScriptModule extends Module {
         const file = new ScriptFile("script_file", DefaultSS.script, this.engine.file_system.root)
         this.engine.file_system.root.addFile(file)
         this.files.push(file)
+        this.set_active_file(file)
+    }
+
+    create_dev_file() {
+        const file = new ScriptFileDev("dev_script_file", DefaultSS.user_script, this.engine.file_system.root)
+        this.engine.file_system.root.addFile(file)
+        this.files.push(file)
+        this.tools.push(file)
         this.set_active_file(file)
     }
 }

@@ -54,7 +54,7 @@ export class View {
         this.script_module = new ScriptModule(this as unknown as Engine)
         this.object_module = new ObjectsModule(this as unknown as Engine)
         this.event_module = new EventModule(this as unknown as Engine)
-        this.input_module = new InputModule(this as unknown as Engine)
+        this.input_module = new InputModule()
         //@ts-ignore
         globalThis.core = {
             file_system: this.file_system,

@@ -9,6 +9,13 @@ import { ToolModule } from "./Modules/ToolsM/tools_module"
 import { InputModule } from "./Modules/InputModule/input_module"
 import { View } from "./Modules/View/test"
 import { DrawModule } from "./Modules/DrawModule/draw_module"
+import { UserTools } from "./Modules/UserToolsModule/user_tool_module"
+
+interface Updater {
+    name: string
+    id: string
+    func: () => void
+}
 
 export class Engine {
     private static _instance: any
@@ -25,6 +32,8 @@ export class Engine {
     dev_camera!: DevCamera
     view!: View
     draw_module!: DrawModule
+    user_tools_module!: UserTools
+    updaters_functions: Array<Updater> = []
     constructor() {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
@@ -39,11 +48,23 @@ export class Engine {
         this.script_module = new ScriptModule(this)
         this.object_module = new ObjectsModule(this)
         this.tool_module = new ToolModule(this)
-        this.input_module = new InputModule(this)
+        this.input_module = new InputModule()
         this.dev_camera = new DevCamera(this.app)
+        this.user_tools_module = new UserTools(this)
+        this.createDevCore()
         this.animate()
         Engine._instance = this
         return Engine._instance
+    }
+
+    createDevCore() {
+        //@ts-ignore
+        globalThis.dev_core = {
+            object_module: this.object_module,
+            input_module: this.input_module,
+            dev_camera: this.dev_camera,
+            file_system: this.file_system,
+        }
     }
 
     addView(canvasContainer: HTMLDivElement) {
@@ -92,6 +113,9 @@ export class Engine {
         let elapsed = 0.0;
         this.app.ticker.add((delta) => {
             this.object_module.camera.update()
+            this.updaters_functions.forEach(updater => {
+                updater.func()
+            })
             this.object_module.objects.forEach(object => {
                 object.update()
             });

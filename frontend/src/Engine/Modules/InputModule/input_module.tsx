@@ -1,5 +1,3 @@
-import { Engine } from "../../core";
-import { Module } from "../module";
 import { BooleanInput } from "./BooleanInput/boolean_input";
 import { ColorInput } from "./ColorInput/color_input";
 import { INPUTTYPES, Input } from "./Input";
@@ -7,11 +5,10 @@ import { NumberInput } from "./NumberInput/number_input";
 import { RangeInput } from "./RangeInput/range_input";
 import { TextInput } from "./TextInput/text_input";
 
-export class InputModule extends Module {
+export class InputModule {
     name: string = "InputModule"
     inputs: Array<Input> = []
-    constructor(engine: Engine) {
-        super(engine)
+    constructor() {
     }
 
     register(input_type: string | INPUTTYPES) {
@@ -37,9 +34,10 @@ export class InputModule extends Module {
                 break;
         }
         this.inputs.push(inp)
+        return inp
     }
 
-    clear(){
+    clear() {
         this.inputs = []
     }
 

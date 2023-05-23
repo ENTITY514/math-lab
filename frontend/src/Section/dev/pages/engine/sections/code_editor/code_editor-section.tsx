@@ -1,6 +1,7 @@
 import { Actions } from "./actions/actions";
 import style from "./code_editor.module.css"
 import { CodeEditor } from "./code_editor/code_editor";
+import { Console } from "./console/console";
 import { Files } from "./files/files";
 import { OpenFiles } from "./open_files/open_files";
 
@@ -13,6 +14,7 @@ export const CodeEditorSection: React.FC = () => {
                 <div className={style.box2}>
                     <OpenFiles />
                     <CodeEditor />
+                    <Console />
                 </div>
             </div>
         </div>

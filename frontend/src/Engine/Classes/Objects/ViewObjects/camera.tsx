@@ -48,6 +48,10 @@ export class Camera {
                 this.borders[3].position.x = this.display_object.position.x
             }
 
+            this.setPosition = (x: number, y: number) => {
+                this.display_object.position = { x, y }
+            }
+
             this.display_object.on("mousedown", (e: PIXI.InteractionEvent) => {
                 if (e.data.button === 0) {
                     this.is_drag = true

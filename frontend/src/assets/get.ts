@@ -24,6 +24,7 @@ import presentation from "./pr.json"
 import gas from "./gas.json"
 import paint from "./paint-brush.png"
 import graph from "./graph.json"
+import load_arrow from "./loading-arrows.png"
 
 export const Assets = {
     add,
@@ -52,4 +53,5 @@ export const Assets = {
     gas,
     paint,
     graph,
+    load_arrow
 }
