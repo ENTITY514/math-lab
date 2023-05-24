@@ -5,6 +5,7 @@
     display: grid;
     grid-template-rows: 40px 1fr 40px;
     padding: 5px;
+    min-height: 100px;
 }
 
 .header {

@@ -1,3 +1,5 @@
+import React from "react"
+import { Button } from "../../../../UI/Button/button"
 import { ImageUI } from "../../../../UI/Image/image"
 import { Assets } from "../../../../assets/get"
 import style from "./style.module.css"
@@ -8,7 +10,9 @@ interface IToolView {
 }
 
 export const ToolView: React.FC<IToolView> = ({ tool }) => {
-
+    const json = React.useMemo(() => { return tool.export() }, [])
+    const file = new Blob([json], { type: 'application/json' });
+    const ref = URL.createObjectURL(file)
     return (
         <div className={style.container}>
 
@@ -29,7 +33,9 @@ export const ToolView: React.FC<IToolView> = ({ tool }) => {
             </div>
 
             <div className={style.footer}>
-
+                <a href={ref} download={"tool.json"}>
+                    <Button text={"Export"} onClick={() => { }} color="aquamarine" height="30px" padding="0"/>
+                </a>
             </div>
 
         </div >

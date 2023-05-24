@@ -21,7 +21,6 @@ export class Tool {
         this.input_system = new InputModule()
         this.__create_script__()
         this.__execute__()
-        console.log(this)
     }
 
     private __create_script__() {
@@ -34,11 +33,18 @@ export class Tool {
         if (this.script) {
             try {
                 this.script_class = new (this.script.execute())(this.input_system)
+                if (this.script_class && this.script_class.name) {
+                    this.name = this.script_class.name
+                }
             }
             catch (error) {
                 console.log(error)
             }
         }
+    }
+
+    set_name(value: string) {
+        this.name = value
     }
 
     reload() {
@@ -78,5 +84,13 @@ export class Tool {
 
     __react__view__() {
         return <ToolView tool={this} />
+    }
+
+    export() {
+        return JSON.stringify({
+            name: this.name,
+            script: this.script.__get_data__(),
+            id: this.id
+        })
     }
 }
