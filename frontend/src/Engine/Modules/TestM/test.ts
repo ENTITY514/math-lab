@@ -11,8 +11,6 @@ import { ScriptComponent } from "../../Classes/Objects/components/Script/script_
 import { DirectoryData } from "../../Types/file_types";
 import { Sprite } from "../../Classes/Objects/ViewObjects/sprite";
 import { InputModule } from "../InputModule/input_module";
-import { Camera } from "../../Classes/Objects/ViewObjects/camera";
-import { ObjectTypes } from "../../Types/object_types";
 import { Vector2 } from "../../Types/math_types";
 import { Primitive } from "../../Classes/Objects/ViewObjects/primitive";
 import { DrawModule } from "../DrawModule/draw_module";

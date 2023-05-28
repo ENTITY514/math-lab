@@ -85,6 +85,25 @@ export class View {
         });
     }
 
+    changeView() {
+        if (this.canvasContainer) {
+            let h = this.canvasContainer.clientHeight
+            let aspect_ratio = Number(this.engine.data_module.project_data.screen_settings.width) / Number(this.engine.data_module.project_data.screen_settings.height)
+
+            this.app.view.height = h
+            this.app.view.width = h * aspect_ratio
+
+
+            let x = this.app.view.width / Number(this.data_module.project_data.screen_settings.width)
+            let y = this.app.view.height / Number(this.data_module.project_data.screen_settings.height)
+
+            this.app.stage.scale.x = x
+            this.app.stage.scale.y = y
+
+            this.object_module.camera.k = (x + y) / 2
+        }
+    }
+
     build_app_from_data_set(data: string) {
         if (data !== this.prev) {
             this.prev = data
@@ -97,21 +116,8 @@ export class View {
 
             let parsed_data = JSON.parse(data) as IDataSet
 
-            if (this.canvasContainer) {
-                let h = this.canvasContainer.clientHeight
-                let aspect_ratio = Number(this.engine.data_module.project_data.screen_settings.width) / Number(this.engine.data_module.project_data.screen_settings.height)
-                this.app.view.height = h
-                this.app.view.width = h * aspect_ratio
+            this.changeView()
 
-
-                let x = this.app.view.width / Number(this.data_module.project_data.screen_settings.width)
-                let y = this.app.view.height / Number(this.data_module.project_data.screen_settings.height)
-
-                this.app.stage.scale.x = x
-                this.app.stage.scale.y = y
-
-                this.object_module.camera.k = (x + y) / 2
-            }
             if (parsed_data.draw_module) {
                 this.draw_module.__create_from_data(parsed_data.draw_module)
             }

@@ -34,6 +34,7 @@ export class Engine {
     draw_module!: DrawModule
     user_tools_module!: UserTools
     updaters_functions: Array<Updater> = []
+    isFullScreen!: boolean
     constructor() {
         if (typeof Engine._instance === 'object') {
             return Engine._instance
@@ -81,7 +82,6 @@ export class Engine {
 
         this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
         this.draw_module.__createListeners()
-
     }
 
     initRenderer() {
