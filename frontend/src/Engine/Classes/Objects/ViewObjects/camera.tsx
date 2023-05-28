@@ -52,6 +52,10 @@ export class Camera {
                 this.display_object.position = { x, y }
             }
 
+            this.getPosition = () => {
+                return this.display_object.position
+            }
+
             this.display_object.on("mousedown", (e: PIXI.InteractionEvent) => {
                 if (e.data.button === 0) {
                     this.is_drag = true
@@ -129,8 +133,8 @@ export class Camera {
     }
 
     setPosition(x: number, y: number) {
-        this.world.x = -x + this.width * this.k / 2
-        this.world.y = -y + this.height * this.k / 2
+        this.world.x = - x*this.k + this.width*this.k/2
+        this.world.y = - y*this.k + this.height*this.k/2
     }
 
     getPosition() {
@@ -142,8 +146,8 @@ export class Camera {
     }
 
     set position(pos: Vector2) {
-        this.world.x = -pos.x + this.height * this.k / 2
-        this.world.y = -pos.y + this.height * this.k / 2
+        this.world.x = - pos.x*this.k + this.width*this.k/2
+        this.world.y = - pos.y*this.k + this.height*this.k/2
     }
 
     __create_from_data(data: CameraData): void {

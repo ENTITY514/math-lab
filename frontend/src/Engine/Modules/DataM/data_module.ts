@@ -24,6 +24,13 @@ interface IDataSet {
     file_system: DirectoryData
 }
 
+interface GlobalTextSetting {
+    color: number
+    normalFontSize: number
+    headerFontSize: number
+    
+}
+
 export class DataModule extends Module {
     is_dev_mode: boolean = true
     project_data: {
@@ -108,6 +115,7 @@ export class DataModule extends Module {
         let parsed_data = JSON.parse(data_set) as IDataSet
         this.project_data = parsed_data.data_module
         if (parsed_data.draw_module) {
+            console.log(this.engine.draw_module)
             this.engine.draw_module.__create_from_data(parsed_data.draw_module)
         }
         this.engine.object_module.camera.__create_from_data(parsed_data.camera_obj)

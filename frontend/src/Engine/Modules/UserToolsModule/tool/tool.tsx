@@ -93,4 +93,10 @@ export class Tool {
             id: this.id
         })
     }
+
+    createFromJSON(data: string) {
+        let parsed_data = JSON.parse(data)
+        this.script.__create_from_data(parsed_data.script)
+        this.reload()
+    }
 }

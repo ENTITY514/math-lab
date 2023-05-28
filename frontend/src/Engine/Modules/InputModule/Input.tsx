@@ -6,7 +6,8 @@ export enum INPUTTYPES {
     RANGE = "range",
     BOOLEAN = "boolean",
     COLOR = "color",
-    BUTTON = "button"
+    BUTTON = "button",
+    TEXT_VAL = "text_val"
 }
 
 export class Input {

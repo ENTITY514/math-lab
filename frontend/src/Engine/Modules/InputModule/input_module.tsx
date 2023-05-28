@@ -1,8 +1,10 @@
 import { BooleanInput } from "./BooleanInput/boolean_input";
+import { ButtonInput } from "./Button/button";
 import { ColorInput } from "./ColorInput/color_input";
 import { INPUTTYPES, Input } from "./Input";
 import { NumberInput } from "./NumberInput/number_input";
 import { RangeInput } from "./RangeInput/range_input";
+import { Text } from "./Text/text";
 import { TextInput } from "./TextInput/text_input";
 
 export class InputModule {
@@ -16,6 +18,12 @@ export class InputModule {
         switch (input_type) {
             case INPUTTYPES.TEXT:
                 inp = new TextInput()
+                break;
+            case INPUTTYPES.BUTTON:
+                inp = new ButtonInput()
+                break;
+            case INPUTTYPES.TEXT_VAL:
+                inp = new Text()
                 break;
             case INPUTTYPES.BOOLEAN:
                 inp = new BooleanInput()

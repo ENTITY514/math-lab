@@ -22,8 +22,6 @@ export class DrawModule extends Module {
         this.color = 0xFFFFFF
         this.graphics = new PIXI.Graphics();
         this.engine.app.stage.addChild(this.graphics)
-        this.engine.canvasContainer?.addEventListener("mousedown", (e: MouseEvent) => { if (e.button === 0) this.is_draw = true })
-        this.engine.canvasContainer?.addEventListener("mouseup", (e: MouseEvent) => { if (e.button === 0) this.is_draw = false })
 
         this.engine.app.stage.on("pointermove", (e: PIXI.InteractionEvent) => {
             if (this.is_draw_mode) {
@@ -36,6 +34,10 @@ export class DrawModule extends Module {
                 }
             }
         })
+    }
+    __createListeners() {
+        this.engine.canvasContainer?.addEventListener("mousedown", (e: MouseEvent) => { if (e.button === 0) this.is_draw = true })
+        this.engine.canvasContainer?.addEventListener("mouseup", (e: MouseEvent) => { if (e.button === 0) this.is_draw = false })
     }
     __get_data__() {
         let arr: Array<Array<number>> = []

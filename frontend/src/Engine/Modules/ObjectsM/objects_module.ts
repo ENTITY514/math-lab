@@ -72,8 +72,10 @@ export class ObjectsModule extends Module {
             })
         }
 
-        object.transform.setPosition((-this.engine.dev_camera.position.x+this.engine.app.view.width/2)/this.engine.dev_camera.world.scale.x, 
-        (-this.engine.dev_camera.position.y+this.engine.app.view.height/2)/this.engine.dev_camera.world.scale.y)
+        if (this.engine.dev_camera) {
+            object.transform.setPosition((-this.engine.dev_camera.position.x + this.engine.app.view.width / 2) / this.engine.dev_camera.world.scale.x,
+                (-this.engine.dev_camera.position.y + this.engine.app.view.height / 2) / this.engine.dev_camera.world.scale.y)
+        }
         this.engine.app.stage.addChild(object.display_object);
         return object
     }

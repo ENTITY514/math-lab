@@ -40,7 +40,7 @@ export const OpenProjectFromFile: React.FC = () => {
             console.log(JSON.parse(reader.result as string));
             let engine = new Engine()
             engine.data_module.create_from_data_set(reader.result as string)
-            nav("/dev/engine")
+            nav("/dev/engine/main")
         };
     }
 

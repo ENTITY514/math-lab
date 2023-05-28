@@ -17,4 +17,10 @@ export class UserTools {
     addTool(tool: Tool) {
         this.tools.push(tool)
     }
+
+    createToolFromJSON(data: string) {
+        let tool = new Tool(this.engine)
+        tool.createFromJSON(data)
+        this.tools.push(tool)
+    }
 }

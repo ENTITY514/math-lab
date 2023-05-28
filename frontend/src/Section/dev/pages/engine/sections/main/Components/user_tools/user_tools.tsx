@@ -17,6 +17,52 @@ export const UserToolsView: React.FC = () => {
         engine.user_tools_module.createTool()
     }
 
+
+    const [isDragging, setIsDragging] = React.useState(false)
+    const handleDrag = (e: DragEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+    }
+    const handleDragIn = (e: DragEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        if (e.dataTransfer !== null) {
+            if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+                setIsDragging(true)
+            }
+        }
+    }
+    const handleDragOut = (e: DragEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        setIsDragging(false)
+    }
+    const handleDrop = (e: DragEvent) => {
+        e.preventDefault()
+        e.stopPropagation()
+        let file
+        if (e.dataTransfer !== null) {
+            file = e.dataTransfer.files[0]
+        }
+        let reader = new FileReader();
+        if (file) {
+            reader.readAsText(file)
+        }
+        reader.onload = function () {
+            engine.user_tools_module.createToolFromJSON(reader.result as string)
+        };
+    }
+
+    const container = React.useRef<HTMLDivElement>(null)
+    React.useEffect(() => {
+        if (container.current !== null) {
+            container.current.addEventListener('dragenter', handleDragIn)
+            container.current.addEventListener('dragleave', handleDragOut)
+            container.current.addEventListener('dragover', handleDrag)
+            container.current.addEventListener('drop', handleDrop)
+        }
+    }, [])
+
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -28,6 +74,9 @@ export const UserToolsView: React.FC = () => {
                     return <div key={tool.id}>{tool.__react__view__()}</div>
                 })
             }
+            <div className={style.footer} ref={container}>
+                <div className={style.name}>Создать из файла</div>
+            </div>
         </div>
     )
 }

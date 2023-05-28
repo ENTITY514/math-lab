@@ -51,6 +51,7 @@ export class Engine {
         this.input_module = new InputModule()
         this.dev_camera = new DevCamera(this.app)
         this.user_tools_module = new UserTools(this)
+        this.draw_module = new DrawModule(this)
         this.createDevCore()
         this.animate()
         Engine._instance = this
@@ -79,7 +80,7 @@ export class Engine {
         }
 
         this.dev_camera.setPosition(this.app.view.width / 2, this.app.view.height / 2)
-        this.draw_module = new DrawModule(this)
+        this.draw_module.__createListeners()
 
     }
 
