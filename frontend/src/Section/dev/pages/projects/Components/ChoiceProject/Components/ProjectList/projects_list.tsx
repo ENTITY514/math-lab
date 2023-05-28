@@ -24,7 +24,7 @@ export const ProjectsList: React.FC<IProjectListProps> = ({ projects }) => {
             {
                 __Projects__.map(project => {
                     return (
-                        <div className={style.project} key={nanoid()} onDoubleClick={() => { openProject(JSON.stringify(project.data)) }}>
+                        <div className={style.project} key={nanoid()} onClick={() => { openProject(JSON.stringify(project.data)) }}>
                             {project.name}
                         </div>
                     )
